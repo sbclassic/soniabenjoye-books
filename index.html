@@ -13,6 +13,21 @@
       padding: 0;
       line-height: 1.6;
     }
+    .navbar {
+      background-color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .navbar a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #191970;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      color: #2a2a9f;
+    }
     .container {
       max-width: 600px;
       margin: auto;
@@ -68,12 +83,19 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <!-- NAVIGATION -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="ebook.html">Ebook</a>
+    <a href="audiobook.html">Audiobook</a>
+    <a href="bundles.html">Bundles</a>
+  </div>
 
+  <div class="container">
     <!-- LOGO -->
     <div style="text-align: center; margin-bottom: 1.5rem;">
-      <a href="/">
-        <img src="sb_digital_logo.PNG" alt="SB Digital Logo" style="max-width: 180px; height: auto;" />
+      <a href="index.html">
+        <img src="sb_digital_logo.png" alt="SB Digital Logo" style="max-width: 180px; height: auto;" />
       </a>
     </div>
 
@@ -98,12 +120,10 @@
       <a class="button" href="#">Amazon (Coming Soon)</a>
     </div>
 
-    <!-- AUDIOBOOK SECTION -->
     <div class="section">
-      <h3>🎧 Audiobook Preview</h3>
-      <p><strong>Listen to a sample from the Introduction of <em>The Paradox of Passion</em> — with background piano.</strong></p>
+      <h3>🎧 Listen to a Voice Preview</h3>
       <audio controls style="width: 100%; border-radius: 6px; margin-top: 10px;">
-        <source src="ParadoxOfPassion_TeaserWithMusic.mp3" type="audio/mpeg" />
+        <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
@@ -159,17 +179,17 @@
     </div>
 
     <div class="section">
-      <h3>📚 More Books Coming Soon</h3>
-      <p>
-        Stay tuned for upcoming titles, audiobook versions, and digital bundles. This bookstore is just getting started.
-      </p>
-    </div>
-
-    <div class="section">
       <h3>🤍 Connect & Join the Community</h3>
       <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join the WhatsApp Community</a>
       <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
       <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree: All Links</a>
+    </div>
+
+    <div class="section">
+      <h3>📚 More Books Coming Soon</h3>
+      <p>
+        Stay tuned for new releases, audio editions, and special bundles. This is just the beginning.
+      </p>
     </div>
 
     <footer>
