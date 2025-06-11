@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Audiobooks – SB Digital</title>
+  <title>Audiobooks – Sonia Benjoye</title>
   <style>
     body {
       font-family: Georgia, serif;
@@ -13,85 +13,81 @@
       padding: 0;
       line-height: 1.6;
     }
+    .navbar {
+      background-color: #ffffff;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    .navbar a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #191970;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      color: #2a2a9f;
+    }
     .container {
       max-width: 600px;
       margin: auto;
       padding: 2rem;
     }
-    .logo {
-      display: block;
-      margin: 0 auto 1rem;
-      max-width: 160px;
-    }
     h1 {
-      font-size: 2em;
       text-align: center;
-      margin-bottom: 0.3em;
     }
-    .tagline {
+    .logo {
       text-align: center;
-      font-style: italic;
-      color: #555;
-      margin-bottom: 2em;
+      margin-top: 1.5rem;
     }
-    .audio-section {
-      text-align: center;
-      margin: 2rem 0;
+    .logo img {
+      max-width: 180px;
+      height: auto;
+    }
+    .section {
+      margin-top: 2rem;
+    }
+    .audio-title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
     }
     audio {
       width: 100%;
       border-radius: 6px;
-      margin-top: 10px;
     }
-    .button {
-      display: block;
-      background-color: #191970;
-      color: white;
+    .coming-soon {
       text-align: center;
-      padding: 12px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      margin: 20px 0;
-    }
-    .button:hover {
-      background-color: #2a2a9f;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      margin-top: 3rem;
-      color: #777;
+      font-style: italic;
+      color: #555;
     }
   </style>
 </head>
 <body>
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="ebook.html">Ebook</a>
+    <a href="audiobook.html">Audiobook</a>
+    <a href="bundles.html">Bundles</a>
+  </div>
+
+  <div class="logo">
+    <img src="sb_digital_logo.PNG" alt="SB Digital Logo" />
+  </div>
+
   <div class="container">
-
-    <!-- SB Digital Logo -->
-    <img src="SBDigital.png" alt="SB Digital Logo" class="logo" />
-
     <h1>Audiobooks</h1>
-    <p class="tagline">Healing, honesty, and heart — now in your ears.</p>
 
-    <div class="audio-section">
-      <h3>🎧 Listen to a Teaser</h3>
+    <div class="section">
+      <p class="audio-title">🎧 The Paradox of Passion – Teaser</p>
       <audio controls>
-        <source src="intro-teaser-mixed.mp3" type="audio/mpeg" />
+        <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-      <a class="button" href="https://soniabenjoye.gumroad.com/l/zemws" target="_blank">Buy Full Audiobook</a>
     </div>
 
-    <div class="audio-section">
-      <h3>🔜 More Audiobooks Coming Soon</h3>
-      <p>Stay tuned for future releases, exclusive previews, and audio bundles. New titles are already in progress.</p>
+    <div class="section">
+      <p class="coming-soon">Full audiobook & more titles coming soon.</p>
     </div>
-
-    <footer>
-      &copy; 2025 Sonia Benjoye. All rights reserved.
-    </footer>
-
   </div>
 </body>
 </html>
