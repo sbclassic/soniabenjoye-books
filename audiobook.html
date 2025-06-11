@@ -13,95 +13,119 @@
       padding: 0;
       line-height: 1.6;
     }
+
+    .navbar {
+      background-color: #ffffff;
+      padding: 1rem 0;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .navbar a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #191970;
+      font-weight: bold;
+      font-size: 0.95em;
+    }
+
+    .navbar a:hover {
+      color: #2a2a9f;
+    }
+
+    .logo {
+      text-align: center;
+      margin: 2rem 0 1rem 0;
+    }
+
+    .logo img {
+      max-width: 160px;
+      height: auto;
+    }
+
     .container {
       max-width: 600px;
       margin: auto;
-      padding: 2rem;
+      padding: 0 2rem 3rem;
     }
-    h1, h2 {
+
+    h1 {
+      font-size: 1.9em;
       text-align: center;
-    }
-    .logo {
-      text-align: center;
+      margin-top: 0.5rem;
       margin-bottom: 1rem;
     }
-    .logo img {
-      max-width: 180px;
-      height: auto;
-    }
-    nav {
+
+    h2 {
+      font-size: 1.4em;
       text-align: center;
-      margin-bottom: 2rem;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
     }
-    nav a {
-      margin: 0 12px;
-      color: #191970;
-      font-weight: bold;
-      text-decoration: none;
+
+    .preview-description {
+      font-style: italic;
+      text-align: center;
+      color: #444;
+      margin-bottom: 1rem;
     }
-    nav a:hover {
-      color: #2a2a9f;
-    }
-    .section {
-      margin-bottom: 3rem;
-    }
+
     audio {
       width: 100%;
       border-radius: 6px;
-      margin-top: 10px;
+      display: block;
+      margin: 0 auto;
     }
-    .button {
-      display: inline-block;
-      padding: 10px 16px;
-      background-color: #191970;
-      color: white;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
+
+    .coming-soon {
+      text-align: center;
+      font-style: italic;
+      color: #555;
+      margin-top: 3rem;
     }
-    .button:hover {
-      background-color: #2a2a9f;
-    }
+
     footer {
       text-align: center;
       font-size: 0.9em;
-      margin-top: 4rem;
       color: #777;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
+
+  <!-- NAVBAR -->
+  <div class="navbar">
+    <a href="index.html">Home</a>
+    <a href="ebooks.html">Ebook</a>
+    <a href="audiobooks.html">Audiobook</a>
+    <a href="bundles.html">Bundles</a>
+  </div>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <a href="index.html">
+      <img src="sb_digital_logo.PNG" alt="SB Digital Logo" />
+    </a>
+  </div>
+
   <div class="container">
-
-    <div class="logo">
-      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo"></a>
-    </div>
-
-    <!-- Navigation Menu -->
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="ebooks.html">Ebook</a>
-      <a href="audiobooks.html">Audiobook</a>
-      <a href="bundles.html">Bundles</a>
-    </nav>
-
     <h1>Audiobook Collection</h1>
 
-    <div class="section">
-      <h2>The Paradox of Passion – Audio Preview</h2>
-      <p style="text-align: center; font-style: italic;">Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.</p>
-      <audio controls>
-        <source src="intro-teaser-final.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <h2>The Paradox of Passion – Audio Preview</h2>
+    <p class="preview-description">
+      Listen to a soft introduction — narrated gently over ambient piano, drawn from the book’s opening pages.
+    </p>
 
-    <div class="section">
-      <h2>More Audiobooks Coming Soon</h2>
-      <p style="text-align: center;">We're working on new releases — stay tuned for audio editions of future titles.</p>
-    </div>
+    <audio controls>
+      <source src="intro-teaser-final.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
 
-    <footer>&copy; 2025 Sonia Benjoye. All rights reserved.</footer>
+    <p class="coming-soon">🎧 More audiobooks coming soon. Stay tuned for future audio editions.</p>
   </div>
+
+  <footer>&copy; 2025 Sonia Benjoye. All rights reserved.</footer>
+
 </body>
 </html>
