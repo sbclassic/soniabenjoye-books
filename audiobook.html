@@ -13,69 +13,58 @@
       padding: 0;
       line-height: 1.6;
     }
-
     .navbar {
       background-color: #ffffff;
-      padding: 1rem 0;
+      padding: 1rem;
       text-align: center;
       border-bottom: 1px solid #ddd;
     }
-
     .navbar a {
       margin: 0 1rem;
       text-decoration: none;
       color: #191970;
       font-weight: bold;
     }
-
     .navbar a:hover {
       color: #2a2a9f;
     }
-
-    .logo {
-      text-align: center;
-      margin-top: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .logo img {
-      max-width: 160px;
-      height: auto;
-    }
-
     .container {
       max-width: 600px;
       margin: auto;
-      padding: 0 2rem 3rem;
+      padding: 2rem;
     }
-
-    h1 {
-      font-size: 2em;
+    .logo {
       text-align: center;
-      margin-bottom: 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.3em;
-      text-align: center;
-      margin-top: 2.5rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .preview-description {
-      font-style: italic;
-      text-align: center;
-      color: #444;
+      margin-top: 1.5rem;
       margin-bottom: 1rem;
     }
-
+    .logo img {
+      max-width: 180px;
+      height: auto;
+    }
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 0.4em;
+    }
+    h2 {
+      text-align: center;
+      font-size: 1.4em;
+      margin-top: 2.5rem;
+      margin-bottom: 0.2em;
+    }
+    .description {
+      font-style: italic;
+      text-align: center;
+      color: #555;
+      margin-bottom: 1rem;
+    }
     audio {
       width: 100%;
       border-radius: 6px;
       display: block;
-      margin: 0 auto;
+      margin: 0 auto 1.5rem auto;
     }
-
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -85,42 +74,33 @@
   </style>
 </head>
 <body>
-
   <div class="navbar">
     <a href="index.html">Home</a>
     <a href="ebook.html">Ebook</a>
-    <a href="audiobooks.html">Audiobook</a>
+    <a href="audiobook.html">Audiobook</a>
     <a href="bundles.html">Bundles</a>
   </div>
 
   <div class="logo">
-    <a href="index.html">
-      <img src="sb_digital_logo.PNG" alt="SB Digital Logo" />
-    </a>
+    <img src="sb_digital_logo.PNG" alt="SB Digital Logo" />
   </div>
 
   <div class="container">
     <h1>Audiobook Collection</h1>
 
-    <div class="section">
-      <h2>The Paradox of Passion – Audio Preview</h2>
-      <p class="preview-description">
-        Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.
-      </p>
-      <audio controls>
-        <source src="intro-teaser-final.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-    </div>
+    <h2>The Paradox of Passion – Audio Preview</h2>
+    <p class="description">
+      Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.
+    </p>
+    <audio controls>
+      <source src="intro-teaser-final.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
 
-    <div class="section">
-      <h2>More Audiobooks Coming Soon</h2>
-      <p style="text-align:center; color:#555;">
-        We're working on new releases — stay tuned for audio editions of future titles.
-      </p>
-    </div>
-
-    <footer>&copy; 2025 Sonia Benjoye. All rights reserved.</footer>
+    <h2>More Audiobooks Coming Soon</h2>
+    <p class="description">We're working on new releases — stay tuned for audio editions of future titles.</p>
   </div>
+
+  <footer>&copy; 2025 Sonia Benjoye. All rights reserved.</footer>
 </body>
 </html>
