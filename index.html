@@ -4,92 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sonia Benjoye – Digital Bookstore</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Georgia', serif;
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
       background-color: #f9f7f6;
       color: #2b2b2b;
-      margin: 0;
-      padding: 0;
     }
 
-    /* HEADER STYLING */
     header {
+      background-color: white;
+      padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      padding: 1rem 2rem;
-      background-color: white;
       border-bottom: 1px solid #ddd;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     .logo img {
-      height: 48px;
+      height: 40px;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background: none;
+      border: none;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 1rem;
-      align-items: center;
+      flex-wrap: wrap;
     }
 
     nav a {
-      text-decoration: none;
-      color: #191970;
       font-weight: bold;
-      font-size: 1rem;
+      color: #191970;
+      text-decoration: none;
     }
 
     nav a:hover {
       color: #2a2a9f;
     }
 
-    .selectors {
-      display: flex;
-      gap: 0.5rem;
+    .language-currency {
+      font-size: 0.85rem;
+      color: #555;
     }
 
-    select {
-      padding: 4px 6px;
-      font-family: inherit;
-      font-size: 0.9rem;
-    }
-
-    /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 3rem 1rem 2rem;
+      padding: 3rem 1.5rem 2rem;
     }
 
-    .hero img {
-      max-width: 220px;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-
-    h1 {
-      font-size: 2rem;
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
       margin-bottom: 0.3rem;
     }
 
-    .subtitle {
+    .hero p {
       font-style: italic;
       color: #555;
-      font-size: 1.05rem;
-      margin-bottom: 2rem;
+    }
+
+    .hero img {
+      max-width: 90%;
+      border-radius: 10px;
+      margin: 2rem 0;
     }
 
     .section {
       max-width: 700px;
       margin: auto;
       padding: 2rem 1.5rem;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      margin-bottom: 0.8rem;
     }
 
     .button {
@@ -107,126 +101,99 @@
       background-color: #2a2a9f;
     }
 
-    audio {
-      width: 100%;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
-
-    .author-img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-
     footer {
       text-align: center;
       font-size: 0.9em;
-      padding: 2rem 1rem;
       color: #777;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid #ddd;
     }
 
-    footer a {
-      color: #191970;
-      text-decoration: none;
-    }
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        gap: 1rem;
+        background: white;
+        padding: 1rem;
+      }
 
-    footer a:hover {
-      color: #2a2a9f;
+      nav.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <header>
     <div class="logo">
-      <a href="index.html">
-        <img src="sb_digital_logo.PNG" alt="SB Digital Logo">
-      </a>
+      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo"></a>
     </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="ebook.html">Books</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="navMenu">
+      <a href="index.html">Books</a>
       <a href="audiobook.html">Audiobook</a>
       <a href="bundles.html">Bundles</a>
+      <a href="#about">About Me</a>
       <a href="https://sbclassic.github.io/sbclassic" target="_blank">SB CLASSIC</a>
-      <a href="#about">About</a>
-      <a href="#community">Community</a>
       <a href="#contact">Contact</a>
+      <a href="#community">Community</a>
     </nav>
-    <div class="selectors">
-      <select>
-        <option selected disabled>🌐 Language</option>
-        <option disabled>Coming Soon</option>
-      </select>
-      <select>
-        <option selected disabled>💱 Currency</option>
-        <option disabled>Coming Soon</option>
-      </select>
-    </div>
   </header>
 
-  <!-- HERO -->
   <div class="hero">
-    <img src="bookcover_resized.JPG" alt="The Paradox of Passion Book Cover">
     <h1>Sonia Benjoye</h1>
-    <p class="subtitle">Digital Bookstore — Poetry, Audio and Becoming</p>
+    <p>Digital Bookstore — Poetry, Audio and Becoming</p>
+    <img src="bookcover_resized.JPG" alt="Book Cover">
   </div>
 
-  <!-- INTRO -->
   <div class="section">
-    <p>Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart.  
-    Explore reflections on love, heartbreak, and healing through books and audio designed for your soul.</p>
-  </div>
-
-  <!-- BOOK FEATURE -->
-  <div class="section">
-    <h2>📘 Featured: The Paradox of Passion</h2>
+    <h2>📘 The Paradox of Passion</h2>
     <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-    <p>This poetic debut is a journey through heartbreak and healing. It’s not a guidebook — it’s a mirror.</p>
+    <p>A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.</p>
     <a class="button" href="#" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $6.50 USD</a>
   </div>
 
-  <!-- AUDIO PREVIEW -->
   <div class="section">
-    <p style="font-style: italic; color: #555;">🎧 Listen to a preview from the Introduction:</p>
-    <audio controls>
+    <p style="font-style: italic; color: #555;">Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.</p>
+    <audio controls style="width: 100%; border-radius: 6px;">
       <source src="intro-teaser-final.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
-  <!-- ABOUT THE BOOK -->
   <div class="section" id="about">
     <h2>💬 About the Book</h2>
-    <p>Whether you’ve stayed too long, loved too deeply, or are learning to choose yourself again, this book will speak to the part of you that still believes in connection — even after the wreckage.</p>
-    <p style="font-style: italic;">"You are not too much. You are not alone. You are allowed to begin again."</p>
+    <p>Whether you’ve stayed too long, loved too deeply, or are learning to choose yourself again, this book will speak to you.</p>
+    <p><em>"You are not too much. You are not alone. You are allowed to begin again."</em></p>
   </div>
 
-  <!-- ABOUT AUTHOR -->
   <div class="section">
     <h2>👤 About the Author</h2>
-    <img src="authorphoto_resized.JPG" alt="Sonia Benjoye" class="author-img">
-    <p>Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth. Writing this book was never the plan — it was a healing. A way through.</p>
-    <p>This is her first book — not written as a writer, but as a woman who lived it.</p>
+    <img src="authorphoto_resized.JPG" alt="Author Photo" style="width: 100%; border-radius: 10px; margin-bottom: 1rem;">
+    <p>Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth. She never set out to be a writer—just someone who needed to write her way through heartbreak and healing.</p>
+    <p>This is her first book, written not as a writer, but as a woman who lived it.</p>
   </div>
 
-  <!-- COMMUNITY -->
   <div class="section" id="community" style="text-align: center;">
-    <h2>🤍 Join the Community</h2>
-    <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join on WhatsApp</a>
-    <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
-    <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">All Links</a>
+    <h2>🤍 Connect & Join the Community</h2>
+    <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join the WhatsApp Community</a>
+    <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Instagram</a>
+    <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree</a>
   </div>
 
-  <!-- FOOTER -->
   <footer id="contact">
-    Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br>
+    Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
     &copy; 2025 Sonia Benjoye. All rights reserved.
   </footer>
 
-  <!-- PAYSTACK SCRIPT -->
+  <!-- Paystack Script -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
     function payWithPaystack() {
@@ -234,17 +201,20 @@
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
         email: 'benjoye21@gmail.com',
         amount: 7500,
-        currency: 'GHS',
-        callback: function(response) {
-          alert('Payment complete! Please check your email for your ebook.');
+        currency: "GHS",
+        callback: function(response){
+          alert('Payment complete! Check your email for your ebook.');
         },
-        onClose: function() {
-          alert('Transaction cancelled.');
+        onClose: function(){
+          alert('Transaction was not completed.');
         }
       });
       handler.openIframe();
     }
-  </script>
 
+    function toggleMenu() {
+      document.getElementById("navMenu").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
