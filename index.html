@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sonia Benjoye — Digital Bookstore</title>
+  <title>Sonia Benjoye – Digital Bookstore</title>
   <style>
     body {
       font-family: Georgia, serif;
@@ -11,68 +11,75 @@
       color: #2b2b2b;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
     }
-    .navbar {
-      background-color: #fff;
+    header {
+      background: #fff;
+      padding: 1rem 2rem;
       border-bottom: 1px solid #ddd;
-      padding: 1rem;
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
-    .nav-left, .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+    .logo img {
+      height: 50px;
     }
-    .nav-left a, .nav-right select {
+    nav a {
+      margin: 0 1rem;
       text-decoration: none;
       color: #191970;
       font-weight: bold;
-      font-size: 0.95em;
     }
-    .nav-left a:hover {
+    nav a:hover {
       color: #2a2a9f;
     }
+    .selectors {
+      display: flex;
+      gap: 1rem;
+    }
+    select {
+      padding: 0.3rem;
+      font-size: 0.9rem;
+    }
     .container {
-      max-width: 600px;
+      max-width: 800px;
       margin: auto;
       padding: 2rem;
     }
-    .logo {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    .logo img {
-      max-width: 180px;
-      height: auto;
-    }
     h1 {
-      font-size: 2em;
       text-align: center;
-      margin-bottom: 0.2em;
+      margin-bottom: 0.5rem;
     }
     .tagline {
       text-align: center;
       font-style: italic;
       color: #444;
-      margin-bottom: 2em;
+      margin-bottom: 2rem;
     }
-    .section {
-      margin: 2.5rem 0;
+    .cover-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .product-block {
+      background: #fff;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+    }
+    .product-block h3 {
+      margin-top: 0;
     }
     .button {
-      display: block;
+      display: inline-block;
       background-color: #191970;
       color: white;
-      text-align: center;
-      padding: 12px;
+      padding: 10px 16px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin: 10px 0;
+      margin-top: 1rem;
     }
     .button:hover {
       background-color: #2a2a9f;
@@ -80,143 +87,103 @@
     audio {
       width: 100%;
       border-radius: 6px;
-      margin-top: 10px;
-    }
-    .quote {
-      font-style: italic;
-      text-align: center;
-      color: #555;
-    }
-    .cover-img, .author-img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 2rem;
+      margin-top: 1rem;
     }
     footer {
+      background: #f0efee;
+      padding: 2rem;
+      font-size: 0.9rem;
       text-align: center;
-      font-size: 0.9em;
+      color: #555;
       margin-top: 4rem;
-      color: #777;
     }
-    .contact {
-      text-align: center;
-      font-size: 0.95em;
-      margin-top: 1rem;
-      color: #444;
+    footer a {
+      color: #191970;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-
-  <div class="navbar">
-    <div class="nav-left">
+  <!-- Header & Navbar -->
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo"></a>
+    </div>
+    <nav>
       <a href="index.html">Home</a>
       <a href="ebook.html">Ebook</a>
       <a href="audiobook.html">Audiobook</a>
       <a href="bundles.html">Bundles</a>
-    </div>
-    <div class="nav-right">
-      <select name="lang">
-        <option selected>Language</option>
-        <option>English</option>
-        <option>Français</option>
+    </nav>
+    <div class="selectors">
+      <select>
+        <option>EN</option>
+        <option>FR</option>
       </select>
-      <select name="currency">
-        <option selected>Currency</option>
-        <option>GHS</option>
-        <option>USD</option>
+      <select>
+        <option>GHS ₵</option>
+        <option>USD $</option>
       </select>
     </div>
-  </div>
+  </header>
 
   <div class="container">
-
-    <div class="logo">
-      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo" /></a>
-    </div>
-
     <h1>Sonia Benjoye</h1>
     <p class="tagline">Digital Bookstore — Poetry, Audio and Becoming</p>
 
     <img src="bookcover_resized.JPG" alt="The Paradox of Passion Cover" class="cover-img" />
 
-    <p>
-      Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart.  
-      Explore powerful reflections on love, loss, healing, and the quiet strength of choosing yourself.
-    </p>
-
-    <div class="section">
-      <h3>📘 Featured Book: The Paradox of Passion</h3>
+    <div class="product-block">
+      <h3>📘 The Paradox of Passion (Ebook)</h3>
       <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-      <p>
-        A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.
-        This is not a guidebook — it’s a mirror.
-      </p>
-      <button class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS</button>
+      <p>A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.</p>
+      <form id="paymentForm">
+        <button type="submit" class="button">Buy Ebook – ₵75 GHS</button>
+      </form>
     </div>
 
-    <div class="section">
-      <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555;">
-        Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.
-      </p>
+    <div class="product-block">
+      <h3>🎧 Audiobook Preview</h3>
+      <p style="font-style: italic;">Listen to a sample from the <em>Introduction</em>.</p>
       <audio controls>
         <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
     </div>
 
-    <div class="section">
-      <h3>💬 About the Book</h3>
-      <p>
-        Whether you’ve stayed too long, loved too deeply, or are learning to choose yourself again, 
-        <em>The Paradox of Passion</em> will speak to the part of you that still believes in connection, even after the wreckage.
-      </p>
-      <p class="quote">“You are not too much. You are not alone. You are allowed to begin again.”</p>
-    </div>
-
-    <div class="section">
-      <h3>🖋️ About the Author</h3>
-      <img src="authorphoto_resized.JPG" alt="Sonia Benjoye - Author" class="author-img" />
-      <p>
-        Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth.
-        She never set out to be an author — just someone who needed to write her way through heartbreak and healing.
-      </p>
-      <p>
-        <em>The Paradox of Passion</em> is the result: a soul-deep offering for anyone who has ever lost themselves in love
-        and fought to find their way back.
-      </p>
-      <p>
-        This is her first book, not written as a writer, but as a woman who lived it.
-      </p>
-    </div>
-
-    <div class="section">
+    <div class="product-block">
       <h3>🤍 Connect & Join the Community</h3>
       <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join the WhatsApp Community</a>
-      <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
-      <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree: All Links</a>
+      <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Instagram</a>
+      <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree</a>
     </div>
 
-    <div class="section contact">
-      Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a>
+    <div class="product-block">
+      <h3>📬 Contact</h3>
+      <p>Have a question or need support? Email: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a></p>
     </div>
-
-    <footer>
-      &copy; 2025 Sonia Benjoye. All rights reserved.
-    </footer>
   </div>
 
+  <footer>
+    &copy; 2025 Sonia Benjoye. All rights reserved.
+  </footer>
+
+  <!-- Paystack Integration -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
-    function payWithPaystack() {
-      var handler = PaystackPop.setup({
+    const paymentForm = document.getElementById('paymentForm');
+    paymentForm.addEventListener('submit', payWithPaystack, false);
+    function payWithPaystack(e) {
+      e.preventDefault();
+      let handler = PaystackPop.setup({
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
         email: 'benjoye21@gmail.com',
-        amount: 7500, // in pesewas (₵75)
+        amount: 7500, // Amount in pesewas = ₵75
         currency: 'GHS',
-        label: "Paradox of Passion",
         callback: function(response){
-          alert('Payment complete! Ref: ' + response.reference + '\nWe’ll email your ebook shortly.');
+          alert('Payment complete! Ref: ' + response.reference);
+          window.location.href = "thankyou.html";
         },
         onClose: function(){
           alert('Payment window closed.');
@@ -225,6 +192,5 @@
       handler.openIframe();
     }
   </script>
-
 </body>
 </html>
