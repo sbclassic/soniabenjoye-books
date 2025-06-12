@@ -14,24 +14,40 @@
       line-height: 1.6;
     }
     .navbar {
-      background-color: #ffffff;
-      padding: 1rem;
-      text-align: center;
+      background-color: #fff;
       border-bottom: 1px solid #ddd;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
-    .navbar a {
-      margin: 0 1rem;
+    .nav-left, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-left a, .nav-right select {
       text-decoration: none;
       color: #191970;
       font-weight: bold;
+      font-size: 0.95em;
     }
-    .navbar a:hover {
+    .nav-left a:hover {
       color: #2a2a9f;
     }
     .container {
       max-width: 600px;
       margin: auto;
       padding: 2rem;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .logo img {
+      max-width: 180px;
+      height: auto;
     }
     h1 {
       font-size: 2em;
@@ -41,8 +57,11 @@
     .tagline {
       text-align: center;
       font-style: italic;
-      margin-bottom: 2em;
       color: #444;
+      margin-bottom: 2em;
+    }
+    .section {
+      margin: 2.5rem 0;
     }
     .button {
       display: block;
@@ -58,8 +77,10 @@
     .button:hover {
       background-color: #2a2a9f;
     }
-    .section {
-      margin: 2.5rem 0;
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 10px;
     }
     .quote {
       font-style: italic;
@@ -77,23 +98,41 @@
       margin-top: 4rem;
       color: #777;
     }
+    .contact {
+      text-align: center;
+      font-size: 0.95em;
+      margin-top: 1rem;
+      color: #444;
+    }
   </style>
 </head>
 <body>
-  <!-- NAVIGATION -->
+
   <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="ebook.html">Ebook</a>
-    <a href="audiobook.html">Audiobook</a>
-    <a href="bundles.html">Bundles</a>
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="ebook.html">Ebook</a>
+      <a href="audiobook.html">Audiobook</a>
+      <a href="bundles.html">Bundles</a>
+    </div>
+    <div class="nav-right">
+      <select name="lang">
+        <option selected>Language</option>
+        <option>English</option>
+        <option>Français</option>
+      </select>
+      <select name="currency">
+        <option selected>Currency</option>
+        <option>GHS</option>
+        <option>USD</option>
+      </select>
+    </div>
   </div>
 
   <div class="container">
-    <!-- LOGO -->
-    <div style="text-align: center; margin-bottom: 1.5rem;">
-      <a href="index.html">
-        <img src="sb_digital_logo.PNG" alt="SB Digital Logo" style="max-width: 180px; height: auto;" />
-      </a>
+
+    <div class="logo">
+      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo" /></a>
     </div>
 
     <h1>Sonia Benjoye</h1>
@@ -110,17 +149,17 @@
       <h3>📘 Featured Book: The Paradox of Passion</h3>
       <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
       <p>
-        A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.  
-        This is not a guidebook, it’s a mirror.
+        A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.
+        This is not a guidebook — it’s a mirror.
       </p>
-      <button id="paystackBtn" class="button">Buy Ebook – ₵75 GHS / $6.50 USD</button>
+      <button class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS</button>
     </div>
 
     <div class="section">
-      <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555; margin-top: -1em;">
+      <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555;">
         Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.
       </p>
-      <audio controls style="width: 100%; border-radius: 6px; margin-top: 10px;">
+      <audio controls>
         <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
@@ -158,34 +197,34 @@
       <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree: All Links</a>
     </div>
 
-    <div class="section">
-      <h3>📚 More Books Coming Soon</h3>
-      <p>Stay tuned for new releases, audio editions, and special bundles. This is just the beginning.</p>
+    <div class="section contact">
+      Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a>
     </div>
 
     <footer>
-      Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br />
       &copy; 2025 Sonia Benjoye. All rights reserved.
     </footer>
   </div>
 
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
-    document.getElementById("paystackBtn").addEventListener("click", function () {
-      PaystackPop.setup({
+    function payWithPaystack() {
+      var handler = PaystackPop.setup({
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
         email: 'benjoye21@gmail.com',
-        amount: 7500,
+        amount: 7500, // in pesewas (₵75)
         currency: 'GHS',
-        label: "Buy Ebook",
-        callback: function(response) {
-          alert("Thank you! Your payment was successful. We'll contact you shortly to deliver your ebook.");
+        label: "Paradox of Passion",
+        callback: function(response){
+          alert('Payment complete! Ref: ' + response.reference + '\nWe’ll email your ebook shortly.');
         },
-        onClose: function() {
-          alert("Payment window closed.");
+        onClose: function(){
+          alert('Payment window closed.');
         }
-      }).openIframe();
-    });
+      });
+      handler.openIframe();
+    }
   </script>
+
 </body>
 </html>
