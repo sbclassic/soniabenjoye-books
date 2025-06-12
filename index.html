@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sonia Benjoye — Digital Bookstore</title>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
     body {
       font-family: Georgia, serif;
@@ -83,8 +82,11 @@
       color: #777;
     }
   </style>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
+
+  <!-- NAVIGATION -->
   <div class="navbar">
     <a href="index.html">Home</a>
     <a href="ebook.html">Ebook</a>
@@ -93,6 +95,8 @@
   </div>
 
   <div class="container">
+
+    <!-- LOGO -->
     <div style="text-align: center; margin-bottom: 1.5rem;">
       <a href="index.html">
         <img src="sb_digital_logo.PNG" alt="SB Digital Logo" style="max-width: 180px; height: auto;" />
@@ -116,8 +120,10 @@
         A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.  
         This is not a guidebook, it’s a mirror.
       </p>
-      <div class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $7 USD</div>
-      <a class="button" href="#">Amazon (Coming Soon)</a>
+      <a class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $7 USD</a>
+      <p style="font-size: 0.9em; color: #555; text-align: center; margin-top: -10px;">
+        📩 After payment, kindly <strong>send your name or receipt reference</strong> to us on WhatsApp to receive your ebook instantly.
+      </p>
     </div>
 
     <div class="section">
@@ -128,31 +134,6 @@
         <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-    </div>
-
-    <div class="section">
-      <h3>🌍 Outside Ghana? You Can Still Buy the Ebook</h3>
-      <p><strong>Pay directly to Mobile Money, it's fast, secure, and international-friendly.</strong></p>
-      <ul>
-        <li><strong>Network:</strong> AirtelTigo Ghana</li>
-        <li><strong>Mobile Money Number:</strong> 0260928990</li>
-        <li><strong>Name on Wallet:</strong> Sonia Benjoye</li>
-      </ul>
-      <p>🌐 Use any of these trusted apps from abroad:</p>
-      <ul>
-        <li>✅ <strong>Sendwave</strong></li>
-        <li>✅ <strong>WorldRemit</strong></li>
-        <li>✅ <strong>Chipper Cash</strong></li>
-        <li>✅ <strong>Eversend</strong></li>
-        <li>✅ <strong>Remitly</strong></li>
-      </ul>
-      <p><strong>After sending payment:</strong></p>
-      <ol>
-        <li>Take a screenshot or note your transaction name</li>
-        <li>Send it to us via WhatsApp</li>
-        <li>You’ll receive your ebook instantly after confirmation</li>
-      </ol>
-      <a class="button" href="https://wa.me/233546874673" target="_blank">Confirm Payment on WhatsApp</a>
     </div>
 
     <div class="section">
@@ -199,19 +180,18 @@
     </footer>
   </div>
 
+  <!-- PAYSTACK POPUP SCRIPT -->
   <script>
     function payWithPaystack() {
       var handler = PaystackPop.setup({
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-        email: 'sbclassic11@gmail.com',
-        amount: 7500, // in pesewas
+        email: 'buyer@email.com',
+        amount: 7500, // amount in pesewas
         currency: 'GHS',
-        label: 'Ebook Purchase',
-        callback: function(response){
-          alert('Payment successful! Ref: ' + response.reference);
-        },
-        onClose: function(){
-          alert('Payment window closed.');
+        label: "The Paradox of Passion",
+        callback: function(response) {
+          alert('Payment complete! Please send your reference to WhatsApp: ' + response.reference);
+          window.open("https://wa.me/233546874673", "_blank");
         }
       });
       handler.openIframe();
