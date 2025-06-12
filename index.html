@@ -54,7 +54,6 @@
       text-decoration: none;
       font-weight: bold;
       margin: 10px 0;
-      cursor: pointer;
     }
     .button:hover {
       background-color: #2a2a9f;
@@ -72,9 +71,6 @@
       border-radius: 10px;
       margin-bottom: 2rem;
     }
-    ul, ol {
-      padding-left: 1.2rem;
-    }
     footer {
       text-align: center;
       font-size: 0.9em;
@@ -82,10 +78,8 @@
       color: #777;
     }
   </style>
-  <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
 <body>
-
   <!-- NAVIGATION -->
   <div class="navbar">
     <a href="index.html">Home</a>
@@ -95,7 +89,6 @@
   </div>
 
   <div class="container">
-
     <!-- LOGO -->
     <div style="text-align: center; margin-bottom: 1.5rem;">
       <a href="index.html">
@@ -120,10 +113,7 @@
         A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.  
         This is not a guidebook, it’s a mirror.
       </p>
-      <a class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $7 USD</a>
-      <p style="font-size: 0.9em; color: #555; text-align: center; margin-top: -10px;">
-        📩 After payment, kindly <strong>send your name or receipt reference</strong> to us on WhatsApp to receive your ebook instantly.
-      </p>
+      <button id="paystackBtn" class="button">Buy Ebook – ₵75 GHS / $6.50 USD</button>
     </div>
 
     <div class="section">
@@ -170,32 +160,32 @@
 
     <div class="section">
       <h3>📚 More Books Coming Soon</h3>
-      <p>
-        Stay tuned for new releases, audio editions, and special bundles. This is just the beginning.
-      </p>
+      <p>Stay tuned for new releases, audio editions, and special bundles. This is just the beginning.</p>
     </div>
 
     <footer>
+      Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br />
       &copy; 2025 Sonia Benjoye. All rights reserved.
     </footer>
   </div>
 
-  <!-- PAYSTACK POPUP SCRIPT -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
-    function payWithPaystack() {
-      var handler = PaystackPop.setup({
+    document.getElementById("paystackBtn").addEventListener("click", function () {
+      PaystackPop.setup({
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-        email: 'buyer@email.com',
-        amount: 7500, // amount in pesewas
+        email: 'benjoye21@gmail.com',
+        amount: 7500,
         currency: 'GHS',
-        label: "The Paradox of Passion",
+        label: "Buy Ebook",
         callback: function(response) {
-          alert('Payment complete! Please send your reference to WhatsApp: ' + response.reference);
-          window.open("https://wa.me/233546874673", "_blank");
+          alert("Thank you! Your payment was successful. We'll contact you shortly to deliver your ebook.");
+        },
+        onClose: function() {
+          alert("Payment window closed.");
         }
-      });
-      handler.openIframe();
-    }
+      }).openIframe();
+    });
   </script>
 </body>
 </html>
