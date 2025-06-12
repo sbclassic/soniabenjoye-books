@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sonia Benjoye — Digital Bookstore</title>
+  <script src="https://js.paystack.co/v1/inline.js"></script>
   <style>
     body {
       font-family: Georgia, serif;
@@ -54,6 +55,7 @@
       text-decoration: none;
       font-weight: bold;
       margin: 10px 0;
+      cursor: pointer;
     }
     .button:hover {
       background-color: #2a2a9f;
@@ -70,9 +72,6 @@
       width: 100%;
       border-radius: 10px;
       margin-bottom: 2rem;
-    }
-    ul, ol {
-      padding-left: 1.2rem;
     }
     footer {
       text-align: center;
@@ -112,47 +111,20 @@
     <div class="section">
       <h3>📘 Featured Book: The Paradox of Passion</h3>
       <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-      <p>
-        A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.  
-        This is not a guidebook, it’s a mirror.
-      </p>
-      <a class="button" href="https://soniabenjoye.gumroad.com/l/zemws" target="_blank">Buy Ebook – ₵85 GHS / $7 USD</a>
+      <p>A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again. This is not a guidebook, it’s a mirror.</p>
+
+      <button class="button" onclick="payWithPaystack()">Buy Ebook – ₵85 GHS / $7 USD</button>
       <a class="button" href="#">Amazon (Coming Soon)</a>
     </div>
 
     <div class="section">
-   <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555; margin-top: -1em;">
-     Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.
-   </p>
+      <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555; margin-top: -1em;">
+        Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.
+      </p>
       <audio controls style="width: 100%; border-radius: 6px; margin-top: 10px;">
         <source src="intro-teaser-final.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
-    </div>
-
-    <div class="section">
-      <h3>🌍 Outside Ghana? You Can Still Buy the Ebook</h3>
-      <p><strong>Pay directly to Mobile Money, it's fast, secure, and international-friendly.</strong></p>
-      <ul>
-        <li><strong>Network:</strong> AirtelTigo Ghana</li>
-        <li><strong>Mobile Money Number:</strong> 0260928990</li>
-        <li><strong>Name on Wallet:</strong> Sonia Benjoye</li>
-      </ul>
-      <p>🌐 Use any of these trusted apps from abroad:</p>
-      <ul>
-        <li>✅ <strong>Sendwave</strong></li>
-        <li>✅ <strong>WorldRemit</strong></li>
-        <li>✅ <strong>Chipper Cash</strong></li>
-        <li>✅ <strong>Eversend</strong></li>
-        <li>✅ <strong>Remitly</strong></li>
-      </ul>
-      <p><strong>After sending payment:</strong></p>
-      <ol>
-        <li>Take a screenshot or note your transaction name</li>
-        <li>Send it to us via WhatsApp</li>
-        <li>You’ll receive your ebook instantly after confirmation</li>
-      </ol>
-      <a class="button" href="https://wa.me/233546874673" target="_blank">Confirm Payment on WhatsApp</a>
     </div>
 
     <div class="section">
@@ -175,9 +147,7 @@
         <em>The Paradox of Passion</em> is the result: a soul-deep offering for anyone who has ever lost themselves in love
         and fought to find their way back.
       </p>
-      <p>
-        This is her first book, not written as a writer, but as a woman who lived it.
-      </p>
+      <p>This is her first book, not written as a writer, but as a woman who lived it.</p>
     </div>
 
     <div class="section">
@@ -198,5 +168,24 @@
       &copy; 2025 Sonia Benjoye. All rights reserved.
     </footer>
   </div>
+
+  <script>
+    function payWithPaystack() {
+      var handler = PaystackPop.setup({
+        key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+        email: 'sbclassic11@gmail.com',
+        amount: 8500, // ₵85 in kobo
+        currency: 'GHS',
+        label: 'Sonia Benjoye Ebook',
+        callback: function(response) {
+          alert('Payment successful! Ref: ' + response.reference);
+        },
+        onClose: function() {
+          alert('Payment cancelled.');
+        }
+      });
+      handler.openIframe();
+    }
+  </script>
 </body>
 </html>
