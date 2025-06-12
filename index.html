@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sonia Benjoye — Digital Bookstore</title>
+  <title>Sonia Benjoye – Digital Bookstore</title>
   <style>
     body {
       font-family: Georgia, serif;
@@ -11,21 +11,20 @@
       color: #2b2b2b;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
     }
     header {
-      background: #fff;
-      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 1rem 1.5rem;
       border-bottom: 1px solid #ddd;
+      background-color: #fff;
     }
     .logo img {
-      max-height: 50px;
+      max-height: 45px;
     }
     nav a {
-      margin: 0 0.8rem;
+      margin: 0 1rem;
       text-decoration: none;
       color: #191970;
       font-weight: bold;
@@ -33,154 +32,120 @@
     nav a:hover {
       color: #2a2a9f;
     }
-    .lang-currency {
-      display: flex;
-      gap: 10px;
-    }
-    select {
-      padding: 0.3rem;
-      border-radius: 4px;
-      border: 1px solid #ccc;
-    }
     .container {
       max-width: 700px;
       margin: auto;
-      padding: 2rem 1rem;
+      padding: 2rem;
     }
-    h1, h2, h3 {
+    h1 {
       text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.2em;
     }
     .tagline {
       text-align: center;
       font-style: italic;
+      margin-bottom: 1.5rem;
       color: #444;
-      margin-top: -0.5rem;
+    }
+    .cover-img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 2rem;
     }
     .button {
-      display: block;
+      display: inline-block;
+      padding: 10px 16px;
       background-color: #191970;
       color: white;
-      text-align: center;
-      padding: 12px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin: 15px 0;
+      margin: 0.5rem 0;
     }
     .button:hover {
       background-color: #2a2a9f;
     }
     audio {
       width: 100%;
-      margin-top: 10px;
-    }
-    .quote {
-      text-align: center;
-      font-style: italic;
-      color: #555;
-      margin: 2rem 0;
+      margin: 1rem 0;
     }
     footer {
       text-align: center;
       font-size: 0.9em;
       color: #777;
-      margin-top: 3rem;
-      padding-bottom: 2rem;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      border-top: 1px solid #eee;
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo"></a>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="ebook.html">Ebook</a>
+      <a href="audiobook.html">Audiobook</a>
+      <a href="bundles.html">Bundles</a>
+      <a href="https://sbclassic.github.io/sbclassic/" target="_blank">SB CLASSIC</a>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo">
-    <a href="index.html"><img src="sb_digital_logo.PNG" alt="SB Digital Logo" /></a>
+  <div class="container">
+    <h1>Sonia Benjoye</h1>
+    <p class="tagline">Digital Bookstore — Poetry, Audio and Becoming</p>
+
+    <img src="bookcover_resized.JPG" alt="The Paradox of Passion Cover" class="cover-img" />
+
+    <p>Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart. Explore powerful reflections on love, loss, healing, and the quiet strength of choosing yourself.</p>
+
+    <h3>📘 Featured Book: The Paradox of Passion</h3>
+    <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
+    <p>A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again. This is not a guidebook, it’s a mirror.</p>
+
+    <a class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $6.50 USD</a>
+
+    <h3>🎧 Audio Preview</h3>
+    <p><em>Listen to a short sample from the introduction of <strong>The Paradox of Passion</strong>.</em></p>
+    <audio controls>
+      <source src="intro-teaser-final.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+    <h3>🤍 Connect & Join the Community</h3>
+    <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join WhatsApp Community</a>
+    <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
+    <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">View Linktree</a>
+
+    <h3>📬 Contact</h3>
+    <p>Email: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a></p>
   </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="ebook.html">Ebook</a>
-    <a href="audiobook.html">Audiobook</a>
-    <a href="bundles.html">Bundles</a>
-    <a href="https://sbclassic.github.io/sbclassic/">SB CLASSIC</a>
-  </nav>
-  <div class="lang-currency">
-    <select>
-      <option>EN</option>
-      <option disabled>FR</option>
-      <option disabled>ES</option>
-    </select>
-    <select>
-      <option>GHS</option>
-      <option disabled>USD</option>
-      <option disabled>EUR</option>
-    </select>
-  </div>
-</header>
 
-<div class="container">
+  <footer>
+    &copy; 2025 Sonia Benjoye. All rights reserved.
+  </footer>
 
-  <h1>Sonia Benjoye</h1>
-  <p class="tagline">Digital Bookstore — Poetry, Audio and Becoming</p>
-
-  <img src="bookcover_resized.JPG" alt="The Paradox of Passion" style="width: 100%; border-radius: 10px; margin-top: 2rem;" />
-
-  <p>Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart.  
-  Explore powerful reflections on love, loss, healing, and the quiet strength of choosing yourself.</p>
-
-  <h3>📘 Featured Book: The Paradox of Passion</h3>
-  <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-  <p>A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again. This is not a guidebook, it’s a mirror.</p>
-
-  <button class="button" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $6.50 USD</button>
-
+  <!-- PAYSTACK PAYMENT -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
     function payWithPaystack() {
       var handler = PaystackPop.setup({
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
         email: 'benjoye21@gmail.com',
-        amount: 7500, // in pesewas
+        amount: 7500, // in kobo/pesewa
         currency: 'GHS',
-        callback: function(response){
-          alert('Thank you for your purchase! We’ll send your ebook shortly via email or WhatsApp.');
+        callback: function(response) {
+          alert('Payment complete! Your transaction reference: ' + response.reference + '. Check your email for the ebook.');
         },
-        onClose: function(){
-          alert('Payment window closed.');
+        onClose: function() {
+          alert('Transaction canceled.');
         }
       });
       handler.openIframe();
     }
   </script>
-
-  <p style="text-align: center; font-size: 1.05em; font-style: italic; color: #555;">
-    Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.
-  </p>
-  <audio controls>
-    <source src="intro-teaser-final.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
-  <div class="quote">“You are not too much. You are not alone. You are allowed to begin again.”</div>
-
-  <h3>💬 About the Book</h3>
-  <p><em>The Paradox of Passion</em> will speak to the part of you that still believes in connection, even after the wreckage. It’s not just poetry — it’s permission to feel deeply, love boldly, and begin again.</p>
-
-  <h3>🖋️ About the Author</h3>
-  <img src="authorphoto_resized.JPG" alt="Author Photo" style="width: 100%; border-radius: 10px; margin-bottom: 1rem;" />
-  <p>Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth. This is her first book, not written as a writer — but as a woman who lived it.</p>
-
-  <h3>🤍 Join the Community</h3>
-  <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join WhatsApp Group</a>
-  <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
-  <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree – All Links</a>
-
-  <h3>📚 More Books Coming Soon</h3>
-  <p>Stay tuned for audio editions and exclusive bundles — this is just the beginning.</p>
-
-  <footer>
-    Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
-    &copy; 2025 Sonia Benjoye. All rights reserved.
-  </footer>
-
-</div>
 </body>
 </html>
