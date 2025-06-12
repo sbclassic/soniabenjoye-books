@@ -12,68 +12,86 @@
       margin: 0;
       padding: 0;
     }
+
+    /* HEADER STYLING */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       padding: 1rem 2rem;
       background-color: white;
       border-bottom: 1px solid #ddd;
     }
-    .logo {
+
+    .logo img {
+      height: 48px;
+    }
+
+    nav {
       display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
       align-items: center;
     }
-    .logo img {
-      height: 30px;
-      margin-right: 10px;
-    }
-    .nav-links {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .nav-links a {
+
+    nav a {
       text-decoration: none;
       color: #191970;
       font-weight: bold;
+      font-size: 1rem;
     }
-    .nav-links a:hover {
+
+    nav a:hover {
       color: #2a2a9f;
     }
+
     .selectors {
       display: flex;
       gap: 0.5rem;
     }
+
     select {
+      padding: 4px 6px;
       font-family: inherit;
-      padding: 4px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      font-size: 0.9rem;
     }
+
+    /* HERO SECTION */
     .hero {
       text-align: center;
-      padding: 2rem;
+      padding: 3rem 1rem 2rem;
     }
+
     .hero img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 10px;
+      max-width: 220px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
     }
+
     h1 {
       font-size: 2rem;
       margin-bottom: 0.3rem;
     }
+
     .subtitle {
       font-style: italic;
       color: #555;
+      font-size: 1.05rem;
       margin-bottom: 2rem;
     }
+
     .section {
       max-width: 700px;
       margin: auto;
-      padding: 2rem;
+      padding: 2rem 1.5rem;
     }
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
     .button {
       display: inline-block;
       background-color: #191970;
@@ -84,120 +102,131 @@
       font-weight: bold;
       margin-top: 1rem;
     }
+
     .button:hover {
       background-color: #2a2a9f;
     }
+
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+
+    .author-img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
     footer {
       text-align: center;
       font-size: 0.9em;
-      margin-top: 3rem;
+      padding: 2rem 1rem;
       color: #777;
-      padding-bottom: 2rem;
+    }
+
+    footer a {
+      color: #191970;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #2a2a9f;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- HEADER -->
   <header>
     <div class="logo">
-      <a href="index.html" style="display: flex; align-items: center;">
-        <img src="sb_digital_logo.PNG" alt="SB Digital Logo" style="height: 28px; display: block;" />
+      <a href="index.html">
+        <img src="sb_digital_logo.PNG" alt="SB Digital Logo">
       </a>
     </div>
-    <nav class="nav-links">
+    <nav>
       <a href="index.html">Home</a>
-      <a href="ebook.html">Ebook</a>
+      <a href="ebook.html">Books</a>
       <a href="audiobook.html">Audiobook</a>
       <a href="bundles.html">Bundles</a>
       <a href="https://sbclassic.github.io/sbclassic" target="_blank">SB CLASSIC</a>
+      <a href="#about">About</a>
+      <a href="#community">Community</a>
+      <a href="#contact">Contact</a>
     </nav>
     <div class="selectors">
-      <select id="language">
-        <option>EN</option>
+      <select>
+        <option selected disabled>🌐 Language</option>
         <option disabled>Coming Soon</option>
       </select>
-      <select id="currency">
-        <option>GHS ₵</option>
-        <option>USD $</option>
+      <select>
+        <option selected disabled>💱 Currency</option>
+        <option disabled>Coming Soon</option>
       </select>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <div class="hero">
-    <img src="bookcover_resized.JPG" alt="The Paradox of Passion – Cover">
+    <img src="bookcover_resized.JPG" alt="The Paradox of Passion Book Cover">
     <h1>Sonia Benjoye</h1>
     <p class="subtitle">Digital Bookstore — Poetry, Audio and Becoming</p>
   </div>
 
-  <!-- Intro -->
+  <!-- INTRO -->
   <div class="section">
-    <p>
-      Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart.
-      Explore powerful reflections on love, loss, healing, and the quiet strength of choosing yourself.
-    </p>
+    <p>Welcome to the official digital bookstore of Sonia Benjoye — poetic storytelling that speaks to the heart.  
+    Explore reflections on love, heartbreak, and healing through books and audio designed for your soul.</p>
   </div>
 
-  <!-- Featured Book -->
+  <!-- BOOK FEATURE -->
   <div class="section">
-    <h2>📘 Featured Book: The Paradox of Passion</h2>
+    <h2>📘 Featured: The Paradox of Passion</h2>
     <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-    <p>
-      A poetic journey through heartbreak, healing, and the quiet courage it takes to begin again.  
-      This is not a guidebook, it’s a mirror.
-    </p>
+    <p>This poetic debut is a journey through heartbreak and healing. It’s not a guidebook — it’s a mirror.</p>
     <a class="button" href="#" onclick="payWithPaystack()">Buy Ebook – ₵75 GHS / $6.50 USD</a>
   </div>
 
-  <!-- Audio Preview -->
-  <div class="section" style="text-align:center;">
-    <p style="font-style: italic; color: #555;">Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.</p>
-    <audio controls style="width: 100%; border-radius: 6px; margin-top: 10px;">
+  <!-- AUDIO PREVIEW -->
+  <div class="section">
+    <p style="font-style: italic; color: #555;">🎧 Listen to a preview from the Introduction:</p>
+    <audio controls>
       <source src="intro-teaser-final.mp3" type="audio/mpeg" />
       Your browser does not support the audio element.
     </audio>
   </div>
 
-  <!-- About the Book -->
-  <div class="section">
+  <!-- ABOUT THE BOOK -->
+  <div class="section" id="about">
     <h2>💬 About the Book</h2>
-    <p>
-      Whether you’ve stayed too long, loved too deeply, or are learning to choose yourself again, 
-      <em>The Paradox of Passion</em> will speak to the part of you that still believes in connection, even after the wreckage.
-    </p>
-    <p><em>"You are not too much. You are not alone. You are allowed to begin again."</em></p>
+    <p>Whether you’ve stayed too long, loved too deeply, or are learning to choose yourself again, this book will speak to the part of you that still believes in connection — even after the wreckage.</p>
+    <p style="font-style: italic;">"You are not too much. You are not alone. You are allowed to begin again."</p>
   </div>
 
-  <!-- About the Author -->
+  <!-- ABOUT AUTHOR -->
   <div class="section">
     <h2>👤 About the Author</h2>
-    <img src="authorphoto_resized.JPG" alt="Sonia Benjoye" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-    <p>
-      Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth.
-      She never set out to be an author — just someone who needed to write her way through heartbreak and healing.
-    </p>
-    <p>
-      <em>The Paradox of Passion</em> is the result: a soul-deep offering for anyone who has ever lost themselves in love and fought to find their way back.
-    </p>
+    <img src="authorphoto_resized.JPG" alt="Sonia Benjoye" class="author-img">
+    <p>Sonia Benjoye is an entrepreneur and trader with a deep belief in emotional honesty and personal growth. Writing this book was never the plan — it was a healing. A way through.</p>
     <p>This is her first book — not written as a writer, but as a woman who lived it.</p>
   </div>
 
-  <!-- Community Links -->
-  <div class="section" style="text-align: center;">
-    <h2>🤍 Connect & Join the Community</h2>
-    <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join the WhatsApp Community</a>
+  <!-- COMMUNITY -->
+  <div class="section" id="community" style="text-align: center;">
+    <h2>🤍 Join the Community</h2>
+    <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">Join on WhatsApp</a>
     <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Follow on Instagram</a>
-    <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree: All Links</a>
+    <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">All Links</a>
   </div>
 
-  <!-- Footer -->
-  <footer>
-    Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
+  <!-- FOOTER -->
+  <footer id="contact">
+    Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br>
     &copy; 2025 Sonia Benjoye. All rights reserved.
   </footer>
 
-  <!-- Paystack Script -->
+  <!-- PAYSTACK SCRIPT -->
   <script src="https://js.paystack.co/v1/inline.js"></script>
   <script>
     function payWithPaystack() {
@@ -205,16 +234,17 @@
         key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
         email: 'benjoye21@gmail.com',
         amount: 7500,
-        currency: "GHS",
-        callback: function(response){
-          alert('Payment complete! Check your email for your ebook.');
+        currency: 'GHS',
+        callback: function(response) {
+          alert('Payment complete! Please check your email for your ebook.');
         },
-        onClose: function(){
-          alert('Transaction was not completed.');
+        onClose: function() {
+          alert('Transaction cancelled.');
         }
       });
       handler.openIframe();
     }
   </script>
+
 </body>
 </html>
