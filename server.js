@@ -69,7 +69,7 @@ app.get('/generate-token', (req, res) => {
   VALID_TOKENS.set(token, {
     book,
     format,
-    expiresAt: Date.now() + 10 * 60 * 1000
+    expiresAt: Date.now() + 5 * 60 * 1000
   });
   res.send({ token });
 });
