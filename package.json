@@ -1,0 +1,12 @@
+{
+  "name": "sb-bookstore-backend",
+  "version": "1.0.0",
+  "description": "Backend for SB Bookstore secure downloads",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
