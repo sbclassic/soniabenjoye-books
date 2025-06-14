@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>📊 Download Tracking – Sonia Benjoye</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      font-family: 'Libre Baskerville', serif;
+      background-color: #f9f7f6;
+      color: #2b2b2b;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 2rem;
+      color: #191970;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    th {
+      background-color: #eee;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .note {
+      text-align: center;
+      margin-top: 2rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<h1>📊 Download Tracking</h1>
+
+<table id="trackingTable">
+  <thead>
+    <tr>
+      <th>Book</th>
+      <th>Format</th>
+      <th>Timestamp</th>
+      <th>IP Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Data will be inserted here -->
+  </tbody>
+</table>
+
+<p class="note">This table shows all recorded download activity for your ebook links. Reload the page to refresh.</p>
+
+<!-- 🔄 Live data from backend -->
+<script>
+  fetch('https://sonia-secure-bookstore.onrender.com/api/tracking')
+    .then(res => res.json())
+    .then(data => {
+      const tableBody = document.querySelector('#trackingTable tbody');
+      data.slice().reverse().forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.book}</td>
+          <td>${entry.format}</td>
+          <td>${new Date(entry.timestamp).toLocaleString()}</td>
+          <td>${entry.ip}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(err => {
+      const tableBody = document.querySelector('#trackingTable tbody');
+      tableBody.innerHTML = `<tr><td colspan="4">Error loading data.</td></tr>`;
+    });
+</script>
+
+</body>
+</html>
