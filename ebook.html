@@ -83,10 +83,19 @@
       text-align: center;
     }
     .section img {
-      max-width: 100%;
+      max-width: 90%;
       height: auto;
       border-radius: 8px;
       margin-bottom: 1.5rem;
+    }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .section p {
+      font-size: 1rem;
+      line-height: 1.6;
     }
     .button {
       display: inline-block;
@@ -96,7 +105,7 @@
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 1rem;
+      margin-top: 1.2rem;
     }
     .button:hover {
       background-color: #2a2a9f;
@@ -131,13 +140,22 @@
   <a href="mailto:benjoye21@gmail.com">📩 Contact</a>
 </div>
 
+<!-- Book 1 -->
 <div class="section">
-  <h2>📖 The Paradox of Passion</h2>
-  <img src="bookcover_resized.JPG" alt="Book Cover" />
+  <h2>📘 The Paradox of Passion</h2>
+  <img src="bookcover_resized.JPG" alt="Paradox of Passion Cover" />
   <p>What happens when love is both your sanctuary and your storm?<br/>
-  A poetic reflection on heartbreak, healing, and becoming.<br/>
-  This isn’t a guidebook. It’s a mirror.</p>
-  <a class="button" href="#" onclick="payWithPaystack()">Buy Ebook – ₵75 / $6.50 USD</a>
+  A poetic reflection on heartbreak, healing, and becoming.</p>
+  <a class="button" onclick="buyParadox()">Buy Ebook – ₵49</a>
+</div>
+
+<!-- Book 2 -->
+<div class="section">
+  <h2>📗 What It Took</h2>
+  <img src="what_it_took_cover.png" alt="What It Took Cover" />
+  <p>The becoming behind the becoming.<br/>
+  A journey through identity, ambition, and rebuilding yourself in silence.</p>
+  <a class="button" onclick="buyWhatItTook()">Buy Ebook – ₵60</a>
 </div>
 
 <footer>
@@ -145,25 +163,51 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
+<!-- Paystack Secure Scripts -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
   }
-  function payWithPaystack() {
-    var handler = PaystackPop.setup({
-      key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-      email: 'benjoye21@gmail.com',
-      amount: 7500,
-      currency: "GHS",
-      callback: function(response){
-        alert('Payment complete! Check your email for your ebook.');
-      },
-      onClose: function(){
-        alert('Transaction was not completed.');
-      }
-    });
-    handler.openIframe();
+
+  function buyParadox() {
+    fetch("https://sb-bookstore.onrender.com/generate-token?book=paradox")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            window.location.href = "https://sb-bookstore.onrender.com/secure/" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function buyWhatItTook() {
+    fetch("https://sb-bookstore.onrender.com/generate-token?book=whatitook")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            window.location.href = "https://sb-bookstore.onrender.com/secure/" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
   }
 </script>
 
