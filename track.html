@@ -64,25 +64,27 @@
 
 <p class="note">This table shows all recorded download activity for your ebook links. Reload the page to refresh.</p>
 
-<!-- ✅ Pull from JS file instead of blocked fetch -->
-<script src="downloads-data.js"></script>
+<!-- 🔄 Live data from backend -->
 <script>
-  const tableBody = document.querySelector('#trackingTable tbody');
-
-  if (Array.isArray(downloadData)) {
-    downloadData.slice().reverse().forEach(entry => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${entry.book}</td>
-        <td>${entry.format}</td>
-        <td>${new Date(entry.timestamp).toLocaleString()}</td>
-        <td>${entry.ip}</td>
-      `;
-      tableBody.appendChild(row);
+  fetch('https://sonia-secure-bookstore.onrender.com/api/tracking')
+    .then(res => res.json())
+    .then(data => {
+      const tableBody = document.querySelector('#trackingTable tbody');
+      data.slice().reverse().forEach(entry => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${entry.book}</td>
+          <td>${entry.format}</td>
+          <td>${new Date(entry.timestamp).toLocaleString()}</td>
+          <td>${entry.ip}</td>
+        `;
+        tableBody.appendChild(row);
+      });
+    })
+    .catch(err => {
+      const tableBody = document.querySelector('#trackingTable tbody');
+      tableBody.innerHTML = `<tr><td colspan="4">Error loading data.</td></tr>`;
     });
-  } else {
-    tableBody.innerHTML = `<tr><td colspan="4">Error loading data.</td></tr>`;
-  }
 </script>
 
 </body>
