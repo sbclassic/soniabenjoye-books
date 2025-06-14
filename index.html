@@ -1,3 +1,4 @@
+<!-- ✨ Sonia Benjoye – Updated index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -154,30 +155,28 @@
   Explore powerful reflections on love, loss, healing, and the quiet strength of choosing yourself.</p>
 </div>
 
+<!-- Paradox of Passion Product -->
 <div class="section">
-  <h2>📘 Featured Book: The Paradox of Passion</h2>
+  <h2>📘 The Paradox of Passion</h2>
   <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
   <p>A poetic reflection on heartbreak, healing and becoming.</p>
-  <p>Not a guidebook. It’s a mirror. For those who’ve lost themselves in love and are finding their way home.</p>
-  <a class="button" href="#" onclick="payWithPaystack()">Buy Ebook – ₵75 / $6.50 USD</a>
+  <a class="button" onclick="payParadox()">Buy Ebook – $5</a>
 </div>
 
-<div class="section" style="text-align:center;">
-  <p style="font-style: italic; color: #555;">Listen to a sample from the <em>Introduction</em> of <strong>The Paradox of Passion</strong>.</p>
-  <audio controls style="width: 100%; border-radius: 6px; margin-top: 10px;">
-    <source src="intro-teaser-final.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+<!-- What It Took Product -->
+<div class="section">
+  <h2>📗 What It Took</h2>
+  <p><strong>The becoming behind the becoming.</strong></p>
+  <p>A journey through identity, ambition, and rebuilding yourself in silence.</p>
+  <a class="button" onclick="payWhatItTook()">Buy Ebook – $7</a>
 </div>
 
 <div class="section" id="about-author">
   <h2>👤 About the Author</h2>
   <img src="authorphoto_resized.JPG" alt="Sonia Benjoye" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-  <p>Sonia Benjoye is an entrepreneur and the founder of <strong>SB CLASSIC</strong>, a fashion brand rooted in timeless style and class. With a deep belief in emotional honesty, self-awareness and personal growth, Sonia’s creative journey extends far beyond fashion into the raw and personal landscapes of the heart.</p>
-  <p>She writes the way she lives, with truth, with tenderness and without performance. Her work explores the complexities of love, loss, healing and what it means to rebuild yourself after breaking quietly. What began as private reflections in the midst of personal grief became a body of writing that speaks to a larger human experience, especially for those learning how to come home to themselves.</p>
-  <p>Her debut book, <em>The Paradox of Passion</em>, is just the beginning. Her writing is guided not by trends or timelines, but by what’s real, what’s felt and what deserves to be said.</p>
-  <p>Through her words, she offers connection. Through her presence, she offers permission to feel deeply, to grow slowly and to begin again.</p>
+  <p>Sonia Benjoye is an entrepreneur and the founder of <strong>SB CLASSIC</strong>, a fashion brand rooted in timeless style and class. Her creative journey extends far beyond fashion into emotional storytelling — offering reflections on healing, truth, and personal growth.</p>
 </div>
+
 <div class="section" id="community" style="text-align:center;">
   <h2>🤍 Join the Community</h2>
   <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">WhatsApp Community</a>
@@ -190,27 +189,43 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
-<!-- Paystack Integration -->
+<!-- Paystack Scripts -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
-  function payWithPaystack() {
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("open");
+  }
+
+  function payParadox() {
     var handler = PaystackPop.setup({
       key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
       email: 'benjoye21@gmail.com',
-      amount: 7500,
-      currency: "GHS",
+      amount: 5000,
+      currency: "USD",
       callback: function(response){
-        alert('Payment complete! Check your email for your ebook.');
+        window.location.href = "thankyou-paradox.html";
       },
       onClose: function(){
-        alert('Transaction was not completed.');
+        alert('Payment was not completed.');
       }
     });
     handler.openIframe();
   }
 
-  function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("open");
+  function payWhatItTook() {
+    var handler = PaystackPop.setup({
+      key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+      email: 'benjoye21@gmail.com',
+      amount: 7000,
+      currency: "USD",
+      callback: function(response){
+        window.location.href = "thankyou-what-it-took.html";
+      },
+      onClose: function(){
+        alert('Payment was not completed.');
+      }
+    });
+    handler.openIframe();
   }
 </script>
 
