@@ -163,7 +163,7 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
-<!-- Paystack Secure Scripts -->
+<!-- Paystack Scripts -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
@@ -171,7 +171,7 @@
   }
 
   function buyParadox() {
-    fetch("https://sb-bookstore.onrender.com/generate-token?book=paradox")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=pdf")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -180,7 +180,7 @@
           amount: 4900,
           currency: "GHS",
           callback: function(response){
-            window.location.href = "https://sb-bookstore.onrender.com/secure/" + data.token;
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
@@ -191,7 +191,7 @@
   }
 
   function buyWhatItTook() {
-    fetch("https://sb-bookstore.onrender.com/generate-token?book=whatitook")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=pdf")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -200,7 +200,7 @@
           amount: 6000,
           currency: "GHS",
           callback: function(response){
-            window.location.href = "https://sb-bookstore.onrender.com/secure/" + data.token;
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
