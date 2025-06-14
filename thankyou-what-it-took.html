@@ -1,23 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You – What It Took</title>
-</head>
-<body style="font-family: Arial, sans-serif; text-align: center; padding: 2rem;">
-  <h2>Thank you for your purchase!</h2>
-  <p>Please choose your preferred format below:</p>
-
-  <button onclick="choose('pdf')" style="margin: 1rem; padding: 1rem 2rem;">📄 PDF</button>
-  <button onclick="choose('epub')" style="margin: 1rem; padding: 1rem 2rem;">📚 EPUB</button>
-
-  <script>
-    function choose(format) {
-      const token = Date.now() + '_' + Math.random().toString(36).substring(2);
-      const link = `/download?book=whatittook&format=${format}&token=${token}`;
-      window.location.href = link;
+  <style>
+    body {
+      font-family: 'Libre Baskerville', serif;
+      background-color: #f9f7f6;
+      color: #2b2b2b;
+      text-align: center;
+      padding: 3rem 1rem;
     }
-  </script>
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .button {
+      display: inline-block;
+      margin: 1rem;
+      padding: 12px 20px;
+      background-color: #191970;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .button:hover {
+      background-color: #2a2a9f;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Thank you for your purchase!</h1>
+  <pPlease choose your preferred format below. You can only select <strong>one format</strong>.</p>
+  <p><strong>Note:</strong> This link is valid for one-time use and expires in 10 minutes.</p>
+
+  <a class="button" href="/api/download?book=what-it-took&format=pdf">📄 Download PDF</a>
+  <a class="button" href="/api/download?book=what-it-took&format=epub">📚 Download EPUB</a>
+
 </body>
 </html>
