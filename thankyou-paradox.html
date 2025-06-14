@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You – The Paradox of Passion</title>
+</head>
+<body style="font-family: Arial, sans-serif; text-align: center; padding: 2rem;">
+  <h2>Thank you for your purchase!</h2>
+  <p>Please choose your preferred format below:</p>
+
+  <button onclick="choose('pdf')" style="margin: 1rem; padding: 1rem 2rem;">📄 PDF</button>
+  <button onclick="choose('epub')" style="margin: 1rem; padding: 1rem 2rem;">📚 EPUB</button>
+
+  <script>
+    function choose(format) {
+      const token = Date.now() + '_' + Math.random().toString(36).substring(2);
+      const link = `/download?book=paradox&format=${format}&token=${token}`;
+      window.location.href = link;
+    }
+  </script>
+</body>
+</html>
