@@ -206,7 +206,7 @@
   }
 
   function payParadox() {
-    fetch("https://sb-bookstore.onrender.com/generate-token?book=paradox")
+    fetch("https://sb-bookstore.onrender.com/generate-token?book=paradox&format=pdf")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -226,7 +226,7 @@
   }
 
   function payWhatItTook() {
-    fetch("https://sb-bookstore.onrender.com/generate-token?book=whatitook")
+    fetch("https://sb-bookstore.onrender.com/generate-token?book=what&format=pdf")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
