@@ -210,7 +210,7 @@
       amount: 4900,
       currency: "GHS",
       callback: function(response){
-        window.location.href = "thankyou-paradox.html";
+        window.location.href = "https://soniabenjoye.onrender.com/secure/paradox?token=" + response.reference;
       },
       onClose: function(){
         alert('Payment was not completed.');
@@ -226,7 +226,7 @@
       amount: 6000,
       currency: "GHS",
       callback: function(response){
-        window.location.href = "thankyou-what-it-took.html";
+        window.location.href = "https://soniabenjoye.onrender.com/secure/what-it-took?token=" + response.reference;
       },
       onClose: function(){
         alert('Payment was not completed.');
