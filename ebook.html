@@ -158,6 +158,15 @@
   <a class="button" onclick="buyWhatItTook()">Buy Ebook – ₵60</a>
 </div>
 
+<!-- Book 3 -->
+<div class="section">
+  <h2>📕 This Is the Season for Guts</h2>
+  <img src="Guts_FullCover_SoniaBenjoye_Web.png" alt="This Is the Season for Guts Cover" />
+  <p>Because grace alone won’t cut it.<br/>
+  A raw and honest look at grit, discipline, and rebuilding from silence.</p>
+  <a class="button" onclick="buyGuts()">Buy Ebook – ₵60</a>
+</div>
+
 <footer>
   Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
   &copy; 2025 Sonia Benjoye. All rights reserved.
@@ -192,6 +201,26 @@
 
   function buyWhatItTook() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=pdf")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function buyGuts() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=pdf")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
