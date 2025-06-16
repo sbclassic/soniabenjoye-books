@@ -180,7 +180,7 @@
   }
 
   function buyParadox() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=pdf")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -200,7 +200,7 @@
   }
 
   function buyWhatItTook() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=pdf")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=choose")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -220,7 +220,7 @@
   }
 
   function buyGuts() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=pdf")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=choose")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
