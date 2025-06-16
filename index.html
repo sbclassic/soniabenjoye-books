@@ -206,7 +206,7 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
-<!-- ✅ Paystack Integration -->
+<!-- ✅ Paystack + Secure Backend Integration -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
@@ -214,7 +214,7 @@
   }
 
   function payParadox() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=pdf")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
@@ -260,7 +260,7 @@
         var handler = PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
-          amount: 6500,
+          amount: 6000,
           currency: "GHS",
           callback: function(response){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
