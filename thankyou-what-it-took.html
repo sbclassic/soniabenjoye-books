@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Thank You – What It Took</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Libre Baskerville', serif;
@@ -20,6 +21,9 @@
     p {
       font-size: 1rem;
       margin-bottom: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .button {
       display: inline-block;
@@ -39,11 +43,23 @@
 <body>
 
   <h1>Thank you for your purchase!</h1>
-  <pPlease choose your preferred format below. You can only select <strong>one format</strong>.</p>
+  <p>Please choose your preferred format below. You can only select <strong>one format</strong>.</p>
   <p><strong>Note:</strong> This link is valid for one-time use and expires in 10 minutes.</p>
 
-  <a class="button" href="/api/download?book=what-it-took&format=pdf">📄 Download PDF</a>
-  <a class="button" href="/api/download?book=what-it-took&format=epub">📚 Download EPUB</a>
+  <a class="button" href="#" onclick="download('pdf')">📄 Download PDF</a>
+  <a class="button" href="#" onclick="download('epub')">📚 Download EPUB</a>
+
+  <script>
+    function download(format) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      if (!token) {
+        alert('Token missing. Please contact support.');
+        return;
+      }
+      window.location.href = `https://sb-bookstore-backend.onrender.com/download?token=${token}&format=${format}`;
+    }
+  </script>
 
 </body>
 </html>
