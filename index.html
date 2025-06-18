@@ -175,7 +175,8 @@
   <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
   <p>A poetic reflection on heartbreak, healing and becoming.</p>
   <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a><br><br>
-  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
+  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a><br><br>
+  <a class="button" onclick="payParadoxBundle()">Buy Ebook + Audiobook Bundle – ₵79</a>
 </div>
 
 <!-- 🎧 Free Teaser Preview -->
@@ -186,6 +187,14 @@
     <source src="intro-teaser-final.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
   </audio>
+</div>
+
+<!-- ✅ Two-Book Bundle Section -->
+<div class="section">
+  <h2>📘 + 📗 Bundle</h2>
+  <p><strong>The Paradox of Passion</strong> + <strong>What It Took</strong></p>
+  <p>Get both ebooks together and save.</p>
+  <a class="button" onclick="payTwoBookBundle()">Buy 2-Book Ebook Bundle – ₵99</a>
 </div>
 
 <div class="section">
@@ -254,6 +263,42 @@
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 4900,
+          currency: "GHS",
+          callback: function(){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function payParadoxBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=bundle")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 7900,
+          currency: "GHS",
+          callback: function(){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function payTwoBookBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
           currency: "GHS",
           callback: function(){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
