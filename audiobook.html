@@ -94,12 +94,9 @@
       max-width: 700px;
       margin: auto;
       padding: 2rem 1.5rem;
-    }
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      text-align: center;
-      margin-bottom: 1rem;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
     audio {
       width: 100%;
@@ -110,12 +107,11 @@
       display: inline-block;
       background-color: #191970;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 20px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 1rem;
-      text-align: center;
+      margin-top: 1.5rem;
     }
     .button:hover {
       background-color: #2a2a9f;
@@ -156,7 +152,7 @@
 </div>
 
 <div class="section">
-  <h2>🎧 The Paradox of Passion – Free Preview</h2>
+  <h2>🎧 The Paradox of Passion – Audio Preview</h2>
   <p style="font-style: italic; color: #555;">
     Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.
   </p>
@@ -167,13 +163,9 @@
 </div>
 
 <div class="section">
-  <h2>🔒 The Full Audiobook – Now Available</h2>
-  <p style="text-align: center;"><strong>Full voice-narrated version of <em>The Paradox of Passion</em></strong></p>
-  <audio controls>
-    <source src="The_Paradox_Of_Passion.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-  <a class="button" onclick="payParadox()">Buy Full Audiobook – ₵49</a>
+  <h2>🎧 Full Audiobook</h2>
+  <p><strong>Buy the complete audio edition of <em>The Paradox of Passion</em></strong></p>
+  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
 </div>
 
 <div class="section">
@@ -192,7 +184,7 @@
     document.getElementById("navMenu").classList.toggle("open");
   }
 
-  function payParadox() {
+  function payParadoxAudio() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio")
       .then(res => res.json())
       .then(data => {
