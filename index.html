@@ -170,6 +170,8 @@
   <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
   <p>A poetic reflection on heartbreak, healing and becoming.</p>
   <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a>
+  <br><br>
+  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
 </div>
 
 <div class="section">
@@ -206,7 +208,6 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
-<!-- ✅ Paystack + Secure Backend Integration -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
@@ -215,6 +216,26 @@
 
   function payParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function payParadoxAudio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
