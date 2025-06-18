@@ -185,7 +185,7 @@
   }
 
   function payParadoxAudio() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&type=audiobookpage")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
