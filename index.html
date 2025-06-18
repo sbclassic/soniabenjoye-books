@@ -135,6 +135,11 @@
       font-size: 0.9rem;
       color: #777;
     }
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -169,9 +174,18 @@
   <h2>📘 The Paradox of Passion</h2>
   <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
   <p>A poetic reflection on heartbreak, healing and becoming.</p>
-  <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a>
-  <br><br>
+  <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a><br><br>
   <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
+</div>
+
+<!-- 🎧 Free Teaser Preview -->
+<div class="section">
+  <h2>🎧 Free Teaser Preview</h2>
+  <p><em>Intro excerpt from <strong>The Paradox of Passion</strong> audiobook</em></p>
+  <audio controls>
+    <source src="intro-teaser-final.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 </div>
 
 <div class="section">
@@ -223,12 +237,10 @@
           email: 'benjoye21@gmail.com',
           amount: 4900,
           currency: "GHS",
-          callback: function(response){
+          callback: function(){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         });
         handler.openIframe();
       });
@@ -243,12 +255,10 @@
           email: 'benjoye21@gmail.com',
           amount: 4900,
           currency: "GHS",
-          callback: function(response){
+          callback: function(){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         });
         handler.openIframe();
       });
@@ -263,12 +273,10 @@
           email: 'benjoye21@gmail.com',
           amount: 6000,
           currency: "GHS",
-          callback: function(response){
+          callback: function(){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         });
         handler.openIframe();
       });
@@ -283,12 +291,10 @@
           email: 'benjoye21@gmail.com',
           amount: 6000,
           currency: "GHS",
-          callback: function(response){
+          callback: function(){
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         });
         handler.openIframe();
       });
