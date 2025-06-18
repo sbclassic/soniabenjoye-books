@@ -129,16 +129,16 @@
     .button:hover {
       background-color: #2a2a9f;
     }
+    audio {
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
     footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
       color: #777;
-    }
-    audio {
-      width: 100%;
-      border-radius: 6px;
-      margin-top: 1rem;
     }
   </style>
 </head>
@@ -176,7 +176,7 @@
   <p>A poetic reflection on heartbreak, healing and becoming.</p>
   <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a><br><br>
   <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a><br><br>
-  <a class="button" onclick="payParadoxBundle()">Buy Ebook + Audiobook Bundle – ₵79</a>
+  <a class="button" onclick="payParadoxBundle()">Bundle: Ebook + Audiobook – ₵79</a>
 </div>
 
 <!-- 🎧 Free Teaser Preview -->
@@ -189,14 +189,15 @@
   </audio>
 </div>
 
-<!-- ✅ Two-Book Bundle Section -->
+<!-- ✅ Dual Book Bundle -->
 <div class="section">
-  <h2>📘 + 📗 Bundle</h2>
-  <p><strong>The Paradox of Passion</strong> + <strong>What It Took</strong></p>
-  <p>Get both ebooks together and save.</p>
-  <a class="button" onclick="payTwoBookBundle()">Buy 2-Book Ebook Bundle – ₵99</a>
+  <h2>📘 + 📗 Paradox + What It Took Bundle</h2>
+  <p><strong>Two books, one price.</strong></p>
+  <p>Ebook bundle: <strong>₵99</strong> (save ₵10)</p>
+  <a class="button" onclick="payDoubleBundle()">Buy Bundle</a>
 </div>
 
+<!-- Other Books -->
 <div class="section">
   <h2>📗 What It Took</h2>
   <img src="what_it_took_cover.png" alt="What It Took – Full Cover" style="width: 100%; max-width: 700px; height: auto; border-radius: 8px; margin-bottom: 1rem;" />
@@ -231,6 +232,7 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
+<!-- ✅ Paystack Integration with Secure Token Logic -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
@@ -238,110 +240,98 @@
   }
 
   function payParadox() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose&label=single&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 4900,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 
   function payParadoxAudio() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&label=single&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 4900,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 
   function payParadoxBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=bundle")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=bundle&label=paradoxbundle&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 7900,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 
-  function payTwoBookBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks")
+  function payDoubleBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks&label=bundle&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 9900,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 
   function payWhatItTook() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=choose")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=choose&label=single&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 6000,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 
   function payGuts() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=choose")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=choose&label=single&page=index")
       .then(res => res.json())
       .then(data => {
-        var handler = PaystackPop.setup({
+        PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
           amount: 6000,
           currency: "GHS",
-          callback: function(){
+          callback: function() {
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        });
-        handler.openIframe();
+          }
+        }).openIframe();
       });
   }
 </script>
