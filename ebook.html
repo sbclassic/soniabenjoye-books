@@ -1,4 +1,4 @@
-<!-- START OF UPDATED EBOOK.HTML -->
+<!-- START OF FINAL EBOOK.HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,6 +37,13 @@
     .logo img {
       max-width: 240px;
       height: auto;
+    }
+    .logo-text {
+      font-size: 0.9rem;
+      margin-top: 0.4rem;
+      font-family: 'Libre Baskerville', serif;
+      color: #191970;
+      text-align: center;
     }
     .overlay-menu {
       position: fixed;
@@ -91,8 +98,10 @@
     }
     .section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2b2b2b;
+      margin-bottom: 0.8rem;
     }
     .section p {
       font-size: 1rem;
@@ -125,6 +134,7 @@
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <div class="logo">
     <img src="sb_digital_logo.PNG" alt="Sonia Benjoye Logo">
+    <div class="logo-text">Sonia Benjoye Digital Bookstore</div>
   </div>
 </header>
 
@@ -142,11 +152,11 @@
 </div>
 
 <div class="hero-text" style="text-align: center; padding: 2.5rem 1rem 1rem;">
-  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #2b2b2b; margin-bottom: 0.4rem;">📖 Ebooks</h1>
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: bold; color: #2b2b2b; margin-bottom: 0.4rem;">📖 Ebooks</h1>
   <p style="font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #444;">All books available in EPUB and PDF format</p>
 </div>
 
-<!-- Book 1 -->
+<!-- Book Sections -->
 <div class="section">
   <h2>📘 The Paradox of Passion</h2>
   <img src="bookcover_resized.JPG" alt="Paradox of Passion Cover" />
@@ -155,7 +165,6 @@
   <a class="button" onclick="buyParadox()">Buy Ebook – ₵49</a>
 </div>
 
-<!-- Book 2 -->
 <div class="section">
   <h2>📗 What It Took</h2>
   <img src="what_it_took_cover.png" alt="What It Took Cover" />
@@ -164,7 +173,6 @@
   <a class="button" onclick="buyWhatItTook()">Buy Ebook – ₵60</a>
 </div>
 
-<!-- Book 3 -->
 <div class="section">
   <h2>📕 This Is the Season for Guts</h2>
   <img src="Guts_FullCover_SoniaBenjoye_Web.png" alt="This Is the Season for Guts Cover" />
@@ -173,7 +181,6 @@
   <a class="button" onclick="buyGuts()">Buy Ebook – ₵60</a>
 </div>
 
-<!-- Book 4 -->
 <div class="section">
   <h2>📙 Woman. Weapon. Work.</h2>
   <img src="Woman. Weapon. Power Cover.png" alt="Woman. Weapon. Work Cover" />
@@ -187,7 +194,7 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
-<!-- Paystack Scripts -->
+<!-- Paystack & Secure Token Scripts -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
   function toggleMenu() {
@@ -277,4 +284,4 @@
 
 </body>
 </html>
-<!-- END OF FILE -->
+<!-- END OF FINAL FILE -->
