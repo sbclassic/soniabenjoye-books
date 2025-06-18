@@ -82,11 +82,6 @@
       padding: 2rem 1.5rem;
       text-align: center;
     }
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      margin-bottom: 1rem;
-    }
     .section p {
       font-style: italic;
       color: #555;
@@ -95,7 +90,7 @@
     .bundle-button {
       display: inline-block;
       background-color: #191970;
-      color: #fff;
+      color: white;
       padding: 12px 20px;
       border-radius: 6px;
       text-decoration: none;
@@ -137,18 +132,18 @@
 
 <!-- ✅ Option 1: Ebook + Audiobook Bundle (Same Book) -->
 <div class="section">
-  <h2>🎧📘 The Paradox of Passion – Bundle</h2>
+  <h2>📘 + 🎧 The Paradox of Passion – Full Bundle</h2>
   <p><strong>Includes:</strong> Ebook (PDF/EPUB) + Audiobook (MP3)</p>
-  <p><strong>Bundle Price:</strong> ₵79<br>(instead of ₵98)</p>
-  <a class="bundle-button" onclick="payPassionBundle()">Buy Bundle</a>
+  <p><strong>Bundle Price:</strong> ₵79 <br><span style="font-size: 0.9rem;">(instead of ₵98)</span></p>
+  <a class="bundle-button" onclick="payParadoxBundle()">Buy Full Bundle</a>
 </div>
 
-<!-- ✅ Option 2: 2-Book Bundle – Paradox + What It Took -->
+<!-- ✅ Option 2: The Paradox + What It Took Bundle -->
 <div class="section">
-  <h2>📘 + 📗 2-Book Bundle</h2>
-  <p><strong>Includes:</strong> The Paradox of Passion + What It Took (Ebooks)</p>
-  <p><strong>Bundle Price:</strong> ₵100</p>
-  <a class="bundle-button" onclick="payTwoBookBundle()">Buy 2-Book Bundle</a>
+  <h2>📘 + 📗 Ebook Duo</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion + What It Took</p>
+  <p><strong>Bundle Price:</strong> ₵99 <br><span style="font-size: 0.9rem;">(instead of ₵109)</span></p>
+  <a class="bundle-button" onclick="payWhatParadox()">Buy Ebook Duo</a>
 </div>
 
 <!-- ✅ Option 3: Full Ebook Collection -->
@@ -170,8 +165,8 @@
     document.getElementById("navMenu").classList.toggle("open");
   }
 
-  function payPassionBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=all")
+  function payParadoxBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxbundle&format=all&type=bundlepage")
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -179,29 +174,33 @@
           email: 'benjoye21@gmail.com',
           amount: 7900,
           currency: "GHS",
-          callback: () => window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token,
-          onClose: () => alert('Transaction was not completed.')
+          callback: function(){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
 
-  function payTwoBookBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxpluswhat&format=ebooks")
+  function payWhatParadox() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatparadox&format=ebooks&type=bundlepage")
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
           key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
           email: 'benjoye21@gmail.com',
-          amount: 10000,
+          amount: 9900,
           currency: "GHS",
-          callback: () => window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token,
-          onClose: () => alert('Transaction was not completed.')
+          callback: function(){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
 
   function payAllEbooks() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fullbundle&format=ebooks")
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fullbundle&format=ebooks&type=bundlepage")
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -209,8 +208,10 @@
           email: 'benjoye21@gmail.com',
           amount: 15500,
           currency: "GHS",
-          callback: () => window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token,
-          onClose: () => alert('Transaction was not completed.')
+          callback: function(){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
