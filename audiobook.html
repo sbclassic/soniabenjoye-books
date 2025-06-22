@@ -97,6 +97,7 @@
       background-color: #ffffff;
       border-radius: 8px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 2rem;
     }
     audio {
       width: 100%;
@@ -115,6 +116,14 @@
     }
     .button:hover {
       background-color: #2a2a9f;
+    }
+    .cover-image {
+      width: 100%;
+      max-width: 300px;
+      display: block;
+      margin: 0 auto 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     footer {
       text-align: center;
@@ -153,6 +162,7 @@
 
 <div class="section">
   <h2>🎧 The Paradox of Passion – Audio Preview</h2>
+  <img src="bookcover_resized.JPG" alt="The Paradox of Passion Audiobook Cover" class="cover-image">
   <p style="font-style: italic; color: #555;">
     Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.
   </p>
@@ -163,9 +173,10 @@
 </div>
 
 <div class="section">
-  <h2>🎧 Full Audiobook</h2>
-  <p><strong>Buy the complete audio edition of <em>The Paradox of Passion</em></strong></p>
-  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
+  <h2>🎧 Full Audiobook – What It Took</h2>
+  <img src="what_it_took_cover.png" alt="What It Took Audiobook Cover" class="cover-image">
+  <p><strong>Buy the complete audio edition of <em>What It Took</em></strong></p>
+  <a class="button" onclick="payWhatItTookAudio()">Buy Audiobook – ₵49</a>
 </div>
 
 <div class="section">
@@ -186,6 +197,26 @@
 
   function payParadoxAudio() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&type=audiobookpage")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
+
+  function payWhatItTookAudio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatittook&format=audio&type=audiobookpage")
       .then(res => res.json())
       .then(data => {
         var handler = PaystackPop.setup({
