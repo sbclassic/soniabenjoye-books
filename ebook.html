@@ -147,8 +147,18 @@
   <h1 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: bold; color: #2b2b2b; margin-bottom: 0.4rem;">📖 Ebooks</h1>
   <p style="font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #444;">All books available in EPUB and PDF format</p>
 </div>
+  
+  <!-- Book Sections -->
+<div class="section">
+  <h2>📘 Blackout City: We Who Lived Below</h2>
+  <img src="Blackout_City_Cover.png" alt="Blackout City Cover" />
+  <p>
+    A haunting survival journal from a teenage girl leading strangers into the underground ruins of Lagos.<br/>
+    Told in fragments, memories, and final letters.
+  </p>
+  <a class="button" onclick="buyBlackoutCity()">Buy Ebook – ₵60</a>
+</div>
 
-<!-- Book Sections -->
 <div class="section">
   <h2>📘 The Paradox of Passion</h2>
   <img src="bookcover_resized.JPG" alt="Paradox of Passion Cover" />
@@ -191,7 +201,26 @@
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
   }
-
+  
+function buyBlackoutCity() {
+  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+    .then(res => res.json())
+    .then(data => {
+      PaystackPop.setup({
+        key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+        email: 'benjoye21@gmail.com',
+        amount: 6000,
+        currency: "GHS",
+        callback: function(response){
+          window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+        },
+        onClose: function(){
+          alert('Transaction was not completed.');
+        }
+      }).openIframe();
+    });
+}
+  
   function buyParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
       .then(res => res.json())
