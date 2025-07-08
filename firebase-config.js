@@ -1,17 +1,5 @@
-const admin = require("firebase-admin");
-
-const serviceAccount = {
-  "type": "service_account",
-  "project_id": "YOUR_PROJECT_ID",
-  "private_key_id": "YOUR_KEY_ID",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nYOUR_KEY_HERE\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-xxxx@YOUR_PROJECT_ID.iam.gserviceaccount.com",
-  "client_id": "YOUR_CLIENT_ID",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "YOUR_CERT_URL"
-};
+const admin = require('firebase-admin');
+const serviceAccount = require('./firebase-key.json'); // this must match the name you saved
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
