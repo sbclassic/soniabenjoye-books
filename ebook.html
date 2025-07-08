@@ -197,30 +197,72 @@
 </footer>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
 <script>
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
   }
-  
-function buyBlackoutCity() {
-  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
-    .then(res => res.json())
-    .then(data => {
-      PaystackPop.setup({
-        key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-        email: 'benjoye21@gmail.com',
-        amount: 6000,
-        currency: "GHS",
-        callback: function(response){
-          window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-        },
-        onClose: function(){
-          alert('Transaction was not completed.');
-        }
-      }).openIframe();
-    });
-}
-  
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
+    authDomain: "bookdownloadtracker.firebaseapp.com",
+    projectId: "bookdownloadtracker",
+    storageBucket: "bookdownloadtracker.firebasestorage.app",
+    messagingSenderId: "973175233369",
+    appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  async function getIP() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const data = await res.json();
+      return data.ip;
+    } catch {
+      return "Unavailable";
+    }
+  }
+
+  async function logDownload(book, format) {
+    const ip = await getIP();
+    const entry = {
+      book,
+      format,
+      timestamp: new Date().toISOString(),
+      ip,
+      userAgent: navigator.userAgent
+    };
+
+    db.collection("downloads").add(entry)
+      .then(() => console.log("✅ Logged:", book, format))
+      .catch((error) => console.error("❌ Log failed:", error));
+  }
+
+  function buyBlackoutCity() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Blackout City", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+
   function buyParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
       .then(res => res.json())
@@ -231,13 +273,13 @@ function buyBlackoutCity() {
           amount: 4900,
           currency: "GHS",
           callback: function(response){
+            logDownload("The Paradox of Passion", "PDF/EPUB");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
           }
-        });
-        handler.openIframe();
+        }).openIframe();
       });
   }
 
@@ -251,13 +293,13 @@ function buyBlackoutCity() {
           amount: 6000,
           currency: "GHS",
           callback: function(response){
+            logDownload("What It Took", "PDF/EPUB");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
           }
-        });
-        handler.openIframe();
+        }).openIframe();
       });
   }
 
@@ -271,13 +313,13 @@ function buyBlackoutCity() {
           amount: 6000,
           currency: "GHS",
           callback: function(response){
+            logDownload("This Is the Season for Guts", "PDF/EPUB");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
           }
-        });
-        handler.openIframe();
+        }).openIframe();
       });
   }
 
@@ -291,17 +333,16 @@ function buyBlackoutCity() {
           amount: 6000,
           currency: "GHS",
           callback: function(response){
+            logDownload("Woman. Weapon. Work.", "PDF/EPUB");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
             alert('Transaction was not completed.');
           }
-        });
-        handler.openIframe();
+        }).openIframe();
       });
   }
 </script>
 
 </body>
 </html>
-<!-- END -->
