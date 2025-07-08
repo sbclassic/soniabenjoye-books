@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./firebase-key.json'); // this must match the name you saved
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_KEY); // 🚨 this reads the secret string
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
