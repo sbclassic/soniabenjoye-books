@@ -1,10 +1,10 @@
-const admin = require('firebase-admin');
+const admin = require("firebase-admin");
 
-const serviceAccount = JSON.parse(process.env.FIREBASE_KEY); // 🚨 this reads the secret string
+// Parse the JSON from the environment variable
+const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
-const db = admin.firestore();
-module.exports = db;
+module.exports = admin;
