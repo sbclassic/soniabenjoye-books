@@ -1,99 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+  <title>SB Bookstore Admin Panel</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Download Tracker – Admin</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      background: #f9f9f9;
       padding: 20px;
-      color: #333;
     }
     h1 {
-      text-align: center;
-      margin-bottom: 30px;
+      color: #333;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background-color: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
     }
     th, td {
-      padding: 12px 15px;
-      border: 1px solid #ddd;
-      text-align: left;
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 14px;
     }
     th {
-      background-color: #191970;
-      color: #fff;
+      background: #555;
+      color: white;
     }
     tr:nth-child(even) {
-      background-color: #f9f9f9;
+      background: #f2f2f2;
     }
-    .loading {
-      text-align: center;
-      font-style: italic;
-      color: #888;
+    select {
+      margin-bottom: 10px;
+      padding: 6px;
     }
   </style>
 </head>
 <body>
-  <h1>📊 Book Download Tracker – Live Dashboard</h1>
-  <div class="loading" id="loading">Loading data from Firebase...</div>
-  <table id="downloadTable" style="display:none">
+  <h1>📊 SB Bookstore Admin Panel</h1>
+
+  <label>Filter by Book:
+    <select id="bookFilter" onchange="applyFilter()">
+      <option value="">All</option>
+    </select>
+  </label>
+
+  <label>Filter by Format:
+    <select id="formatFilter" onchange="applyFilter()">
+      <option value="">All</option>
+      <option value="pdf">PDF</option>
+      <option value="epub">EPUB</option>
+      <option value="audio">Audio</option>
+      <option value="bundle">Bundle</option>
+    </select>
+  </label>
+
+  <label>Page:
+    <select id="pageFilter" onchange="applyFilter()">
+      <option value="">All</option>
+      <option value="index">Homepage</option>
+      <option value="bundlepage">Bundle Page</option>
+    </select>
+  </label>
+
+  <table id="dataTable">
     <thead>
       <tr>
         <th>Book</th>
         <th>Format</th>
+        <th>Label</th>
         <th>Page</th>
         <th>Timestamp</th>
       </tr>
     </thead>
-    <tbody id="downloadBody"></tbody>
+    <tbody></tbody>
   </table>
 
-  <!-- Firebase SDK -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  <script>
+    let allData = [];
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
-      authDomain: "bookdownloadtracker.firebaseapp.com",
-      projectId: "bookdownloadtracker",
-      storageBucket: "bookdownloadtracker.appspot.com",
-      messagingSenderId: "973175233369",
-      appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    const table = document.getElementById("downloadTable");
-    const tbody = document.getElementById("downloadBody");
-    const loading = document.getElementById("loading");
-
-    const q = query(collection(db, "downloads"), orderBy("timestamp", "desc"));
-
-    onSnapshot(q, (snapshot) => {
-      tbody.innerHTML = "";
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const row = document.createElement("tr");
-        row.innerHTML = `
-          <td>${data.book || "-"}</td>
-          <td>${data.format || "-"}</td>
-          <td>${data.page || "-"}</td>
-          <td>${data.timestamp?.toDate().toLocaleString() || "-"}</td>
-        `;
-        tbody.appendChild(row);
+    fetch('https://sb-bookstore-backend.onrender.com/api/tracking')
+      .then(res => res.json())
+      .then(data => {
+        allData = data;
+        populateFilters(data);
+        displayData(data);
       });
-      loading.style.display = "none";
-      table.style.display = "table";
-    });
+
+    function populateFilters(data) {
+      const bookSet = new Set(data.map(item => item.book));
+      const bookFilter = document.getElementById('bookFilter');
+      bookSet.forEach(book => {
+        const option = document.createElement('option');
+        option.value = book;
+        option.textContent = book;
+        bookFilter.appendChild(option);
+      });
+    }
+
+    function applyFilter() {
+      const book = document.getElementById('bookFilter').value;
+      const format = document.getElementById('formatFilter').value;
+      const page = document.getElementById('pageFilter').value;
+
+      const filtered = allData.filter(item => {
+        return (!book || item.book === book) &&
+               (!format || item.format === format) &&
+               (!page || item.page === page);
+      });
+
+      displayData(filtered);
+    }
+
+    function displayData(data) {
+      const tbody = document.querySelector('#dataTable tbody');
+      tbody.innerHTML = '';
+      data.forEach(entry => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${entry.book}</td>
+          <td>${entry.format}</td>
+          <td>${entry.label || '-'}</td>
+          <td>${entry.page || '-'}</td>
+          <td>${new Date(entry.timestamp).toLocaleString()}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
   </script>
 </body>
 </html>
