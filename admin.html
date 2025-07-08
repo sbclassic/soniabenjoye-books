@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Download Tracker – Admin</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #191970;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .loading {
+      text-align: center;
+      font-style: italic;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <h1>📊 Book Download Tracker – Live Dashboard</h1>
+  <div class="loading" id="loading">Loading data from Firebase...</div>
+  <table id="downloadTable" style="display:none">
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Format</th>
+        <th>Page</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody id="downloadBody"></tbody>
+  </table>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
+      authDomain: "bookdownloadtracker.firebaseapp.com",
+      projectId: "bookdownloadtracker",
+      storageBucket: "bookdownloadtracker.appspot.com",
+      messagingSenderId: "973175233369",
+      appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const table = document.getElementById("downloadTable");
+    const tbody = document.getElementById("downloadBody");
+    const loading = document.getElementById("loading");
+
+    const q = query(collection(db, "downloads"), orderBy("timestamp", "desc"));
+
+    onSnapshot(q, (snapshot) => {
+      tbody.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${data.book || "-"}</td>
+          <td>${data.format || "-"}</td>
+          <td>${data.page || "-"}</td>
+          <td>${data.timestamp?.toDate().toLocaleString() || "-"}</td>
+        `;
+        tbody.appendChild(row);
+      });
+      loading.style.display = "none";
+      table.style.display = "table";
+    });
+  </script>
+</body>
+</html>
