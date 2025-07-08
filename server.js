@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
+const db = require('./firebase-config'); // ✅ Firebase Firestore
 
 const app = express();
 
@@ -14,7 +15,7 @@ app.use(cors({
 app.use(express.static('public'));
 
 // Token storage for secure downloads
-const VALID_TOKENS = new Map(); // { token: { book, format, expiresAt } }
+const VALID_TOKENS = new Map(); // { token: { book, format, expiresAt, label, page } }
 
 // 🔐 Secure file delivery
 app.get('/download', (req, res) => {
@@ -27,6 +28,7 @@ app.get('/download', (req, res) => {
     return res.status(403).send('Token has expired.');
   }
 
+  // Optional local fallback logging
   const downloadEntry = {
     book: tokenData.book,
     format: tokenData.format,
@@ -54,7 +56,7 @@ app.get('/download', (req, res) => {
   res.download(filePath);
 });
 
-// 🧾 Tracking endpoint (for /track.html)
+// 🧾 Tracking endpoint (optional legacy)
 app.get('/api/tracking', (req, res) => {
   const logPath = path.join(__dirname, 'public', 'downloads-data.js');
   if (!fs.existsSync(logPath)) return res.json([]);
@@ -64,15 +66,27 @@ app.get('/api/tracking', (req, res) => {
   res.json(entries);
 });
 
-// 🔑 Token generation
-app.get('/generate-token', (req, res) => {
-  const { book, format } = req.query;
+// 🔑 Token generation + Firestore logging
+app.get('/generate-token', async (req, res) => {
+  const { book, format, label = '', page = '' } = req.query;
   const token = Math.random().toString(36).substring(2, 10);
-  VALID_TOKENS.set(token, {
-    book,
-    format,
-    expiresAt: Date.now() + 5 * 60 * 1000
-  });
+  const expiresAt = Date.now() + 5 * 60 * 1000;
+
+  VALID_TOKENS.set(token, { book, format, label, page, expiresAt });
+
+  // ✅ Log download event in Firebase
+  try {
+    await db.collection('downloads').add({
+      book,
+      format,
+      label,
+      page,
+      timestamp: new Date().toISOString()
+    });
+  } catch (err) {
+    console.error('🔥 Firebase logging failed:', err);
+  }
+
   res.send({ token });
 });
 
@@ -87,7 +101,7 @@ app.get('/thankyou-guts', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'thankyou-guts.html'));
 });
 
-// Server listen
+// Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
