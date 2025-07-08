@@ -168,7 +168,38 @@
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
+<!-- ✅ Paystack + Firebase Tracking Integration -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
+    authDomain: "bookdownloadtracker.firebaseapp.com",
+    projectId: "bookdownloadtracker",
+    storageBucket: "bookdownloadtracker.appspot.com",
+    messagingSenderId: "973175233369",
+    appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  window.logDownload = async function(book, format, page) {
+    try {
+      await addDoc(collection(db, "downloads"), {
+        book,
+        format,
+        page,
+        timestamp: serverTimestamp()
+      });
+    } catch (e) {
+      console.error("Logging failed:", e);
+    }
+  };
+</script>
+
 <script>
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
@@ -184,6 +215,7 @@
           amount: 7900,
           currency: "GHS",
           callback: function(){
+            logDownload("Paradox Bundle", "Ebook + Audio", "bundles.html");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){ alert('Transaction was not completed.'); }
@@ -201,6 +233,7 @@
           amount: 9900,
           currency: "GHS",
           callback: function(){
+            logDownload("What It Took Bundle", "Ebook + Audio", "bundles.html");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){ alert('Transaction was not completed.'); }
@@ -218,6 +251,7 @@
           amount: 9900,
           currency: "GHS",
           callback: function(){
+            logDownload("What + Paradox", "Ebooks", "bundles.html");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){ alert('Transaction was not completed.'); }
@@ -235,6 +269,7 @@
           amount: 15500,
           currency: "GHS",
           callback: function(){
+            logDownload("Full Ebook Bundle", "All Ebooks", "bundles.html");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){ alert('Transaction was not completed.'); }
@@ -242,6 +277,3 @@
       });
   }
 </script>
-
-</body>
-</html>
