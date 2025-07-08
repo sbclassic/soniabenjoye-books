@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const db = require('./firebase-config'); // ✅ Firebase Firestore
 
 const app = express();
 
@@ -28,7 +27,7 @@ app.get('/download', (req, res) => {
     return res.status(403).send('Token has expired.');
   }
 
-  // Optional local fallback logging
+  // ✅ Local file tracking
   const downloadEntry = {
     book: tokenData.book,
     format: tokenData.format,
@@ -66,26 +65,13 @@ app.get('/api/tracking', (req, res) => {
   res.json(entries);
 });
 
-// 🔑 Token generation + Firestore logging
-app.get('/generate-token', async (req, res) => {
+// 🔑 Token generation (no Firebase)
+app.get('/generate-token', (req, res) => {
   const { book, format, label = '', page = '' } = req.query;
   const token = Math.random().toString(36).substring(2, 10);
   const expiresAt = Date.now() + 5 * 60 * 1000;
 
   VALID_TOKENS.set(token, { book, format, label, page, expiresAt });
-
-  // ✅ Log download event in Firebase
-  try {
-    await db.collection('downloads').add({
-      book,
-      format,
-      label,
-      page,
-      timestamp: new Date().toISOString()
-    });
-  } catch (err) {
-    console.error('🔥 Firebase logging failed:', err);
-  }
 
   res.send({ token });
 });
