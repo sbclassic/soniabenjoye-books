@@ -212,11 +212,57 @@
 </footer>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
 <script>
+  // Toggle menu
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
   }
 
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
+    authDomain: "bookdownloadtracker.firebaseapp.com",
+    projectId: "bookdownloadtracker",
+    storageBucket: "bookdownloadtracker.firebasestorage.app",
+    messagingSenderId: "973175233369",
+    appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // IP Grabber
+  async function getIP() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const data = await res.json();
+      return data.ip;
+    } catch {
+      return "Unavailable";
+    }
+  }
+
+  // Log Download to Firebase
+  async function logDownload(book, format) {
+    const ip = await getIP();
+    const entry = {
+      book,
+      format,
+      timestamp: new Date().toISOString(),
+      ip,
+      userAgent: navigator.userAgent
+    };
+
+    db.collection("downloads").add(entry)
+      .then(() => console.log("✅ Logged:", book, format))
+      .catch((error) => console.error("❌ Log failed:", error));
+  }
+
+  // Paradox of Passion
   function payParadoxAudio() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&type=audiobookpage")
       .then(res => res.json())
@@ -227,6 +273,7 @@
           amount: 4900,
           currency: "GHS",
           callback: function(response){
+            logDownload("The Paradox of Passion", "MP3");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
@@ -237,6 +284,7 @@
       });
   }
 
+  // What It Took
   function payWhatItTookAudio() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatittook&format=audio&type=audiobookpage")
       .then(res => res.json())
@@ -247,6 +295,7 @@
           amount: 4900,
           currency: "GHS",
           callback: function(response){
+            logDownload("What It Took", "MP3");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
