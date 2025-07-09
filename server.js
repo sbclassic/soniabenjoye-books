@@ -51,12 +51,27 @@ app.get('/download', (req, res) => {
   fs.appendFileSync(logPath, '\n' + content);
 
   const fileMap = {
-    'paradox-pdf': 'The_Paradox_of_Passion.pdf',
-    'paradox-epub': 'The_Paradox_of_Passion.epub',
-    'what-pdf': 'What_It_Took.pdf',
-    'what-epub': 'What_It_Took.epub',
-    'guts-pdf': 'This_Is_the_Season_for_Guts.pdf',
-    'guts-epub': 'This_Is_the_Season_for_Guts.epub',
+    // 1. What It Took
+    'what-pdf': 'What_It_Took_Print_Ready.pdf',
+    'what-epub': 'What It Took.epub',
+    'what-mp3': 'What_It_Took.mp3',
+
+    // 2. The Paradox of Passion
+    'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
+    'paradox-epub': 'The Paradox of Passion.epub',
+    'paradox-mp3': 'The_Paradox_Of_Passion.mp3',
+
+    // 3. This Is the Season for Guts
+    'guts-pdf': 'This Is the Season for Guts.pdf',
+    'guts-epub': 'This Is the Season for Guts.epub',
+
+    // 4. Woman. Weapon. Work.
+    'weapon-pdf': 'Woman. Weapon. Work .pdf',
+    'weapon-epub': 'Woman. Weapon. Work .epub',
+
+    // 5. Blackout City
+    'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
+    'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
   };
 
   const fileName = fileMap[`${tokenData.book}-${tokenData.format}`];
@@ -66,7 +81,7 @@ app.get('/download', (req, res) => {
   res.download(filePath);
 });
 
-// 📊 Optional: admin fetch
+// 📊 Admin tracking endpoint
 app.get('/api/tracking', (req, res) => {
   const logPath = path.join(__dirname, 'public', 'downloads-data.js');
   if (!fs.existsSync(logPath)) return res.json([]);
