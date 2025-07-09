@@ -111,6 +111,9 @@ app.get('/list-files', (req, res) => {
   });
 });
 
+// ✅ Debug deploy to force Render to update
+// DEBUG DEPLOY TRIGGER - 2025-07-09
+
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
