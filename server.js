@@ -50,29 +50,29 @@ app.get('/download', (req, res) => {
   const content = `window.downloadData = window.downloadData || [];\nwindow.downloadData.push(${JSON.stringify(entry)});`;
   fs.appendFileSync(logPath, '\n' + content);
 
- const fileMap = {
-  // What It Took
-  'what-pdf': 'What_It_Took_Print_Ready.pdf',
-  'what-epub': 'What It Took.epub',
-  'what-audio': 'What_It_Took.mp3',
+  const fileMap = {
+    // What It Took
+    'what-pdf': 'What_It_Took_Print_Ready.pdf',
+    'what-epub': 'What It Took.epub',
+    'what-audio': 'What_It_Took.mp3',
 
-  // The Paradox of Passion
-  'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
-  'paradox-epub': 'The Paradox of Passion.epub',
-  'paradox-audio': 'The_Paradox_Of_Passion.mp3',
+    // The Paradox of Passion
+    'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
+    'paradox-epub': 'The Paradox of Passion.epub',
+    'paradox-audio': 'The_Paradox_Of_Passion.mp3',
 
-  // This Is the Season for Guts
-  'guts-pdf': 'This Is the Season for Guts.pdf',
-  'guts-epub': 'This Is the Season for Guts.epub',
+    // This Is the Season for Guts
+    'guts-pdf': 'This Is the Season for Guts.pdf',
+    'guts-epub': 'This Is the Season for Guts.epub',
 
-  // Woman. Weapon. Work.
-  'weapon-pdf': 'Woman. Weapon. Work.pdf',
-  'weapon-epub': 'Woman. Weapon. Work.epub',
+    // Woman. Weapon. Work.
+    'weapon-pdf': 'Woman. Weapon. Work .pdf',
+    'weapon-epub': 'Woman. Weapon. Work .epub',
 
-  // Blackout City
-  'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
-  'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
-};
+    // Blackout City
+    'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
+    'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
+  };
 
   const fileName = fileMap[`${tokenData.book}-${tokenData.format}`];
   if (!fileName) return res.status(404).send('File not found.');
@@ -100,16 +100,17 @@ app.get('/thankyou-what-it-took', (req, res) => {
 });
 app.get('/thankyou-guts', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'thankyou-guts.html'));
-  
+});
+
+// ✅ Debug route to check if files exist in public folder
 app.get('/list-files', (req, res) => {
   const dir = path.join(__dirname, 'public');
   fs.readdir(dir, (err, files) => {
     if (err) return res.status(500).send('Error reading files');
-    res.send(files);
+    res.json(files);
   });
 });
 
-});
 // Start server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
