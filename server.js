@@ -50,29 +50,29 @@ app.get('/download', (req, res) => {
   const content = `window.downloadData = window.downloadData || [];\nwindow.downloadData.push(${JSON.stringify(entry)});`;
   fs.appendFileSync(logPath, '\n' + content);
 
-  const fileMap = {
-    // 1. What It Took
-    'what-pdf': 'What_It_Took_Print_Ready.pdf',
-    'what-epub': 'What It Took.epub',
-    'what-mp3': 'What_It_Took.mp3',
+ const fileMap = {
+  // What It Took
+  'what-pdf': 'What_It_Took_Print_Ready.pdf',
+  'what-epub': 'What It Took.epub',
+  'what-audio': 'What_It_Took.mp3',
 
-    // 2. The Paradox of Passion
-    'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
-    'paradox-epub': 'The Paradox of Passion.epub',
-    'paradox-mp3': 'The_Paradox_Of_Passion.mp3',
+  // The Paradox of Passion
+  'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
+  'paradox-epub': 'The Paradox of Passion.epub',
+  'paradox-audio': 'The_Paradox_Of_Passion.mp3',
 
-    // 3. This Is the Season for Guts
-    'guts-pdf': 'This Is the Season for Guts.pdf',
-    'guts-epub': 'This Is the Season for Guts.epub',
+  // This Is the Season for Guts
+  'guts-pdf': 'This Is the Season for Guts.pdf',
+  'guts-epub': 'This Is the Season for Guts.epub',
 
-    // 4. Woman. Weapon. Work.
-    'weapon-pdf': 'Woman. Weapon. Work .pdf',
-    'weapon-epub': 'Woman. Weapon. Work .epub',
+  // Woman. Weapon. Work.
+  'weapon-pdf': 'Woman. Weapon. Work.pdf',
+  'weapon-epub': 'Woman. Weapon. Work.epub',
 
-    // 5. Blackout City
-    'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
-    'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
-  };
+  // Blackout City
+  'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
+  'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
+};
 
   const fileName = fileMap[`${tokenData.book}-${tokenData.format}`];
   if (!fileName) return res.status(404).send('File not found.');
