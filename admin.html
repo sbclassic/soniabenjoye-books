@@ -12,6 +12,13 @@
     h1 {
       color: #333;
     }
+    #summary {
+      margin: 10px 0 20px;
+      padding: 10px;
+      background: #e7f3ff;
+      border: 1px solid #b3d7ff;
+      font-size: 14px;
+    }
     table {
       width: 100%;
       border-collapse: collapse;
@@ -62,6 +69,8 @@
     </select>
   </label>
 
+  <div id="summary"></div>
+
   <table id="dataTable">
     <thead>
       <tr>
@@ -76,33 +85,37 @@
   </table>
 
   <script>
+    const allBooks = [
+      { key: 'what', label: 'What It Took' },
+      { key: 'paradox', label: 'The Paradox of Passion' },
+      { key: 'guts', label: 'This Is the Season for Guts' },
+      { key: 'weapon', label: 'Woman. Weapon. Work.' },
+      { key: 'blackout', label: 'Blackout City' }
+    ];
+
     let allData = [];
 
-    // Fetch tracking data from backend
     fetch('https://sb-bookstore-backend.onrender.com/api/tracking')
       .then(res => res.json())
       .then(data => {
         allData = data;
-        populateFilters(data);
-        displayData(data);
+        populateFilters();
+        applyFilter();
       });
 
-    function populateFilters(data) {
-      const allBooks = [
-        { key: 'what', label: 'What It Took' },
-        { key: 'paradox', label: 'The Paradox of Passion' },
-        { key: 'guts', label: 'This Is the Season for Guts' },
-        { key: 'weapon', label: 'Woman. Weapon. Work.' },
-        { key: 'blackout', label: 'Blackout City' }
-      ];
-
+    function populateFilters() {
       const bookFilter = document.getElementById('bookFilter');
-      allBooks.forEach(({ key, label }) => {
+      allBooks.forEach(book => {
         const option = document.createElement('option');
-        option.value = key;
-        option.textContent = label;
+        option.value = book.key;
+        option.textContent = book.label;
         bookFilter.appendChild(option);
       });
+    }
+
+    function getBookLabel(code) {
+      const book = allBooks.find(b => b.key === code);
+      return book ? book.label : code;
     }
 
     function applyFilter() {
@@ -116,7 +129,30 @@
                (!page || item.page === page);
       });
 
+      displaySummary(filtered);
       displayData(filtered);
+    }
+
+    function displaySummary(data) {
+      const summaryDiv = document.getElementById('summary');
+      const bookCounts = {};
+      const formatCounts = {};
+
+      data.forEach(item => {
+        const bookLabel = getBookLabel(item.book);
+        bookCounts[bookLabel] = (bookCounts[bookLabel] || 0) + 1;
+        formatCounts[item.format] = (formatCounts[item.format] || 0) + 1;
+      });
+
+      let summaryHTML = '<strong>Downloads Summary</strong><br>';
+      for (const book in bookCounts) {
+        summaryHTML += `📘 ${book}: ${bookCounts[book]}<br>`;
+      }
+      for (const format in formatCounts) {
+        summaryHTML += `📁 ${format.toUpperCase()}: ${formatCounts[format]}<br>`;
+      }
+
+      summaryDiv.innerHTML = summaryHTML;
     }
 
     function displayData(data) {
@@ -133,17 +169,6 @@
         `;
         tbody.appendChild(tr);
       });
-    }
-
-    function getBookLabel(code) {
-      const map = {
-        what: 'What It Took',
-        paradox: 'The Paradox of Passion',
-        guts: 'This Is the Season for Guts',
-        weapon: 'Woman. Weapon. Work.',
-        blackout: 'Blackout City'
-      };
-      return map[code] || code;
     }
   </script>
 </body>
