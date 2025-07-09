@@ -1,5 +1,7 @@
 // DEBUG TRIGGER - 2025-07-09
 
+console.log("🔥 TEST: DEPLOY FROM GITHUB WORKED");
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
