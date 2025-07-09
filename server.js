@@ -101,12 +101,13 @@ app.get('/thankyou-what-it-took', (req, res) => {
 app.get('/thankyou-guts', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'thankyou-guts.html'));
   
- app.get('/list-files', (req, res) => {
+app.get('/list-files', (req, res) => {
   const dir = path.join(__dirname, 'public');
   fs.readdir(dir, (err, files) => {
     if (err) return res.status(500).send('Error reading files');
     res.send(files);
-   });
+  });
+});
 
 });
 // Start server
