@@ -247,6 +247,10 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
 <script>
   function toggleMenu() {
     document.getElementById("navMenu").classList.toggle("open");
@@ -264,6 +268,23 @@
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
+
+  // ✅ Log visitor on page load
+  (async function logVisitor() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const { ip } = await res.json();
+      await db.collection("visitors").add({
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct",
+        ip
+      });
+    } catch (e) {
+      console.error("Visitor log failed:", e);
+    }
+  })();
 
   async function getIP() {
     try {
