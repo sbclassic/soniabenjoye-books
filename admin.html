@@ -32,23 +32,28 @@
       display: none;
       z-index: 1000;
     }
+    .controls {
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
   <h1>📊 Sonia Benjoye Bookstore Tracking</h1>
 
-  <!-- Date Filters -->
-  <div>
+  <!-- Controls -->
+  <div class="controls">
+    <label><input type="radio" name="view" value="downloads" checked onchange="switchView()"> Downloads</label>
+    <label><input type="radio" name="view" value="visitors" onchange="switchView()"> Visitors</label><br><br>
     <label>Start Date: <input type="date" id="startDate"></label>
     <label>End Date: <input type="date" id="endDate"></label>
     <button onclick="applyDateFilter()">Apply Filter</button>
     <button onclick="clearDateFilter()">Clear</button>
   </div>
 
-  <!-- Downloads Table -->
+  <!-- Table -->
   <table id="trackingTable">
     <thead>
-      <tr>
+      <tr id="tableHead">
         <th>Book</th>
         <th>Format</th>
         <th>Page</th>
@@ -61,24 +66,40 @@
 
   <!-- Detail Modal -->
   <div id="detailModal">
-    <h3>📄 Download Details</h3>
+    <h3>📄 Entry Details</h3>
     <div id="modalContent"></div>
     <button onclick="document.getElementById('detailModal').style.display='none'">Close</button>
   </div>
 
   <script>
-    let allData = [];
+    let downloads = [], visitors = [], currentView = "downloads";
 
     async function fetchTrackingData() {
       const res = await fetch('/api/tracking');
-      allData = await res.json();
-      renderTable(allData);
+      const data = await res.json();
+      downloads = data.filter(d => d.book); // has book = download
+      visitors = data.filter(d => !d.book); // no book = visitor
+      renderTable(downloads);
+    }
+
+    function switchView() {
+      currentView = document.querySelector('input[name="view"]:checked').value;
+      updateTableHeaders();
+      applyDateFilter(); // filter new view
+    }
+
+    function updateTableHeaders() {
+      const headRow = document.getElementById("tableHead");
+      headRow.innerHTML = currentView === "downloads"
+        ? `<th>Book</th><th>Format</th><th>Page</th><th>Timestamp</th><th>Token / IP</th>`
+        : `<th>Page</th><th>IP</th><th>User Agent</th><th>Timestamp</th>`;
     }
 
     function applyDateFilter() {
       const start = new Date(document.getElementById('startDate').value);
       const end = new Date(document.getElementById('endDate').value);
-      const filtered = allData.filter(entry => {
+      const data = currentView === "downloads" ? downloads : visitors;
+      const filtered = data.filter(entry => {
         const time = new Date(entry.timestamp);
         return (!isNaN(start) ? time >= start : true) &&
                (!isNaN(end) ? time <= end : true);
@@ -89,7 +110,7 @@
     function clearDateFilter() {
       document.getElementById('startDate').value = '';
       document.getElementById('endDate').value = '';
-      renderTable(allData);
+      renderTable(currentView === "downloads" ? downloads : visitors);
     }
 
     function renderTable(data) {
@@ -97,27 +118,38 @@
       tbody.innerHTML = '';
       data.forEach(entry => {
         const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${entry.book}</td>
-          <td>${entry.format}</td>
-          <td>${entry.page}</td>
-          <td>${new Date(entry.timestamp).toLocaleString()}</td>
-          <td>${entry.token || entry.ip || 'N/A'}</td>
-        `;
+        tr.innerHTML = currentView === "downloads"
+          ? `<td>${entry.book}</td><td>${entry.format}</td><td>${entry.page}</td><td>${formatTime(entry.timestamp)}</td><td>${entry.token || entry.ip || 'N/A'}</td>`
+          : `<td>${entry.page || 'Unknown'}</td><td>${entry.ip || 'N/A'}</td><td>${entry.userAgent ? entry.userAgent.slice(0, 40) + "..." : 'N/A'}</td><td>${formatTime(entry.timestamp)}</td>`;
         tr.onclick = () => showDetails(entry);
         tbody.appendChild(tr);
       });
     }
 
+    function formatTime(ts) {
+      try {
+        return new Date(ts).toLocaleString();
+      } catch {
+        return 'Invalid';
+      }
+    }
+
     function showDetails(entry) {
       const modal = document.getElementById('detailModal');
       const content = document.getElementById('modalContent');
-      content.innerHTML = `
+
+      content.innerHTML = currentView === "downloads" ? `
         <p><strong>Book:</strong> ${entry.book}</p>
         <p><strong>Format:</strong> ${entry.format}</p>
         <p><strong>Page:</strong> ${entry.page}</p>
-        <p><strong>Timestamp:</strong> ${new Date(entry.timestamp).toLocaleString()}</p>
+        <p><strong>Timestamp:</strong> ${formatTime(entry.timestamp)}</p>
         <p><strong>Token / IP:</strong> ${entry.token || entry.ip || 'N/A'}</p>
+        <p><strong>User Agent:</strong> ${entry.userAgent || 'N/A'}</p>
+      ` : `
+        <p><strong>Page:</strong> ${entry.page || 'Unknown'}</p>
+        <p><strong>IP:</strong> ${entry.ip || 'N/A'}</p>
+        <p><strong>Timestamp:</strong> ${formatTime(entry.timestamp)}</p>
+        <p><strong>User Agent:</strong> ${entry.userAgent || 'N/A'}</p>
       `;
       modal.style.display = 'block';
     }
