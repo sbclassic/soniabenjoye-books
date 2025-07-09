@@ -1,175 +1,128 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SB Bookstore Admin Panel</title>
-  <meta charset="UTF-8">
+  <title>Sonia Benjoye Bookstore Tracking Admin</title>
+  <meta charset="UTF-8" />
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: sans-serif;
       padding: 20px;
-    }
-    h1 {
-      color: #333;
-    }
-    #summary {
-      margin: 10px 0 20px;
-      padding: 10px;
-      background: #e7f3ff;
-      border: 1px solid #b3d7ff;
-      font-size: 14px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background: white;
+      margin-top: 20px;
     }
     th, td {
+      padding: 8px 10px;
       border: 1px solid #ccc;
-      padding: 8px;
-      font-size: 14px;
     }
-    th {
-      background: #555;
-      color: white;
+    tr:hover {
+      background-color: #f0f0f0;
+      cursor: pointer;
     }
-    tr:nth-child(even) {
-      background: #f2f2f2;
-    }
-    select {
-      margin-bottom: 10px;
-      padding: 6px;
+    #detailModal {
+      position: fixed;
+      top: 10%;
+      left: 10%;
+      width: 80%;
+      background: white;
+      border: 2px solid #333;
+      padding: 20px;
+      display: none;
+      z-index: 1000;
     }
   </style>
 </head>
 <body>
-  <h1>📊 SB Bookstore Admin Panel</h1>
+  <h1>📊 Sonia Benjoye Bookstore Tracking</h1>
 
-  <label>Filter by Book:
-    <select id="bookFilter" onchange="applyFilter()">
-      <option value="">All</option>
-    </select>
-  </label>
+  <!-- Date Filters -->
+  <div>
+    <label>Start Date: <input type="date" id="startDate"></label>
+    <label>End Date: <input type="date" id="endDate"></label>
+    <button onclick="applyDateFilter()">Apply Filter</button>
+    <button onclick="clearDateFilter()">Clear</button>
+  </div>
 
-  <label>Filter by Format:
-    <select id="formatFilter" onchange="applyFilter()">
-      <option value="">All</option>
-      <option value="pdf">PDF</option>
-      <option value="epub">EPUB</option>
-      <option value="audio">Audio</option>
-      <option value="bundle">Bundle</option>
-    </select>
-  </label>
-
-  <label>Page:
-    <select id="pageFilter" onchange="applyFilter()">
-      <option value="">All</option>
-      <option value="index">Homepage</option>
-      <option value="bundlepage">Bundle Page</option>
-    </select>
-  </label>
-
-  <div id="summary"></div>
-
-  <table id="dataTable">
+  <!-- Downloads Table -->
+  <table id="trackingTable">
     <thead>
       <tr>
         <th>Book</th>
         <th>Format</th>
-        <th>Label</th>
         <th>Page</th>
         <th>Timestamp</th>
+        <th>Token / IP</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
 
-  <script>
-    const allBooks = [
-      { key: 'what', label: 'What It Took' },
-      { key: 'paradox', label: 'The Paradox of Passion' },
-      { key: 'guts', label: 'This Is the Season for Guts' },
-      { key: 'weapon', label: 'Woman. Weapon. Work.' },
-      { key: 'blackout', label: 'Blackout City' }
-    ];
+  <!-- Detail Modal -->
+  <div id="detailModal">
+    <h3>📄 Download Details</h3>
+    <div id="modalContent"></div>
+    <button onclick="document.getElementById('detailModal').style.display='none'">Close</button>
+  </div>
 
+  <script>
     let allData = [];
 
-    fetch('https://sb-bookstore-backend.onrender.com/api/tracking')
-      .then(res => res.json())
-      .then(data => {
-        allData = data;
-        populateFilters();
-        applyFilter();
-      });
-
-    function populateFilters() {
-      const bookFilter = document.getElementById('bookFilter');
-      allBooks.forEach(book => {
-        const option = document.createElement('option');
-        option.value = book.key;
-        option.textContent = book.label;
-        bookFilter.appendChild(option);
-      });
+    async function fetchTrackingData() {
+      const res = await fetch('/api/tracking');
+      allData = await res.json();
+      renderTable(allData);
     }
 
-    function getBookLabel(code) {
-      const book = allBooks.find(b => b.key === code);
-      return book ? book.label : code;
-    }
-
-    function applyFilter() {
-      const book = document.getElementById('bookFilter').value;
-      const format = document.getElementById('formatFilter').value;
-      const page = document.getElementById('pageFilter').value;
-
-      const filtered = allData.filter(item => {
-        return (!book || item.book === book) &&
-               (!format || item.format === format) &&
-               (!page || item.page === page);
+    function applyDateFilter() {
+      const start = new Date(document.getElementById('startDate').value);
+      const end = new Date(document.getElementById('endDate').value);
+      const filtered = allData.filter(entry => {
+        const time = new Date(entry.timestamp);
+        return (!isNaN(start) ? time >= start : true) &&
+               (!isNaN(end) ? time <= end : true);
       });
-
-      displaySummary(filtered);
-      displayData(filtered);
+      renderTable(filtered);
     }
 
-    function displaySummary(data) {
-      const summaryDiv = document.getElementById('summary');
-      const bookCounts = {};
-      const formatCounts = {};
-
-      data.forEach(item => {
-        const bookLabel = getBookLabel(item.book);
-        bookCounts[bookLabel] = (bookCounts[bookLabel] || 0) + 1;
-        formatCounts[item.format] = (formatCounts[item.format] || 0) + 1;
-      });
-
-      let summaryHTML = '<strong>Downloads Summary</strong><br>';
-      for (const book in bookCounts) {
-        summaryHTML += `📘 ${book}: ${bookCounts[book]}<br>`;
-      }
-      for (const format in formatCounts) {
-        summaryHTML += `📁 ${format.toUpperCase()}: ${formatCounts[format]}<br>`;
-      }
-
-      summaryDiv.innerHTML = summaryHTML;
+    function clearDateFilter() {
+      document.getElementById('startDate').value = '';
+      document.getElementById('endDate').value = '';
+      renderTable(allData);
     }
 
-    function displayData(data) {
-      const tbody = document.querySelector('#dataTable tbody');
+    function renderTable(data) {
+      const tbody = document.querySelector('#trackingTable tbody');
       tbody.innerHTML = '';
       data.forEach(entry => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${getBookLabel(entry.book)}</td>
+          <td>${entry.book}</td>
           <td>${entry.format}</td>
-          <td>${entry.label || '-'}</td>
-          <td>${entry.page || '-'}</td>
+          <td>${entry.page}</td>
           <td>${new Date(entry.timestamp).toLocaleString()}</td>
+          <td>${entry.token || entry.ip || 'N/A'}</td>
         `;
+        tr.onclick = () => showDetails(entry);
         tbody.appendChild(tr);
       });
     }
+
+    function showDetails(entry) {
+      const modal = document.getElementById('detailModal');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = `
+        <p><strong>Book:</strong> ${entry.book}</p>
+        <p><strong>Format:</strong> ${entry.format}</p>
+        <p><strong>Page:</strong> ${entry.page}</p>
+        <p><strong>Timestamp:</strong> ${new Date(entry.timestamp).toLocaleString()}</p>
+        <p><strong>Token / IP:</strong> ${entry.token || entry.ip || 'N/A'}</p>
+      `;
+      modal.style.display = 'block';
+    }
+
+    fetchTrackingData();
   </script>
 </body>
 </html>
