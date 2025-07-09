@@ -1,3 +1,5 @@
+// DEBUG TRIGGER - 2025-07-09
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
@@ -111,8 +113,9 @@ app.get('/list-files', (req, res) => {
   });
 });
 
-// ✅ Debug deploy to force Render to update
-// DEBUG DEPLOY TRIGGER - 2025-07-09
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
 
 // Start server
 const port = process.env.PORT || 3000;
