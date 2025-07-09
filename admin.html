@@ -78,6 +78,7 @@
   <script>
     let allData = [];
 
+    // Fetch tracking data from backend
     fetch('https://sb-bookstore-backend.onrender.com/api/tracking')
       .then(res => res.json())
       .then(data => {
@@ -87,12 +88,19 @@
       });
 
     function populateFilters(data) {
-      const bookSet = new Set(data.map(item => item.book));
+      const allBooks = [
+        { key: 'what', label: 'What It Took' },
+        { key: 'paradox', label: 'The Paradox of Passion' },
+        { key: 'guts', label: 'This Is the Season for Guts' },
+        { key: 'weapon', label: 'Woman. Weapon. Work.' },
+        { key: 'blackout', label: 'Blackout City' }
+      ];
+
       const bookFilter = document.getElementById('bookFilter');
-      bookSet.forEach(book => {
+      allBooks.forEach(({ key, label }) => {
         const option = document.createElement('option');
-        option.value = book;
-        option.textContent = book;
+        option.value = key;
+        option.textContent = label;
         bookFilter.appendChild(option);
       });
     }
@@ -117,7 +125,7 @@
       data.forEach(entry => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-          <td>${entry.book}</td>
+          <td>${getBookLabel(entry.book)}</td>
           <td>${entry.format}</td>
           <td>${entry.label || '-'}</td>
           <td>${entry.page || '-'}</td>
@@ -125,6 +133,17 @@
         `;
         tbody.appendChild(tr);
       });
+    }
+
+    function getBookLabel(code) {
+      const map = {
+        what: 'What It Took',
+        paradox: 'The Paradox of Passion',
+        guts: 'This Is the Season for Guts',
+        weapon: 'Woman. Weapon. Work.',
+        blackout: 'Blackout City'
+      };
+      return map[code] || code;
     }
   </script>
 </body>
