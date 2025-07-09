@@ -167,13 +167,13 @@
   Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
   &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
-
-<!-- ✅ Paystack + Firebase Tracking Integration -->
+<!-- ✅ Paystack + Firebase Download & Visitor Tracking Integration -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+  // ✅ Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
     authDomain: "bookdownloadtracker.firebaseapp.com",
@@ -186,6 +186,7 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  // ✅ Download Logger
   window.logDownload = async function(book, format, page) {
     try {
       await addDoc(collection(db, "downloads"), {
@@ -198,6 +199,22 @@
       console.error("Logging failed:", e);
     }
   };
+
+  // ✅ Visitor Tracker
+  async function logVisitor() {
+    try {
+      await addDoc(collection(db, "visitors"), {
+        timestamp: serverTimestamp(),
+        page: window.location.pathname,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct"
+      });
+    } catch (e) {
+      console.error("Visitor logging failed:", e);
+    }
+  }
+
+  logVisitor(); // 🔁 Call on every visit
 </script>
 
 <script>
