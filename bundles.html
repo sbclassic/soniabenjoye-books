@@ -143,6 +143,56 @@
   <p style="font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #444;">Ebook plus Audiobook. Or multiple ebooks. Save more, get more.</p>
 </div>
 
+  <!-- ✅ NEW BUNDLES -->
+ <div class="section">
+  <h2>🎧 Complete Audio Set</h2>
+  <p><strong>Includes:</strong> Audiobooks of The Paradox of Passion, What It Took, and God Was Never the Problem</p>
+  <p><strong>Bundle Price:</strong> ₵149</p>
+  <a class="bundle-button" onclick="payAudioFullBundle()">Buy Audio Set</a>
+</div>
+  
+<div class="section">
+  <h2>📘 + 🎧 God Was Never the Problem – Full Bundle</h2>
+  <p><strong>Includes:</strong> Ebook (PDF and EPUB) plus Audiobook (MP3)</p>
+  <p><strong>Bundle Price:</strong> ₵99</p>
+  <a class="bundle-button" onclick="payGodBundle()">Buy Full Bundle</a>
+</div>
+
+<div class="section">
+  <h2>🔥 Rage & Revelation Bundle</h2>
+  <p><strong>Includes:</strong> God Was Never the Problem + Mother. Monster. Machine.</p>
+  <p><strong>Bundle Price:</strong> ₵119</p>
+  <a class="bundle-button" onclick="payRageBundle()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>👁️‍🗨️ Prophetic Trilogy</h2>
+  <p><strong>Includes:</strong> This Is How She Ended the World + God Was Never the Problem + Black Veins, Open Mouths</p>
+  <p><strong>Bundle Price:</strong> ₵129</p>
+  <a class="bundle-button" onclick="payPropheticSet()">Buy Trilogy</a>
+</div>
+
+<div class="section">
+  <h2>🌿 Soft Resistance Duo</h2>
+  <p><strong>Includes:</strong> Her Hand Held The Future... + The Beautiful Discipline Of Boredom</p>
+  <p><strong>Bundle Price:</strong> ₵89</p>
+  <a class="bundle-button" onclick="paySoftResistanceDuo()">Buy Duo</a>
+</div>
+
+<div class="section">
+  <h2>🖤 Dark & Divine Duo</h2>
+  <p><strong>Includes:</strong> Mother. Monster. Machine. + Black Veins, Open Mouths</p>
+  <p><strong>Bundle Price:</strong> ₵89</p>
+  <a class="bundle-button" onclick="payDarkDivine()">Buy Duo</a>
+</div>
+
+<div class="section">
+  <h2>📚 All 6 New Books – Ebook Collection</h2>
+  <p><strong>Includes:</strong> All six new titles by Sonia Benjoye</p>
+  <p><strong>Bundle Price:</strong> ₵199</p>
+  <a class="bundle-button" onclick="payNewFullBundle()">Buy Collection</a>
+</div>
+
 <div class="section">
   <h2>📘 + 🎧 The Paradox of Passion – Full Bundle</h2>
   <p><strong>Includes:</strong> Ebook (PDF and EPUB) plus Audiobook (MP3)</p>
@@ -157,6 +207,34 @@
   <a class="bundle-button" onclick="payWhatItTookBundle()">Buy Full Bundle</a>
 </div>
 
+<div class="section">
+  <h2>🕊️ Break the Cage Bundle</h2>
+  <p><strong>Includes:</strong> What It Took + God Was Never the Problem</p>
+  <p><strong>Bundle Price:</strong> ₵109</p>
+  <a class="bundle-button" onclick="payBreakCage()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>🔥 Softness & Fire Bundle</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion + Her Hand Held the Future...</p>
+  <p><strong>Bundle Price:</strong> ₵99</p>
+  <a class="bundle-button" onclick="paySoftFire()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>💥 Women Who Burn</h2>
+  <p><strong>Includes:</strong> Woman. Weapon. Work. + Mother. Monster. Machine.</p>
+  <p><strong>Bundle Price:</strong> ₵119</p>
+  <a class="bundle-button" onclick="payWomenBurn()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>🌟 Bestsellers Ebook Trio</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion + What It Took + God Was Never the Problem</p>
+  <p><strong>Bundle Price:</strong> ₵139</p>
+  <a class="bundle-button" onclick="payBestsellersTrio()">Buy Trio</a>
+</div>
+  
 <div class="section">
   <h2>📘 + 📗 Ebook Duo</h2>
   <p><strong>Includes:</strong> The Paradox of Passion and What It Took</p>
@@ -230,6 +308,133 @@
     document.getElementById("navMenu").classList.toggle("open");
   }
 
+  <!-- ✅ NEW PAY FUNCTIONS -->
+ function payAudioFullBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=audiofullbundle&format=audio&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 14900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Complete Audio Set", "Audiobooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+  
+  function payGodBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=godbundle&format=all&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("God Was Never Bundle", "Ebook + Audio", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payRageBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=ragebundle&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 11900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Rage Bundle", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payPropheticSet() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=propheticset&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 12900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Prophetic Set", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function paySoftResistanceDuo() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=softresistanceduo&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 8900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Soft Resistance Duo", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payDarkDivine() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=darkdivine&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 8900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Dark & Divine", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payNewFullBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=newfullbundle&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 19900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("New Full Ebook Bundle", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
   function payParadoxBundle() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxbundle&format=all&type=bundlepage")
       .then(res => res.json())
@@ -266,6 +471,78 @@
       });
   }
 
+   function payBreakCage() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=breakcage&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 10900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Break the Cage", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function paySoftFire() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=softfire&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Softness & Fire", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payWomenBurn() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=womenburn&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 11900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Women Who Burn", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payBestsellersTrio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=bestsellerstrio&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 13900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Bestsellers Trio", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+  
   function payWhatParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatparadox&format=ebooks&type=bundlepage")
       .then(res => res.json())
