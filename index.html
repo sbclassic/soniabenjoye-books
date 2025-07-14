@@ -339,6 +339,46 @@
       .catch((error) => console.error("❌ Log failed:", error));
   }
 
+  function buyBlackoutCity() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Blackout City", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+    function buyGodWasNeverTheProblem() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("God Was Never The Problem", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
   function payParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose&label=single&page=index")
       .then(res => res.json())
