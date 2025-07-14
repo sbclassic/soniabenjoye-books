@@ -166,6 +166,61 @@
   </p>
   <a class="button" onclick="buyBlackoutCity()">Buy Ebook – ₵60</a>
 </div>
+  
+<div class="section">
+  <h2>📘 God Was Never The Problem</h2>
+  <img src="God_was_never_the_problem_fullcover.png" alt="God Was Never The Problem Cover" />
+  <p>
+    For the ones who were told to fear their questions.<br/>
+    This book is not about losing faith, but surviving it.<br/>
+    Sonia Benjoye writes fire into the silence, rage into the doctrine, and truth into the body.
+  </p>
+  <a class="button" onclick="buyGodWasNeverTheProblem()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 Her Hands Held the Future, Her Back Held the Weight</h2>
+  <img src="her_hands_held_the_future_fullcover.png" alt="Her Hands Held the Future Cover" />
+  <p>
+    She didn’t inherit safety.<br/>
+    She inherited blueprints scrawled in blood and brilliance.<br/>
+    These poems rise from burden and brilliance.
+  </p>
+  <a class="button" onclick="buyHerHandsHeldTheFuture()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 Mother. Monster. Machine.</h2>
+  <img src="mother_monster_machine_fullcover.jpg" alt="Mother Monster Machine Cover" />
+  <p>
+    Not a redemption arc, a rebellion.<br/>
+    This book is not safe.<br/>
+    But neither is becoming.
+  </p>
+  <a class="button" onclick="buyMotherMonsterMachine()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 The Beautiful Discipline of Boredom</h2>
+  <img src="the_beautiful_fullcover.png" alt="The Beautiful Discipline of Boredom Cover" />
+  <p>
+    A quiet book for loud minds.<br/>
+    A call to begin without applause or permission.<br/>
+    The invisible work of becoming.
+  </p>
+  <a class="button" onclick="buyBeautifulDiscipline()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 This Is How She Ended the World</h2>
+  <img src="this_is_how_she_ended_the_world_fullcover.PNG" alt="This Is How She Ended the World Cover" />
+  <p>
+    Not a whisper, a scream wrapped in scripture.<br/>
+    A prophecy carved in pain.<br/>
+    These poems do not comfort. They confront.
+  </p>
+  <a class="button" onclick="buySheEndedTheWorld()">Buy Ebook – ₵60</a>
+</div>
 
 <div class="section">
   <h2>📘 The Paradox of Passion</h2>
@@ -287,7 +342,107 @@
         }).openIframe();
       });
   }
+  
+    function buyGodWasNeverTheProblem() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("God Was Never The Problem", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
+  function buyHerHandsHeldTheFuture() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=hands&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Her Hands Held the Future, Her Back Held the Weight", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+
+  function buyMotherMonsterMachine() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=machine&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Mother. Monster. Machine.", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+
+  function buyBeautifulDiscipline() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=beautiful&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("The Beautiful Discipline of Boredom", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+
+  function buySheEndedTheWorld() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=ended&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("This Is How She Ended the World", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
   function buyParadox() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
       .then(res => res.json())
@@ -367,6 +522,7 @@
         }).openIframe();
       });
   }
+  
 </script>
 
 </body>
