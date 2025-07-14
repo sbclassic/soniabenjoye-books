@@ -180,13 +180,6 @@
 </div>
 
 <div class="section">
-  <h2>📚 All 6 New Books – Ebook Collection</h2>
-  <p><strong>Includes:</strong> All six new titles by Sonia Benjoye</p>
-  <p><strong>Bundle Price:</strong> ₵199</p>
-  <a class="bundle-button" onclick="payNewFullBundle()">Buy Collection</a>
-</div>
-
-<div class="section">
   <h2>📘 + 🎧 The Paradox of Passion – Full Bundle</h2>
   <p><strong>Includes:</strong> Ebook (PDF and EPUB) plus Audiobook (MP3)</p>
   <p><strong>Bundle Price:</strong> ₵79 <br><span style="font-size: 0.9rem;">(instead of ₵98)</span></p>
@@ -403,24 +396,6 @@
           currency: "GHS",
           callback: function(){
             logDownload("Dark & Divine", "Ebooks", "bundles.html");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        }).openIframe();
-      });
-  }
-
-  function payNewFullBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=newfullbundle&format=ebooks&type=bundlepage")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 19900,
-          currency: "GHS",
-          callback: function(){
-            logDownload("New Full Ebook Bundle", "Ebooks", "bundles.html");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){ alert('Transaction was not completed.'); }
