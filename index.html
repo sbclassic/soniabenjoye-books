@@ -350,10 +350,14 @@
       .catch((error) => console.error("❌ Log failed:", error));
   }
 
-  
-  
-    function buyGodWasNeverTheProblem() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=PDF")
+    <script>
+  function buyGodWasNeverTheProblem() {
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=${format}`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -362,18 +366,21 @@
           amount: 6000,
           currency: "GHS",
           callback: function(response){
-            logDownload("God Was Never The Problem", "PDF");
+            logDownload("God Was Never The Problem", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
-  
+
   function payParadox() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose&label=single&page=index")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=${format}&label=single&page=index`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -382,7 +389,7 @@
           amount: 4900,
           currency: "GHS",
           callback: function() {
-            logDownload("The Paradox of Passion", "PDF/EPUB");
+            logDownload("The Paradox of Passion", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           }
         }).openIframe();
@@ -424,7 +431,12 @@
   }
 
   function buyMotherMonsterMachine() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=mothermonster&format=PDF")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=mothermonster&format=${format}`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -433,18 +445,21 @@
           amount: 6000,
           currency: "GHS",
           callback: function(response){
-            logDownload("Mother. Monster. Machine.", "PDF");
+            logDownload("Mother. Monster. Machine.", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
 
   function buyBlackoutCity() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=${format}`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -453,16 +468,14 @@
           amount: 6000,
           currency: "GHS",
           callback: function(response){
-            logDownload("Blackout City", "PDF/EPUB");
+            logDownload("Blackout City", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
+          onClose: function(){ alert('Transaction was not completed.'); }
         }).openIframe();
       });
   }
-  
+
   function payDoubleBundle() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks&label=bundle&page=index")
       .then(res => res.json())
@@ -481,7 +494,12 @@
   }
 
   function payWhatItTook() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=choose&label=single&page=index")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=${format}&label=single&page=index`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -490,7 +508,7 @@
           amount: 6000,
           currency: "GHS",
           callback: function() {
-            logDownload("What It Took", "PDF/EPUB");
+            logDownload("What It Took", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           }
         }).openIframe();
@@ -532,7 +550,12 @@
   }
 
   function payGuts() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=choose&label=single&page=index")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=${format}&label=single&page=index`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -541,7 +564,7 @@
           amount: 6000,
           currency: "GHS",
           callback: function() {
-            logDownload("This Is the Season for Guts", "PDF/EPUB");
+            logDownload("This Is the Season for Guts", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           }
         }).openIframe();
@@ -549,7 +572,12 @@
   }
 
   function payWeapon() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=weapon&format=choose&label=single&page=index")
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=weapon&format=${format}&label=single&page=index`)
       .then(res => res.json())
       .then(data => {
         PaystackPop.setup({
@@ -558,7 +586,7 @@
           amount: 6000,
           currency: "GHS",
           callback: function() {
-            logDownload("Woman. Weapon. Work.", "PDF/EPUB");
+            logDownload("Woman. Weapon. Work.", format);
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           }
         }).openIframe();
