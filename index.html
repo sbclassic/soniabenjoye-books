@@ -209,6 +209,17 @@
 </div>
 
 <div class="section">
+  <h2>📘 Mother. Monster. Machine.</h2>
+  <img src="mother_monster_machine_fullcover.jpg" alt="Mother. Monster. Machine. Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
+  <p>
+    Raw. Political. Poetic.<br/>
+    A book about being woman and weapon in the same breath—about systems, sacrifice, and soft defiance.<br/>
+    Sonia Benjoye unpacks the fire of survival through the language of art.
+  </p>
+  <a class="button" onclick="buyMotherMonsterMachine()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
   <h2>📘 Blackout City: We Who Lived Below</h2>
   <img src="Blackout_City_Cover.png" alt="Blackout City Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
   <p>
@@ -339,25 +350,7 @@
       .catch((error) => console.error("❌ Log failed:", error));
   }
 
-  function buyBlackoutCity() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function(response){
-            logDownload("Blackout City", "PDF/EPUB");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){
-            alert('Transaction was not completed.');
-          }
-        }).openIframe();
-      });
-  }
+  
   
     function buyGodWasNeverTheProblem() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=PDF")
@@ -430,6 +423,46 @@
       });
   }
 
+  function buyMotherMonsterMachine() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=mothermonster&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Mother. Monster. Machine.", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+
+  function buyBlackoutCity() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Blackout City", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
   function payDoubleBundle() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks&label=bundle&page=index")
       .then(res => res.json())
