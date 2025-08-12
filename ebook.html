@@ -158,6 +158,17 @@
   
   <!-- Book Sections -->
 <div class="section">
+  <h2>📘 To Stand In the Fire</h2>
+  <img src="To_Stand_In_The_Fire_Cover.PNG" alt="To Stand In the Fire Cover" />
+  <p>
+    When the way out is gone, the only way forward is through.<br/>
+    A survivor’s manual for moments when escape is no longer possible and endurance is the only option.<br/>
+    Eight battle-tested rules to help you face what hunts you, stand your ground, and carry your scars as proof you made it through.
+  </p>
+  <a class="button" onclick="buyToStandInTheFire()">Buy Ebook – ₵55</a>
+</div>
+
+<div class="section">
   <h2>📘 Blackout City: We Who Lived Below</h2>
   <img src="Blackout_City_Cover.png" alt="Blackout City Cover" />
   <p>
@@ -353,6 +364,26 @@
     db.collection("downloads").add(entry)
       .then(() => console.log("✅ Logged:", book, format))
       .catch((error) => console.error("❌ Log failed:", error));
+  }
+  
+  function buyToStandInTheFire() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fire&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 5500, // ₵55.00
+          currency: "GHS",
+          callback: function(response){
+            logDownload("To Stand In the Fire", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
   }
 
   function buyBlackoutCity() {
