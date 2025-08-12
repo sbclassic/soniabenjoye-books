@@ -179,6 +179,17 @@
 </div>
 
 <div class="section">
+  <h2>📘 Nothing Stays Hidden</h2>
+  <img src="Nothing_Stays_Hidden_Cover.PNG" alt="Nothing Stays Hidden Cover" />
+  <p>
+    Every secret finds its way to the light.<br/>
+    A locked box. A witness who saw too much. A stranger who should have walked away.<br/>
+    Tense, layered and impossible to look away from. This is a story about the cost of silence, the danger of knowing too much and the thin line between protecting yourself and destroying everything.
+  </p>
+  <a class="button" onclick="buyNothingStaysHidden()">Buy Ebook – ₵49</a>
+</div>
+
+<div class="section">
   <h2>📘 Black Veins, Open Mouths</h2>
   <img src="Black_veins_open_mouths_fullcover.jpg" alt="Black Veins Cover" />
   <p>
@@ -364,6 +375,26 @@
           currency: "GHS",
           callback: function(response){
             logDownload("God Was Never The Problem", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+  function buyNothingStaysHidden() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=nothingstayshidden&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000, // ₵60.00 (keep same structure as your sample)
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Nothing Stays Hidden", "PDF");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
