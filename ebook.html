@@ -190,6 +190,17 @@
 </div>
 
 <div class="section">
+  <h2>📘 Thrones Built On Sand</h2>
+  <img src="Thrones_Built_On_Sand_Cover.png" alt="Thrones Built On Sand Cover" />
+  <p>
+    When power forgets its foundation, collapse is only a matter of time.<br/>
+    From whispered alliances to public betrayals, each year brings a new fracture in an empire that mistook appearances for strength.<br/>
+    A tense, layered story of rise and decay about the cost of silence and the hunger to claim what remains.
+  </p>
+  <a class="button" onclick="buyThronesBuiltOnSand()">Buy Ebook – ₵55</a>
+</div>
+
+<div class="section">
   <h2>📘 Black Veins, Open Mouths</h2>
   <img src="Black_veins_open_mouths_fullcover.jpg" alt="Black Veins Cover" />
   <p>
@@ -395,6 +406,26 @@
           currency: "GHS",
           callback: function(response){
             logDownload("Nothing Stays Hidden", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+  function buyThronesBuiltOnSand() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=thrones&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 5500, // ₵55.00
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Thrones Built On Sand", "PDF");
             window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
           },
           onClose: function(){
