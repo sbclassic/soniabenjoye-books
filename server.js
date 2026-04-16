@@ -33,30 +33,7 @@ app.get('/ping', (req, res) => {
 });
 
 // ===============================
-// 💳 PAYSTACK → GENERATE AUTO SIGNED LINK
-// ===============================
-app.get('/paystack-success', (req, res) => {
-  const { book, format } = req.query;
-
-  if (!book || !format) {
-    return res.status(400).send("Missing book or format");
-  }
-
-  const ts = Date.now();
-  const payload = `${book}|${format}|${ts}`;
-
-  const sig = crypto
-    .createHmac('sha256', SECRET)
-    .update(payload)
-    .digest('hex');
-
-  const downloadUrl = `https://sb-bookstore-backend.onrender.com/download?book=${book}&format=${format}&ts=${ts}&sig=${sig}`;
-
-  return res.redirect(downloadUrl);
-});
-
-// ===============================
-// 🔑 GENERATE SECURE LINK (manual option still exists)
+// 🔑 GENERATE SECURE LINK
 // ===============================
 app.get('/generate-token', (req, res) => {
   const { book, format } = req.query;
@@ -80,7 +57,7 @@ app.get('/generate-token', (req, res) => {
 });
 
 // ===============================
-// 📥 DOWNLOAD ROUTE (SECURE + ONE-TIME)
+// 📥 DOWNLOAD ROUTE (OPTION A PROTECTED)
 // ===============================
 app.get('/download', (req, res) => {
   const { book, format, ts, sig } = req.query;
