@@ -1,14 +1,69 @@
+// DEBUG TRIGGER - 2025-07-09
+
+console.log("🔥 SERVER STARTED SUCCESSFULLY");
+
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+
+const app = express();
+
+// ✅ CORS
+app.use(cors({
+  origin: 'https://sbclassic.github.io'
+}));
+
+// ✅ Static files
+app.use(express.static('public'));
+
+// ===============================
+// 📦 TOKEN FILE STORAGE SYSTEM
+// ===============================
 const TOKEN_FILE = path.join(__dirname, 'tokens.json');
 
 function loadTokens() {
-  if (!fs.existsSync(TOKEN_FILE)) return {};
-  return JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
+  try {
+    if (!fs.existsSync(TOKEN_FILE)) return {};
+    return JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
+  } catch (err) {
+    return {};
+  }
 }
 
 function saveTokens(tokens) {
   fs.writeFileSync(TOKEN_FILE, JSON.stringify(tokens, null, 2));
 }
 
+// ===============================
+// 🔑 GENERATE TOKEN
+// ===============================
+app.get('/generate-token', (req, res) => {
+  const { book, format, label = '', page = '' } = req.query;
+
+  const token = Math.random().toString(36).substring(2, 10);
+  const expiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes
+
+  const tokens = loadTokens();
+
+  tokens[token] = {
+    book,
+    format,
+    label,
+    page,
+    expiresAt
+  };
+
+  saveTokens(tokens);
+
+  console.log("TOKEN CREATED:", token);
+
+  res.send({ token });
+});
+
+// ===============================
+// 📥 DOWNLOAD ROUTE
+// ===============================
 app.get('/download', (req, res) => {
   const { token } = req.query;
 
@@ -25,7 +80,7 @@ app.get('/download', (req, res) => {
     return res.status(403).send('Token expired.');
   }
 
-  // 📊 logging download
+  // 📊 log download
   const logPath = path.join(__dirname, 'public', 'downloads-data.js');
 
   const entry = {
@@ -43,7 +98,7 @@ app.get('/download', (req, res) => {
 
   fs.appendFileSync(logPath, '\n' + content);
 
-  // 📦 file mapping
+  // 📦 FILE MAP
   const fileMap = {
     'claimingher-pdf': 'Claiming Her.pdf',
     'claimingher-epub': 'Claiming Her.epub',
@@ -112,4 +167,33 @@ app.get('/download', (req, res) => {
       return res.status(500).send("Download failed");
     }
   });
+});
+
+// ===============================
+// 📊 TRACKING
+// ===============================
+app.get('/api/tracking', (req, res) => {
+  const logPath = path.join(__dirname, 'public', 'downloads-data.js');
+  if (!fs.existsSync(logPath)) return res.json([]);
+
+  const raw = fs.readFileSync(logPath, 'utf8');
+  const matches = [...raw.matchAll(/downloadData\.push\((.*?)\);/g)];
+  const entries = matches.map(m => JSON.parse(m[1]));
+
+  res.json(entries);
+});
+
+// ===============================
+// 🎯 PING
+// ===============================
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
+// ===============================
+// 🚀 START SERVER
+// ===============================
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`✅ Server running on port ${port}`);
 });
