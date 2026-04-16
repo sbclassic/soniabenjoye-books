@@ -176,7 +176,6 @@ function toggleMenu(){
 
 /**
  * 🔥 FIXED PAYSTACK FLOW (USES YOUR server.js)
- * NO TOKENS, NO GENERATE-API, NO BROKEN LOGIC
  */
 function buy(book, format){
 
@@ -190,17 +189,15 @@ function buy(book, format){
     return;
   }
 
-  // 👉 THIS MATCHES YOUR server.js EXACTLY
-  const url = `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${fmt}`;
-
-  // 👉 open Paystack first (your original behavior preserved)
   const handler = PaystackPop.setup({
     key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
     email: 'benjoye21@gmail.com',
     amount: 6000,
     currency: "GHS",
 
-    callback: function(){
+    callback: function(response){
+      // ✅ IMPORTANT FIX: include Paystack reference
+      const url = `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${fmt}&reference=${response.reference}`;
       window.location.href = url;
     },
 
