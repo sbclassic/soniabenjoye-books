@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
   <!-- ✅ Google Analytics (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-2RTL8HNXF8');
-  </script>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-2RTL8HNXF8');
+</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bundles – SB Digital Bookstore</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
@@ -23,7 +20,6 @@
       background-color: #f9f7f6;
       color: #2b2b2b;
     }
-
     header {
       background-color: #fff;
       display: flex;
@@ -35,24 +31,20 @@
       z-index: 1000;
       border-bottom: 1px solid #ddd;
     }
-
     .menu-icon {
       font-size: 1.6rem;
       cursor: pointer;
       color: #2b2b2b;
       margin-right: 1rem;
     }
-
     .logo {
       flex: 1;
       text-align: center;
     }
-
     .logo img {
       max-width: 240px;
       height: auto;
     }
-
     .overlay-menu {
       position: fixed;
       top: 0;
@@ -68,9 +60,9 @@
       flex-direction: column;
       z-index: 9999;
     }
-
-    .overlay-menu.open { left: 0; }
-
+    .overlay-menu.open {
+      left: 0;
+    }
     .overlay-menu a {
       text-decoration: none;
       font-weight: bold;
@@ -78,7 +70,6 @@
       margin: 1rem 0;
       font-size: 1.1rem;
     }
-
     .close-btn {
       position: absolute;
       top: 1.2rem;
@@ -87,27 +78,23 @@
       cursor: pointer;
       color: #191970;
     }
-
     .overlay-header {
       font-size: 1.2rem;
       font-weight: bold;
       margin-bottom: 2rem;
       color: #191970;
     }
-
     .section {
       max-width: 700px;
       margin: auto;
       padding: 2rem 1.5rem;
       text-align: center;
     }
-
     .section p {
       font-style: italic;
       color: #555;
       margin-top: 1rem;
     }
-
     .bundle-button {
       display: inline-block;
       background-color: #191970;
@@ -117,13 +104,10 @@
       text-decoration: none;
       font-weight: bold;
       margin-top: 1rem;
-      cursor: pointer;
     }
-
     .bundle-button:hover {
       background-color: #2a2a9f;
     }
-
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -132,7 +116,6 @@
     }
   </style>
 </head>
-
 <body>
 
 <header>
@@ -151,18 +134,19 @@
   <a href="bundles.html">📦 Bundles</a>
   <a href="about.html">👤 About Me</a>
   <a href="community.html">💬 Community</a>
+  <a href="https://sbclassic.github.io/sbclassic" target="_blank">💼 SB CLASSIC</a>
+  <a href="mailto:benjoye21@gmail.com">📩 Contact</a>
 </div>
 
-<div class="hero-text" style="text-align:center; padding:2.5rem 1rem 1rem;">
-  <h1 style="font-family:'Playfair Display', serif;">📦 Book Bundles</h1>
-  <p>Ebook plus Audiobook. Or multiple ebooks. Save more, get more.</p>
+<div class="hero-text" style="text-align: center; padding: 2.5rem 1rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #2b2b2b; margin-bottom: 0.4rem;">📦 Book Bundles</h1>
+  <p style="font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #444;">Ebook plus Audiobook. Or multiple ebooks. Save more, get more.</p>
 </div>
 
-<!-- ================= BUNDLES ================= -->
-
-<div class="section">
+  <!-- ✅ NEW BUNDLES -->
+ <div class="section">
   <h2>🎧 Complete Audio Set</h2>
-  <p><strong>Includes:</strong> 3 audiobooks</p>
+  <p><strong>Includes:</strong> Audiobooks of The Paradox of Passion, What It Took, and God Was Never the Problem</p>
   <p><strong>Bundle Price:</strong> ₵149</p>
   <a class="bundle-button" onclick="payAudioFullBundle()">Buy Audio Set</a>
 </div>
@@ -170,65 +154,98 @@
 <div class="section">
   <h2>🔥 Rage & Revelation Bundle</h2>
   <p><strong>Includes:</strong> God Was Never the Problem + Mother. Monster. Machine.</p>
-  <p><strong>Price:</strong> ₵119</p>
+  <p><strong>Bundle Price:</strong> ₵119</p>
   <a class="bundle-button" onclick="payRageBundle()">Buy Bundle</a>
 </div>
 
 <div class="section">
-  <h2>👁️ Prophetic Trilogy</h2>
-  <p><strong>Includes:</strong> 3 ebooks</p>
-  <p><strong>Price:</strong> ₵129</p>
+  <h2>👁️‍🗨️ Prophetic Trilogy</h2>
+  <p><strong>Includes:</strong> This Is How She Ended the World + God Was Never the Problem + Black Veins, Open Mouths</p>
+  <p><strong>Bundle Price:</strong> ₵129</p>
   <a class="bundle-button" onclick="payPropheticSet()">Buy Trilogy</a>
 </div>
 
 <div class="section">
   <h2>🌿 Soft Resistance Duo</h2>
-  <p><strong>Includes:</strong> 2 ebooks</p>
-  <p><strong>Price:</strong> ₵89</p>
+  <p><strong>Includes:</strong> Her Hand Held The Future... + The Beautiful Discipline Of Boredom</p>
+  <p><strong>Bundle Price:</strong> ₵89</p>
   <a class="bundle-button" onclick="paySoftResistanceDuo()">Buy Duo</a>
 </div>
 
 <div class="section">
   <h2>🖤 Dark & Divine Duo</h2>
-  <p><strong>Includes:</strong> 2 ebooks</p>
-  <p><strong>Price:</strong> ₵89</p>
+  <p><strong>Includes:</strong> Mother. Monster. Machine. + Black Veins, Open Mouths</p>
+  <p><strong>Bundle Price:</strong> ₵89</p>
   <a class="bundle-button" onclick="payDarkDivine()">Buy Duo</a>
 </div>
 
 <div class="section">
-  <h2>📘 + 🎧 Paradox Full Bundle</h2>
-  <p><strong>Includes:</strong> Ebook + Audiobook</p>
-  <p><strong>Price:</strong> ₵79</p>
-  <a class="bundle-button" onclick="payParadoxBundle()">Buy Bundle</a>
+  <h2>📘 + 🎧 The Paradox of Passion – Full Bundle</h2>
+  <p><strong>Includes:</strong> Ebook (PDF and EPUB) plus Audiobook (MP3)</p>
+  <p><strong>Bundle Price:</strong> ₵79 <br><span style="font-size: 0.9rem;">(instead of ₵98)</span></p>
+  <a class="bundle-button" onclick="payParadoxBundle()">Buy Full Bundle</a>
 </div>
 
 <div class="section">
-  <h2>📘 + 🎧 What It Took Bundle</h2>
-  <p><strong>Includes:</strong> Ebook + Audiobook</p>
-  <p><strong>Price:</strong> ₵99</p>
-  <a class="bundle-button" onclick="payWhatItTookBundle()">Buy Bundle</a>
+  <h2>📘 + 🎧 What It Took – Full Bundle</h2>
+  <p><strong>Includes:</strong> Ebook (PDF and EPUB) plus Audiobook (MP3)</p>
+  <p><strong>Bundle Price:</strong> ₵99 <br><span style="font-size: 0.9rem;">(instead of ₵120)</span></p>
+  <a class="bundle-button" onclick="payWhatItTookBundle()">Buy Full Bundle</a>
 </div>
 
 <div class="section">
-  <h2>📚 Three Ebooks</h2>
-  <p><strong>Includes:</strong> 3 ebooks</p>
-  <p><strong>Price:</strong> ₵155</p>
+  <h2>🕊️ Break the Cage Bundle</h2>
+  <p><strong>Includes:</strong> What It Took + God Was Never the Problem</p>
+  <p><strong>Bundle Price:</strong> ₵109</p>
+  <a class="bundle-button" onclick="payBreakCage()">Buy Bundle</a>
+</div>
 
-  <!-- FIXED -->
-  <a class="bundle-button" onclick="payThreeEbooks()">Buy All Ebooks</a>
+<div class="section">
+  <h2>🔥 Softness & Fire Bundle</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion + Her Hand Held the Future...</p>
+  <p><strong>Bundle Price:</strong> ₵99</p>
+  <a class="bundle-button" onclick="paySoftFire()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>💥 Women Who Burn</h2>
+  <p><strong>Includes:</strong> Woman. Weapon. Work. + Mother. Monster. Machine.</p>
+  <p><strong>Bundle Price:</strong> ₵119</p>
+  <a class="bundle-button" onclick="payWomenBurn()">Buy Bundle</a>
+</div>
+
+<div class="section">
+  <h2>🌟 Bestsellers Ebook Trio</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion + What It Took + God Was Never the Problem</p>
+  <p><strong>Bundle Price:</strong> ₵139</p>
+  <a class="bundle-button" onclick="payBestsellersTrio()">Buy Trio</a>
+</div>
+  
+<div class="section">
+  <h2>📘 + 📗 Ebook Duo</h2>
+  <p><strong>Includes:</strong> The Paradox of Passion and What It Took</p>
+  <p><strong>Bundle Price:</strong> ₵99 <br><span style="font-size: 0.9rem;">(instead of ₵109)</span></p>
+  <a class="bundle-button" onclick="payWhatParadox()">Buy Ebook Duo</a>
+</div>
+
+<div class="section">
+  <h2>📚 Three Ebooks </h2>
+  <p><strong>Includes:</strong> All three ebooks – The Paradox of Passion, What It Took, and Woman. Weapon. Work.</p>
+  <p><strong>Bundle Price:</strong> ₵155</p>
+  <a class="bundle-button" onclick="payAllEbooks()">Buy All Ebooks</a>
 </div>
 
 <footer>
   Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
-  &copy; 2025 Sonia Benjoye
+  &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
-
+<!-- ✅ Paystack + Firebase Download & Visitor Tracking Integration -->
 <script src="https://js.paystack.co/v1/inline.js"></script>
-
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+  // ✅ Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
     authDomain: "bookdownloadtracker.firebaseapp.com",
@@ -241,48 +258,292 @@
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
 
+  // ✅ Download Logger
   window.logDownload = async function(book, format, page) {
-    await addDoc(collection(db, "downloads"), {
-      book, format, page,
-      timestamp: serverTimestamp()
-    });
+    try {
+      await addDoc(collection(db, "downloads"), {
+        book,
+        format,
+        page,
+        timestamp: serverTimestamp()
+      });
+    } catch (e) {
+      console.error("Logging failed:", e);
+    }
   };
 
+  // ✅ Visitor Tracker
   async function logVisitor() {
-    await addDoc(collection(db, "visitors"), {
-      timestamp: serverTimestamp(),
-      page: window.location.pathname
-    });
+    try {
+      await addDoc(collection(db, "visitors"), {
+        timestamp: serverTimestamp(),
+        page: window.location.pathname,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct"
+      });
+    } catch (e) {
+      console.error("Visitor logging failed:", e);
+    }
   }
 
-  logVisitor();
+  logVisitor(); // 🔁 Call on every visit
 </script>
 
 <script>
-function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("open");
-}
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("open");
+  }
 
-// NOTE: full Paystack functions unchanged (kept same as yours)
-// FIXED: no HTML comments inside script
+  <!-- ✅ NEW PAY FUNCTIONS -->
+ function payAudioFullBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=audiofullbundle&format=audio&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 14900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Complete Audio Set", "Audiobooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+  
+  function payGodBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=godbundle&format=all&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("God Was Never Bundle", "Ebook + Audio", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
 
-function payThreeEbooks() {
-  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fullbundle&format=ebooks&type=bundlepage")
-  .then(res => res.json())
-  .then(data => {
-    PaystackPop.setup({
-      key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-      email: 'benjoye21@gmail.com',
-      amount: 15500,
-      currency: "GHS",
-      callback: function(){
-        logDownload("Three Ebook Bundle", "Ebooks", "bundles.html");
-        window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-      }
-    }).openIframe();
-  });
-}
+  function payRageBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=ragebundle&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 11900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Rage Bundle", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payPropheticSet() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=propheticset&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 12900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Prophetic Set", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function paySoftResistanceDuo() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=softresistanceduo&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 8900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Soft Resistance Duo", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payDarkDivine() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=darkdivine&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 8900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Dark & Divine", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payParadoxBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxbundle&format=all&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 7900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Paradox Bundle", "Ebook + Audio", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payWhatItTookBundle() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatbundle&format=bundle&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("What It Took Bundle", "Ebook + Audio", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+   function payBreakCage() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=breakcage&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 10900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Break the Cage", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function paySoftFire() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=softfire&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Softness & Fire", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payWomenBurn() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=womenburn&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 11900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Women Who Burn", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payBestsellersTrio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=bestsellerstrio&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 13900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Bestsellers Trio", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+  
+  function payWhatParadox() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatparadox&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 9900,
+          currency: "GHS",
+          callback: function(){
+            logDownload("What + Paradox", "Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+
+  function payThreeEbooks() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fullbundle&format=ebooks&type=bundlepage")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 15500,
+          currency: "GHS",
+          callback: function(){
+            logDownload("Three Ebook Bundle", "Three Ebooks", "bundles.html");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
 </script>
-
-</body>
-</html>
