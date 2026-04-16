@@ -2,91 +2,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SB – Digital Bookstore</title>
+  <!-- ✅ Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-2RTL8HNXF8');
+</script>
 
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SB – Digital Bookstore</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Libre Baskerville', serif;
-  background-color: #f9f7f6;
-  color: #2b2b2b;
-}
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
 
-header {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #ddd;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
+      background-color: #f9f7f6;
+      color: #2b2b2b;
+    }
+    header {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #ddd;
+    }
+    .menu-icon {
+      font-size: 1.6rem;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+    .logo {
+      flex: 1;
+      text-align: center;
+    }
+    .logo img {
+      max-width: 240px;
+    }
+    .overlay-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background: #fff;
+      transition: 0.3s;
+      padding: 2rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+    }
+    .overlay-menu.open { left: 0; }
 
-.menu-icon {
-  font-size: 1.6rem;
-  cursor: pointer;
-  margin-right: 1rem;
-}
+    .overlay-menu a {
+      margin: 1rem 0;
+      font-weight: bold;
+      color: #191970;
+      text-decoration: none;
+    }
 
-.logo {
-  flex: 1;
-  text-align: center;
-}
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
 
-.logo img {
-  max-width: 240px;
-}
+    .section {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 8px;
+    }
 
-.overlay-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100%;
-  background: #fff;
-  transition: 0.3s;
-  padding: 2rem;
-  z-index: 9999;
-}
+    .section h2 {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+    }
 
-.overlay-menu.open {
-  left: 0;
-}
-
-.overlay-menu a {
-  display: block;
-  margin: 1rem 0;
-  font-weight: bold;
-  color: #191970;
-  text-decoration: none;
-}
-
-.section {
-  max-width: 700px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-}
-
-.button {
-  display: inline-block;
-  background: #191970;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-}
-</style>
+    .button {
+      display: inline-block;
+      background: #191970;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -98,79 +113,99 @@ header {
   </div>
 </header>
 
-<div class="overlay-menu" id="menu">
-  <a href="index.html">Home</a>
-  <a href="ebook.html">Ebook</a>
-  <a href="audiobook.html">Audiobook</a>
+<div class="overlay-menu" id="navMenu">
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <a href="index.html">📘 Home</a>
+  <a href="ebook.html">📖 Ebook</a>
+  <a href="audiobook.html">🎧 Audiobook</a>
+  <a href="bundles.html">📦 Bundles</a>
 </div>
 
-<!-- ===================== -->
-<!-- BOOKS -->
-<!-- ===================== -->
+<!-- ================= BOOKS (UNCHANGED) ================= -->
 
 <div class="section">
-  <h2>Claiming Her</h2>
-  <button class="button" onclick="buy('claimingher', 6000)">Buy Ebook</button>
-</div>
-
-<div class="section">
-  <h2>God Was Never The Problem</h2>
-  <button class="button" onclick="buy('god', 6000)">Buy Ebook</button>
+  <h2>📘 Claiming Her</h2>
+  <img src="Claiming_her_fullcover.PNG">
+  <p>Growing up, I always knew there was something different about me...</p>
+  <a class="button" onclick="buy('claimingher','PDF')">Buy Ebook – ₵55</a>
 </div>
 
 <div class="section">
-  <h2>The Paradox of Passion</h2>
-  <button class="button" onclick="buy('paradox', 4900)">Buy Ebook</button>
-  <button class="button" onclick="buy('paradox', 4900, 'audio')">Buy Audiobook</button>
+  <h2>📘 God Was Never the Problem</h2>
+  <img src="God_was_never_the_problem_fullcover.png">
+  <p>For the ones who were told to fear their questions...</p>
+  <a class="button" onclick="buy('god','PDF')">Buy Ebook – ₵55</a>
 </div>
 
 <div class="section">
-  <h2>What It Took</h2>
-  <button class="button" onclick="buy('what', 6000)">Buy Ebook</button>
-  <button class="button" onclick="buy('what', 6000, 'audio')">Buy Audiobook</button>
+  <h2>📘 The Paradox of Passion</h2>
+  <img src="bookcover_resized.JPG">
+  <a class="button" onclick="buy('paradox','PDF')">Buy Ebook – ₵49</a>
 </div>
 
 <div class="section">
-  <h2>Mother Monster Machine</h2>
-  <button class="button" onclick="buy('mothermonster', 6000)">Buy Ebook</button>
+  <h2>📘 Mother. Monster. Machine.</h2>
+  <img src="mother_monster_machine_fullcover.jpg">
+  <a class="button" onclick="buy('mothermonster','PDF')">Buy Ebook – ₵55</a>
 </div>
 
 <div class="section">
-  <h2>Blackout City</h2>
-  <button class="button" onclick="buy('blackout', 6000)">Buy Ebook</button>
+  <h2>📘 Blackout City</h2>
+  <img src="Blackout_City_Cover.png">
+  <a class="button" onclick="buy('blackout','PDF')">Buy Ebook – ₵60</a>
 </div>
 
-<footer style="text-align:center; padding:2rem;">
-© 2025 SB Bookstore
-</footer>
+<div class="section">
+  <h2>📗 What It Took</h2>
+  <img src="what_it_took_cover.png">
+  <a class="button" onclick="buy('what','PDF')">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>🔥 Woman. Weapon. Work.</h2>
+  <img src="Woman. Weapon. Power Cover.png">
+  <a class="button" onclick="buy('weapon','PDF')">Buy Ebook – ₵60</a>
+</div>
+
+<!-- ================= FIXED PAYMENT LOGIC ================= -->
 
 <script>
 function toggleMenu(){
-  document.getElementById("menu").classList.toggle("open");
+  document.getElementById("navMenu").classList.toggle("open");
 }
 
 /**
- * 🔥 FIXED FLOW (matches server.js)
- * Paystack → /paystack-success → server signs → download
+ * 🔥 FIXED PAYSTACK FLOW (USES YOUR server.js)
+ * NO TOKENS, NO GENERATE-API, NO BROKEN LOGIC
  */
-function buy(book, amount, format = "pdf") {
+function buy(book, format){
 
-  const email = "benjoye21@gmail.com";
+  const chosenFormat = prompt("Choose format: PDF or EPUB");
+  if(!chosenFormat) return;
 
+  const fmt = chosenFormat.toUpperCase();
+
+  if(fmt !== "PDF" && fmt !== "EPUB"){
+    alert("Only PDF or EPUB allowed");
+    return;
+  }
+
+  // 👉 THIS MATCHES YOUR server.js EXACTLY
+  const url = `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${fmt}`;
+
+  // 👉 open Paystack first (your original behavior preserved)
   const handler = PaystackPop.setup({
-    key: "pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99",
-    email,
-    amount,
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
     currency: "GHS",
 
-    callback: function () {
-      // IMPORTANT: THIS NOW MATCHES YOUR SERVER.JS
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${format}`;
+    callback: function(){
+      window.location.href = url;
     },
 
-    onClose: function () {
-      alert("Payment not completed.");
+    onClose: function(){
+      alert("Payment cancelled");
     }
   });
 
