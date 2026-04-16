@@ -1,8 +1,9 @@
-<!-- ✨ SB – Secure Digital Bookstore -->
+<!-- ✨ SB – Secure Digital Bookstore (FIXED VERSION) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- GA4 -->
+
+<!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,107 +15,120 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SB – Digital Bookstore</title>
+
+<style>
+  body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:40px;
+    text-align:center;
+    background:#f9f7f6;
+    color:#222;
+  }
+
+  button{
+    padding:12px 18px;
+    margin:8px;
+    border:none;
+    background:#191970;
+    color:white;
+    border-radius:6px;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#2a2a9f;
+  }
+</style>
+
 </head>
 
 <body>
 
+<h1>📚 SB Digital Bookstore</h1>
+<p>Loading system... if buttons work, you're live.</p>
+
+<!-- Sample buttons (you can expand later) -->
+<button onclick="payParadox()">Buy Paradox</button>
+<button onclick="payWhatItTook()">Buy What It Took</button>
+<button onclick="payParadoxAudio()">Audio Paradox</button>
+
 <script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
 <script>
-  function logDownload(book, format) {
-    console.log("Downloaded:", book, format);
-  }
+/* =========================
+   SAFE CORE SYSTEM
+========================= */
 
-  function paystackPay(book, amount, formatLabel = "single") {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+window.onerror = function () {
+  console.log("⚠️ JS error caught (prevented crash)");
+  return true;
+};
 
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
+function logDownload(book, format) {
+  console.log("Downloaded:", book, format);
+}
+
+/* =========================
+   PAYSTACK CORE FUNCTION
+========================= */
+
+function paystackPay(book, amount, format = "PDF") {
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: amount,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload(book, format);
+
+      // SAFE REDIRECT
+      window.location.href =
+        "https://sb-bookstore-backend.onrender.com/paystack-success?book=" +
+        book +
+        "&format=" +
+        format;
+    },
+
+    onClose: function () {
+      alert("Transaction cancelled");
     }
+  }).openIframe();
+}
 
-    PaystackPop.setup({
-      key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-      email: 'benjoye21@gmail.com',
-      amount: amount,
-      currency: "GHS",
+/* =========================
+   BOOK FUNCTIONS
+========================= */
 
-      callback: function () {
-        logDownload(book, format);
+function payParadox() {
+  paystackPay("paradox", 4900, "PDF");
+}
 
-        // 🔥 NEW BACKEND FLOW
-        window.location.href =
-          `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${format}`;
-      },
+function payWhatItTook() {
+  paystackPay("whatittook", 6000, "PDF");
+}
 
-      onClose: function () {
-        alert("Transaction was not completed.");
-      }
-    }).openIframe();
-  }
+function buyGod() {
+  paystackPay("god", 6000, "PDF");
+}
 
-  // =========================
-  // BOOK FUNCTIONS (UPDATED)
-  // =========================
+function buyMotherMonsterMachine() {
+  paystackPay("mothermonster", 6000, "PDF");
+}
 
-  function buyClaimingHer() {
-    paystackPay("claimingher", 6000);
-  }
+function buyBlackoutCity() {
+  paystackPay("blackout", 6000, "PDF");
+}
 
-  function buyGodWasNeverTheProblem() {
-    paystackPay("god", 6000);
-  }
+/* =========================
+   AUDIO (SAFE FIX)
+========================= */
 
-  function payParadox() {
-    paystackPay("paradox", 4900);
-  }
-
-  function payParadoxAudio() {
-    window.location.href =
-      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradox&format=audio";
-  }
-
-  function payParadoxBundle() {
-    window.location.href =
-      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradox&format=bundle";
-  }
-
-  function buyMotherMonsterMachine() {
-    paystackPay("mothermonster", 6000);
-  }
-
-  function buyBlackoutCity() {
-    paystackPay("blackout", 6000);
-  }
-
-  function payDoubleBundle() {
-    window.location.href =
-      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradoxwhat&format=bundle";
-  }
-
-  function payWhatItTook() {
-    paystackPay("what", 6000);
-  }
-
-  function payWhatItTookAudio() {
-    window.location.href =
-      "https://sb-bookstore-backend.onrender.com/paystack-success?book=what&format=audio";
-  }
-
-  function payWhatItTookBundle() {
-    window.location.href =
-      "https://sb-bookstore-backend.onrender.com/paystack-success?book=what&format=bundle";
-  }
-
-  function payGuts() {
-    paystackPay("guts", 6000);
-  }
-
-  function payWeapon() {
-    paystackPay("weapon", 6000);
-  }
+function payParadoxAudio() {
+  paystackPay("paradox", 4900, "AUDIO");
+}
 
 </script>
 
