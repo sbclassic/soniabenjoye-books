@@ -13,17 +13,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Audiobooks – SB</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
-
   <style>
+    /* Your CSS continues here... */
     body {
       margin: 0;
       font-family: 'Libre Baskerville', serif;
       background-color: #f9f7f6;
       color: #2b2b2b;
     }
-
     header {
       background-color: #fff;
       display: flex;
@@ -35,23 +33,20 @@
       z-index: 1000;
       border-bottom: 1px solid #ddd;
     }
-
     .menu-icon {
       font-size: 1.6rem;
       cursor: pointer;
+      color: #2b2b2b;
       margin-right: 1rem;
     }
-
     .logo {
       flex: 1;
       text-align: center;
     }
-
     .logo img {
       max-width: 240px;
       height: auto;
     }
-
     .overlay-menu {
       position: fixed;
       top: 0;
@@ -61,55 +56,64 @@
       height: 100%;
       background-color: #fff;
       box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-      transition: 0.3s;
+      transition: left 0.3s ease-in-out;
       padding: 2rem 1.5rem;
       display: flex;
       flex-direction: column;
       z-index: 9999;
     }
-
-    .overlay-menu.open { left: 0; }
-
+    .overlay-menu.open {
+      left: 0;
+    }
     .overlay-menu a {
       text-decoration: none;
       font-weight: bold;
       color: #191970;
       margin: 1rem 0;
+      font-size: 1.1rem;
     }
-
     .close-btn {
       position: absolute;
       top: 1.2rem;
       right: 1.5rem;
       font-size: 1.4rem;
       cursor: pointer;
+      color: #191970;
     }
-
+    .overlay-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #191970;
+    }
     .hero {
       text-align: center;
       padding: 3rem 1rem 2rem;
     }
-
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
+      margin-bottom: 0.5rem;
     }
-
+    .hero p {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 1.5rem;
+    }
     .section {
       max-width: 700px;
       margin: auto;
       padding: 2rem 1.5rem;
-      background: #fff;
+      background-color: #ffffff;
       border-radius: 8px;
-      margin-bottom: 2rem;
       box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      margin-bottom: 2rem;
     }
-
     audio {
       width: 100%;
+      border-radius: 6px;
       margin-top: 10px;
     }
-
     .button {
       display: inline-block;
       background-color: #191970;
@@ -117,18 +121,20 @@
       padding: 12px 20px;
       border-radius: 6px;
       text-decoration: none;
-      margin-top: 1rem;
-      cursor: pointer;
+      font-weight: bold;
+      margin-top: 1.5rem;
     }
-
+    .button:hover {
+      background-color: #2a2a9f;
+    }
     .cover-image {
       width: 100%;
       max-width: 300px;
       display: block;
       margin: 0 auto 1rem;
       border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -137,137 +143,195 @@
     }
   </style>
 </head>
-
 <body>
 
 <header>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <div class="logo">
-    <img src="sb_digital_logo.PNG" alt="SB Logo">
+    <img src="sb_digital_logo.PNG" alt="SB Digital Logo">
   </div>
 </header>
 
 <div class="overlay-menu" id="navMenu">
   <div class="close-btn" onclick="toggleMenu()">✕</div>
-  <a href="index.html">Home</a>
-  <a href="ebook.html">Ebook</a>
-  <a href="audiobook.html">Audiobook</a>
-  <a href="bundles.html">Bundles</a>
+  <div class="overlay-header">Menu</div>
+  <a href="index.html">📘 Home</a>
+  <a href="ebook.html">📖 Ebook</a>
+  <a href="audiobook.html">🎧 Audiobook</a>
+  <a href="bundles.html">📦 Bundles</a>
+  <a href="about.html">👤 About Me</a>
+  <a href="community.html">💬 Community</a>
+  <a href="https://sbclassic.github.io/sbclassic" target="_blank">💼 SB CLASSIC</a>
+  <a href="mailto:benjoye21@gmail.com">📩 Contact</a>
 </div>
 
 <div class="hero">
   <h1>Audiobook Collection</h1>
-  <p>Soft storytelling for the soul</p>
+  <p>Soft storytelling for the soul — voiced and intimate</p>
 </div>
 
+<!-- PARADOX OF PASSION PREVIEW -->
 <div class="section">
-  <h2>🎧 The Paradox of Passion – Preview</h2>
-  <img src="bookcover_resized.JPG" class="cover-image">
-
+  <h2>🎧 The Paradox of Passion – Audio Preview</h2>
+  <img src="bookcover_resized.JPG" alt="The Paradox of Passion Audiobook Cover" class="cover-image">
+  <p style="font-style: italic; color: #555;">
+    Listen to a soft introduction — narrated with background piano, drawn from the book’s opening pages.
+  </p>
   <audio controls>
-    <source src="intro-teaser-final.mp3" type="audio/mpeg">
+    <source src="intro-teaser-final.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
   </audio>
 </div>
 
+<!-- PARADOX OF PASSION FULL AUDIO -->
 <div class="section">
-  <h2>📘 Full Audiobook – ₵49</h2>
-  <a class="button" onclick="payParadoxAudio()">Buy Audiobook</a>
+  <h2>📘 Full Audiobook – The Paradox of Passion</h2>
+  <p><strong>Buy the full audio edition of <em>The Paradox of Passion</em></strong></p>
+  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a>
 </div>
 
+<!-- WHAT IT TOOK PREVIEW EXCERPT -->
 <div class="section">
-  <h2>🎧 What It Took – Preview</h2>
+  <h2>🎧 Audio Excerpt – What It Took</h2>
+  <p style="font-style: italic; color: #555;">
+    A raw, reflective moment from the journey — press play to listen.
+  </p>
   <audio controls>
-    <source src="What_It_Took_Audio_Preview.mp3" type="audio/mpeg">
+    <source src="What_It_Took_Audio_Preview.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
   </audio>
 </div>
 
+<!-- WHAT IT TOOK FULL AUDIO -->
 <div class="section">
-  <h2>📘 Full Audiobook – ₵60</h2>
-  <img src="what_it_took_cover.png" class="cover-image">
-  <a class="button" onclick="payWhatItTookAudio()">Buy Audiobook</a>
+  <h2>📘 Full Audiobook – What It Took</h2>
+  <img src="what_it_took_cover.png" alt="What It Took Audiobook Cover" class="cover-image">
+  <p><strong>Buy the complete audio edition of <em>What It Took</em></strong></p>
+  <a class="button" onclick="payWhatItTookAudio()">Buy Audiobook – ₵60</a>
+</div>
+
+<!-- UPCOMING -->
+<div class="section">
+  <h2>More Audiobooks Coming Soon</h2>
+  <p>We’re working on new releases. Stay tuned for audio editions of future titles and healing narratives.</p>
 </div>
 
 <footer>
   Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
-  © 2025 SB Digital Bookstore
+  &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<script>
+  // Toggle menu
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("open");
+  }
 
+  // Firebase Config
   const firebaseConfig = {
     apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
     authDomain: "bookdownloadtracker.firebaseapp.com",
     projectId: "bookdownloadtracker",
-    storageBucket: "bookdownloadtracker.appspot.com",
+    storageBucket: "bookdownloadtracker.firebasestorage.app",
     messagingSenderId: "973175233369",
     appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
 
-  window.logDownload = async function(book, format, page) {
-    await addDoc(collection(db, "downloads"), {
-      book,
-      format,
-      page,
-      timestamp: serverTimestamp()
-    });
-  };
+  // ✅ Log visitor on page load
+  (async function logVisitor() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const { ip } = await res.json();
+      await db.collection("visitors").add({
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct",
+        ip
+      });
+    } catch (e) {
+      console.error("Visitor log failed:", e);
+    }
+  })();
 
-  async function logVisitor() {
-    await addDoc(collection(db, "visitors"), {
-      page: window.location.pathname,
-      timestamp: serverTimestamp(),
-      userAgent: navigator.userAgent
-    });
+  // IP Grabber
+  async function getIP() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const data = await res.json();
+      return data.ip;
+    } catch {
+      return "Unavailable";
+    }
   }
 
-  logVisitor();
-</script>
+  // Log Download to Firebase
+  async function logDownload(book, format) {
+    const ip = await getIP();
+    const entry = {
+      book,
+      format,
+      timestamp: new Date().toISOString(),
+      ip,
+      userAgent: navigator.userAgent
+    };
 
-<script>
-function toggleMenu() {
-  document.getElementById("navMenu").classList.toggle("open");
-}
+    db.collection("downloads").add(entry)
+      .then(() => console.log("✅ Logged:", book, format))
+      .catch((error) => console.error("❌ Log failed:", error));
+  }
 
-function payParadoxAudio() {
-  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio")
-    .then(r => r.json())
-    .then(data => {
-      PaystackPop.setup({
-        key: "pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99",
-        email: "benjoye21@gmail.com",
-        amount: 4900,
-        currency: "GHS",
-        callback: function () {
-          logDownload("Paradox", "MP3", "audiobook");
-          window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-        }
-      }).openIframe();
-    });
-}
+  // Paradox of Passion (Audio)
+  function payParadoxAudio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&type=audiobookpage")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("The Paradox of Passion", "MP3");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
 
-function payWhatItTookAudio() {
-  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatittook&format=audio")
-    .then(r => r.json())
-    .then(data => {
-      PaystackPop.setup({
-        key: "pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99",
-        email: "benjoye21@gmail.com",
-        amount: 6000,
-        currency: "GHS",
-        callback: function () {
-          logDownload("What It Took", "MP3", "audiobook");
-          window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-        }
-      }).openIframe();
-    });
-}
+  // What It Took (Audio)
+  function payWhatItTookAudio() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=whatittook&format=audio&type=audiobookpage")
+      .then(res => res.json())
+      .then(data => {
+        var handler = PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("What It Took", "MP3");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        });
+        handler.openIframe();
+      });
+  }
 </script>
 
 </body>
