@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ✅ Google Analytics (GA4) -->
+  <!-- GA4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -10,627 +10,113 @@
   gtag('js', new Date());
   gtag('config', 'G-2RTL8HNXF8');
 </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SB – Digital Bookstore</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Libre Baskerville', serif;
-      background-color: #f9f7f6;
-      color: #2b2b2b;
-    }
-    header {
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 1rem 1.5rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid #ddd;
-    }
-    .menu-icon {
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: #2b2b2b;
-      margin-right: 1rem;
-    }
-    .logo {
-      flex: 1;
-      text-align: center;
-    }
-    .logo img {
-      max-width: 240px;
-      height: auto;
-    }
-    .overlay-menu {
-      position: fixed;
-      top: 0;
-      left: -100%;
-      width: 80%;
-      max-width: 300px;
-      height: 100%;
-      background-color: #fff;
-      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
-      transition: left 0.3s ease-in-out;
-      padding: 2rem 1.5rem;
-      display: flex;
-      flex-direction: column;
-      z-index: 9999;
-    }
-    .overlay-menu.open {
-      left: 0;
-    }
-    .overlay-menu a {
-      text-decoration: none;
-      font-weight: bold;
-      color: #191970;
-      margin: 1rem 0;
-      font-size: 1.1rem;
-    }
-    .close-btn {
-      position: absolute;
-      top: 1.2rem;
-      right: 1.5rem;
-      font-size: 1.4rem;
-      cursor: pointer;
-      color: #191970;
-    }
-    .overlay-header {
-      font-size: 1.2rem;
-      font-weight: bold;
-      margin-bottom: 2rem;
-      color: #191970;
-    }
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem 2rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      margin-bottom: 0.5rem;
-    }
-    .hero p {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-    .hero img {
-      max-width: 90%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .section {
-      max-width: 700px;
-      margin: 2rem auto;
-      padding: 2rem 1.5rem;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-    }
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.9rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      color: #2b2b2b;
-    }
-    .section p {
-      font-size: 1rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-    .button {
-      display: inline-block;
-      background-color: #191970;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 1.5rem;
-    }
-    .button:hover {
-      background-color: #2a2a9f;
-    }
-    audio {
-      width: 100%;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #777;
-    }
-  </style>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SB – Digital Bookstore</title>
 </head>
+
 <body>
-
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <div class="logo">
-    <img src="sb_digital_logo.PNG" alt="Sonia Benjoye Logo">
-  </div>
-</header>
-
-<div class="overlay-menu" id="navMenu">
-  <div class="close-btn" onclick="toggleMenu()">✕</div>
-  <div class="overlay-header">Menu</div>
-  <a href="index.html">📘 Home</a>
-  <a href="ebook.html">📖 Ebook</a>
-  <a href="audiobook.html">🎧 Audiobook</a>
-  <a href="bundles.html">📦 Bundles</a>
-  <a href="about.html">👤 About Me</a>
-  <a href="#community">💬 Community</a>
-  <a href="https://sbclassic.github.io/sbclassic" target="_blank">💼 SB CLASSIC</a>
-  <a href="mailto:benjoye21@gmail.com">📩 Contact</a>
-</div>
-
-<div class="section">
-  <h2>📘 Claiming Her</h2>
-  <h3>The Difference Between Curiosity, Identity, and Commitment</h3>
-  <img src="Claiming_her_fullcover.PNG" alt="Claiming Her Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
-  <p>
-    Growing up, I always knew there was something different about me, something I could not fully name.<br/>
-    Raised in a world of rules and expectations, I was told who I should be before I even discovered who I was.<br/>
-    This book is about the space between curiosity, identity, and the moment you finally choose yourself.
-  </p>
-  <button class="button" onclick="showClaimingHerExcerpt()">Read Excerpt</button>
-  <a class="button" onclick="buyClaimingHer()">Buy Ebook – ₵55</a>
-</div>
-  
-<div class="section">
-  <h2>📘 God Was Never the Problem</h2>
-  <img src="God_was_never_the_problem_fullcover.png" alt="God Was Never the Problem Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
-  <p>
-    For the ones who were told to fear their questions.<br/>
-    This book is not about losing faith, but surviving it.<br/>
-    Sonia Benjoye writes fire into the silence, rage into the doctrine, and truth into the body.
-  </p>
-  <a class="button" onclick="buyGodWasNeverTheProblem()">Buy Ebook – ₵55</a>
-</div>
-
-<div class="section">
-  <h2>📘 The Paradox of Passion</h2>
-  <img src="bookcover_resized.JPG" alt="The Paradox of Passion – Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
-  <p><strong>What happens when love is both your sanctuary and your storm?</strong></p>
-  <p>A poetic reflection on heartbreak, healing and becoming.</p>
-  <a class="button" onclick="payParadox()">Buy Ebook – ₵49</a><br><br>
-  <a class="button" onclick="payParadoxAudio()">Buy Audiobook – ₵49</a><br><br>
-  <a class="button" onclick="payParadoxBundle()">Bundle: Ebook + Audiobook – ₵79</a>
-</div>
-
-<!-- 🎧 Free Teaser Preview -->
-<div class="section">
-  <h2>🎧 Free Teaser Preview</h2>
-  <p><em>Intro excerpt from <strong>The Paradox of Passion</strong> audiobook</em></p>
-  <audio controls>
-    <source src="intro-teaser-final.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-</div>
-
-<div class="section">
-  <h2>📘 Mother. Monster. Machine.</h2>
-  <img src="mother_monster_machine_fullcover.jpg" alt="Mother. Monster. Machine. Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
-  <p>
-    Raw. Political. Poetic.<br/>
-    A book about being woman and weapon in the same breath, about systems, sacrifice, and soft defiance.<br/>
-    Sonia Benjoye unpacks the fire of survival through the language of art.
-  </p>
-  <a class="button" onclick="buyMotherMonsterMachine()">Buy Ebook – ₵55</a>
-</div>
-
-<div class="section">
-  <h2>📘 Blackout City: We Who Lived Below</h2>
-  <img src="Blackout_City_Cover.png" alt="Blackout City Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
-  <p>
-    A haunting survival journal from a teenage girl leading strangers into the underground ruins of Lagos.<br/>
-    Told in fragments, memories, and final letters.
-  </p>
-  <a class="button" onclick="buyBlackoutCity()">Buy Ebook – ₵60</a>
-</div>
-
-<!-- ✅ Dual Book Bundle -->
-<div class="section">
-  <h2>📘 + 📗 Paradox + What It Took Bundle</h2>
-  <p><strong>Two books, one price.</strong></p>
-  <p>Ebook bundle: <strong>₵99</strong> (save ₵10)</p>
-  <a class="button" onclick="payDoubleBundle()">Buy Bundle</a>
-</div>
-
-<div class="section">
-  <h2>📗 What It Took</h2>
-  <img src="what_it_took_cover.png" alt="What It Took – Full Cover" style="width: 100%; max-width: 700px; height: auto; border-radius: 8px; margin-bottom: 1rem;" />
-  <p><strong>The becoming behind the becoming.</strong></p>
-  <p>A journey through identity, ambition, and rebuilding yourself in silence.</p>
-  <a class="button" onclick="payWhatItTook()">Buy Ebook – ₵60</a><br><br>
-  <a class="button" onclick="payWhatItTookAudio()">Buy Audiobook – ₵60</a><br><br>
-  <a class="button" onclick="payWhatItTookBundle()">Bundle: Ebook + Audiobook – ₵99</a>
-</div>
-
-<div class="section">
-  <h2>📕 This Is the Season for Guts</h2>
-  <img src="Guts_FullCover_SoniaBenjoye_Web.jpg" alt="This Is the Season for Guts – Full Cover" style="width: 100%; max-width: 700px; height: auto; border-radius: 8px; margin-bottom: 1rem;" />
-  <p><strong>Because grace alone won’t cut it.</strong></p>
-  <p>A bold and honest reminder of what it means to rise, rebuild, and keep going when life doesn’t hand you clarity or applause.</p>
-  <a class="button" onclick="payGuts()">Buy Ebook – ₵60</a>
-</div>
-
-<!-- 🔥 Woman. Weapon. Work. -->
-<div class="section">
-  <h2>🔥 Woman. Weapon. Work.</h2>
-  <img src="Woman. Weapon. Power Cover.png" alt="Woman. Weapon. Work. – Cover" style="width: 100%; max-width: 700px; border-radius: 8px;" />
-  <p><strong>Built for more than survival.</strong></p>
-  <p>A fierce and unapologetic reminder of power, ownership, and becoming your own force.</p>
-  <a class="button" onclick="payWeapon()">Buy Ebook – ₵60</a>
-</div>
-
-<div class="section" id="about-author">
-  <h2>👤 About the Author</h2>
-  <img src="authorphoto_resized.JPG" alt="Sonia Benjoye" style="width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-  <p>Sonia Benjoye is an entrepreneur and the founder of <strong>SB CLASSIC</strong>, a fashion brand rooted in timeless style and class. Her creative journey extends far beyond fashion into emotional storytelling, offering reflections on healing, truth, and personal growth.</p>
-</div>
-
-<div class="section" id="community" style="text-align:center;">
-  <h2>🤍 Join the Community</h2>
-  <a class="button" href="https://chat.whatsapp.com/FI3UyiXblztKEbuM4tebpe" target="_blank">WhatsApp Community</a>
-  <a class="button" href="https://instagram.com/realckassysonia" target="_blank">Instagram</a>
-  <a class="button" href="https://linktr.ee/soniabenjoye" target="_blank">Linktree</a>
-</div>
-
-<footer>
-  Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
-  &copy; 2025 Sonia Benjoye. All rights reserved.
-</footer>
-
-<!-- ✅ Paystack Integration with Secure Token Logic -->
-<script src="https://js.paystack.co/v1/inline.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
 <script>
-  function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("open");
+  function logDownload(book, format) {
+    console.log("Downloaded:", book, format);
   }
 
-  // Firebase Config
-  const firebaseConfig = {
-    apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
-    authDomain: "bookdownloadtracker.firebaseapp.com",
-    projectId: "bookdownloadtracker",
-    storageBucket: "bookdownloadtracker.firebasestorage.app",
-    messagingSenderId: "973175233369",
-    appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
-  };
-
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
-
-  // ✅ Log visitor on page load
-  (async function logVisitor() {
-    try {
-      const res = await fetch("https://api.ipify.org?format=json");
-      const { ip } = await res.json();
-      await db.collection("visitors").add({
-        timestamp: new Date().toISOString(),
-        page: window.location.pathname,
-        userAgent: navigator.userAgent,
-        referrer: document.referrer || "direct",
-        ip
-      });
-    } catch (e) {
-      console.error("Visitor log failed:", e);
-    }
-  })();
-
-  async function getIP() {
-    try {
-      const res = await fetch("https://api.ipify.org?format=json");
-      const data = await res.json();
-      return data.ip;
-    } catch {
-      return "Unavailable";
-    }
-  }
-
-  async function logDownload(book, format) {
-    const ip = await getIP();
-    const entry = {
-      book,
-      format,
-      timestamp: new Date().toISOString(),
-      ip,
-      userAgent: navigator.userAgent
-    };
-    db.collection("downloads").add(entry)
-      .then(() => console.log("✅ Logged:", book, format))
-      .catch((error) => console.error("❌ Log failed:", error));
-  }
-  
-function showClaimingHerExcerpt() {
-    alert(
-`📖 CLAIMING HER — EXCERPT
-For years, I lived in quiet confusion. I did not experiment. I did not fit the mold. I did not hide completely, but I did not speak openly either.
-I spent a long time alone, feeling the weight of expectation and the clarity of my own truth at the same time.
-This is not a story of becoming someone new.
-It is a story of finally naming who was already there.`
-      
-    );
-}
-
-function buyClaimingHer() {
+  function paystackPay(book, amount, formatLabel = "single") {
     const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+
     if (format !== "PDF" && format !== "EPUB") {
       alert("Please enter PDF or EPUB.");
       return;
     }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=claimingher&format=${format}`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function(response){
-            logDownload("Claiming Her", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        }).openIframe();
-      });
+
+    PaystackPop.setup({
+      key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+      email: 'benjoye21@gmail.com',
+      amount: amount,
+      currency: "GHS",
+
+      callback: function () {
+        logDownload(book, format);
+
+        // 🔥 NEW BACKEND FLOW
+        window.location.href =
+          `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${format}`;
+      },
+
+      onClose: function () {
+        alert("Transaction was not completed.");
+      }
+    }).openIframe();
   }
-  
+
+  // =========================
+  // BOOK FUNCTIONS (UPDATED)
+  // =========================
+
+  function buyClaimingHer() {
+    paystackPay("claimingher", 6000);
+  }
+
   function buyGodWasNeverTheProblem() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=${format}`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function(response){
-            logDownload("God Was Never The Problem", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        }).openIframe();
-      });
+    paystackPay("god", 6000);
   }
 
   function payParadox() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=${format}&label=single&page=index`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 4900,
-          currency: "GHS",
-          callback: function() {
-            logDownload("The Paradox of Passion", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    paystackPay("paradox", 4900);
   }
 
   function payParadoxAudio() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=audio&label=single&page=index")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 4900,
-          currency: "GHS",
-          callback: function() {
-            logDownload("The Paradox of Passion", "MP3");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    window.location.href =
+      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradox&format=audio";
   }
 
   function payParadoxBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=bundle&label=paradoxbundle&page=index")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 7900,
-          currency: "GHS",
-          callback: function() {
-            logDownload("The Paradox of Passion", "Ebook + Audiobook");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    window.location.href =
+      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradox&format=bundle";
   }
 
   function buyMotherMonsterMachine() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=mothermonster&format=${format}`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function(response){
-            logDownload("Mother. Monster. Machine.", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        }).openIframe();
-      });
+    paystackPay("mothermonster", 6000);
   }
 
   function buyBlackoutCity() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=${format}`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function(response){
-            logDownload("Blackout City", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          },
-          onClose: function(){ alert('Transaction was not completed.'); }
-        }).openIframe();
-      });
+    paystackPay("blackout", 6000);
   }
 
   function payDoubleBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradoxwhat&format=ebooks&label=bundle&page=index")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 9900,
-          currency: "GHS",
-          callback: function() {
-            logDownload("Paradox + What It Took", "Double Ebook Bundle");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    window.location.href =
+      "https://sb-bookstore-backend.onrender.com/paystack-success?book=paradoxwhat&format=bundle";
   }
 
   function payWhatItTook() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=${format}&label=single&page=index`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function() {
-            logDownload("What It Took", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    paystackPay("what", 6000);
   }
 
   function payWhatItTookAudio() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=audio&label=single&page=index")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function() {
-            logDownload("What It Took", "MP3");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    window.location.href =
+      "https://sb-bookstore-backend.onrender.com/paystack-success?book=what&format=audio";
   }
 
   function payWhatItTookBundle() {
-    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=bundle&label=whatbundle&page=index")
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 9900,
-          currency: "GHS",
-          callback: function() {
-            logDownload("What It Took", "Ebook + Audiobook");
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    window.location.href =
+      "https://sb-bookstore-backend.onrender.com/paystack-success?book=what&format=bundle";
   }
 
   function payGuts() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=${format}&label=single&page=index`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function() {
-            logDownload("This Is the Season for Guts", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    paystackPay("guts", 6000);
   }
 
   function payWeapon() {
-    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-    if (format !== "PDF" && format !== "EPUB") {
-      alert("Please enter PDF or EPUB.");
-      return;
-    }
-    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=weapon&format=${format}&label=single&page=index`)
-      .then(res => res.json())
-      .then(data => {
-        PaystackPop.setup({
-          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-          email: 'benjoye21@gmail.com',
-          amount: 6000,
-          currency: "GHS",
-          callback: function() {
-            logDownload("Woman. Weapon. Work.", format);
-            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
-          }
-        }).openIframe();
-      });
+    paystackPay("weapon", 6000);
   }
+
 </script>
+
+</body>
+</html>
