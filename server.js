@@ -1,184 +1,205 @@
-<!-- ✨ SB – Secure Digital Bookstore -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>SB – Digital Bookstore</title>
+console.log("🔥 SERVER FILE IS RUNNING");
 
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
+const express = require('express');
+const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const crypto = require('crypto');
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Libre Baskerville', serif;
-  background-color: #f9f7f6;
-  color: #2b2b2b;
-}
+const app = express();
 
-header {
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  border-bottom: 1px solid #ddd;
-}
+const SECRET = "sb-book-secret-key-change-this";
 
-.menu-icon {
-  font-size: 1.6rem;
-  cursor: pointer;
-  margin-right: 1rem;
-}
+// 🔒 ONE-TIME DOWNLOAD TRACKER (Option A)
+const usedTokens = new Set();
 
-.logo {
-  flex: 1;
-  text-align: center;
-}
+// ===============================
+// CORS
+// ===============================
+app.use(cors({
+  origin: 'https://sbclassic.github.io'
+}));
 
-.logo img {
-  max-width: 240px;
-}
+// ===============================
+// STATIC FILES
+// ===============================
+app.use(express.static('public'));
 
-.overlay-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100%;
-  background: #fff;
-  transition: 0.3s;
-  padding: 2rem;
-  z-index: 9999;
-}
+// ===============================
+// 🧪 TEST ROUTE
+// ===============================
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
 
-.overlay-menu.open {
-  left: 0;
-}
+// ===============================
+// 💳 PAYSTACK → GENERATE AUTO SIGNED LINK
+// ===============================
+app.get('/paystack-success', (req, res) => {
+  const { book, format } = req.query;
 
-.overlay-menu a {
-  display: block;
-  margin: 1rem 0;
-  font-weight: bold;
-  color: #191970;
-  text-decoration: none;
-}
+  if (!book || !format) {
+    return res.status(400).send("Missing book or format");
+  }
 
-.section {
-  max-width: 700px;
-  margin: 2rem auto;
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-}
+  const ts = Date.now();
+  const payload = `${book}|${format}|${ts}`;
 
-.button {
-  display: inline-block;
-  background: #191970;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  margin-top: 10px;
-}
-</style>
-</head>
+  const sig = crypto
+    .createHmac('sha256', SECRET)
+    .update(payload)
+    .digest('hex');
 
-<body>
+  const downloadUrl = `https://sb-bookstore-backend.onrender.com/download?book=${book}&format=${format}&ts=${ts}&sig=${sig}`;
 
-<header>
-  <div class="menu-icon" onclick="toggleMenu()">☰</div>
-  <div class="logo">
-    <img src="sb_digital_logo.PNG">
-  </div>
-</header>
+  return res.redirect(downloadUrl);
+});
 
-<div class="overlay-menu" id="menu">
-  <a href="index.html">Home</a>
-  <a href="ebook.html">Ebook</a>
-  <a href="audiobook.html">Audiobook</a>
-</div>
+// ===============================
+// 🔑 GENERATE SECURE LINK (manual option still exists)
+// ===============================
+app.get('/generate-token', (req, res) => {
+  const { book, format } = req.query;
 
-<!-- ===================== -->
-<!-- BOOKS -->
-<!-- ===================== -->
+  if (!book || !format) {
+    return res.status(400).send("Missing book or format");
+  }
 
-<div class="section">
-  <h2>Claiming Her</h2>
-  <button class="button" onclick="buy('claimingher', 6000)">Buy Ebook</button>
-</div>
+  const ts = Date.now();
+  const payload = `${book}|${format}|${ts}`;
 
-<div class="section">
-  <h2>God Was Never The Problem</h2>
-  <button class="button" onclick="buy('god', 6000)">Buy Ebook</button>
-</div>
+  const sig = crypto
+    .createHmac('sha256', SECRET)
+    .update(payload)
+    .digest('hex');
 
-<div class="section">
-  <h2>The Paradox of Passion</h2>
-  <button class="button" onclick="buy('paradox', 4900)">Buy Ebook</button>
-  <button class="button" onclick="buy('paradox', 4900, 'audio')">Buy Audiobook</button>
-</div>
+  res.json({
+    ts,
+    sig
+  });
+});
 
-<div class="section">
-  <h2>What It Took</h2>
-  <button class="button" onclick="buy('what', 6000)">Buy Ebook</button>
-  <button class="button" onclick="buy('what', 6000, 'audio')">Buy Audiobook</button>
-</div>
+// ===============================
+// 📥 DOWNLOAD ROUTE (SECURE + ONE-TIME)
+// ===============================
+app.get('/download', (req, res) => {
+  const { book, format, ts, sig } = req.query;
 
-<div class="section">
-  <h2>Mother Monster Machine</h2>
-  <button class="button" onclick="buy('mothermonster', 6000)">Buy Ebook</button>
-</div>
+  if (!book || !format || !ts || !sig) {
+    return res.status(403).send("Missing parameters.");
+  }
 
-<div class="section">
-  <h2>Blackout City</h2>
-  <button class="button" onclick="buy('blackout', 6000)">Buy Ebook</button>
-</div>
+  const payload = `${book}|${format}|${ts}`;
 
-<footer style="text-align:center; padding:2rem;">
-© 2025 SB Bookstore
-</footer>
+  const expectedSig = crypto
+    .createHmac('sha256', SECRET)
+    .update(payload)
+    .digest('hex');
 
-<script>
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("open");
-}
+  if (expectedSig !== sig) {
+    return res.status(403).send("Invalid or expired link.");
+  }
 
-/**
- * 🔥 FIXED FLOW (matches server.js)
- * Paystack → /paystack-success → server signs → download
- */
-function buy(book, amount, format = "pdf") {
+  // ⏱ expiry (5 minutes)
+  if (Date.now() - Number(ts) > 5 * 60 * 1000) {
+    return res.status(403).send("Link expired.");
+  }
 
-  const email = "benjoye21@gmail.com";
+  // 🔥 ONE-TIME USE CHECK
+  const tokenId = `${book}-${format}-${ts}`;
 
-  const handler = PaystackPop.setup({
-    key: "pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99",
-    email,
-    amount,
-    currency: "GHS",
+  if (usedTokens.has(tokenId)) {
+    return res.status(403).send("This download link has already been used.");
+  }
 
-    callback: function () {
-      // IMPORTANT: THIS NOW MATCHES YOUR SERVER.JS
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=${book}&format=${format}`;
-    },
+  usedTokens.add(tokenId);
 
-    onClose: function () {
-      alert("Payment not completed.");
+  const fileMap = {
+    'claimingher-pdf': 'Claiming Her.pdf',
+    'claimingher-epub': 'Claiming Her.epub',
+
+    'god-pdf': 'God Was Never the Problem.pdf',
+    'god-epub': 'God Was Never the Problem.pdf',
+
+    'what-pdf': 'What_It_Took_Print_Ready.pdf',
+    'what-epub': 'What It Took.epub',
+
+    'paradox-pdf': 'The Paradox of Passion – Final Book.pdf',
+    'paradox-epub': 'The Paradox of Passion.epub',
+
+    'guts-pdf': 'This Is the Season for Guts.pdf',
+    'guts-epub': 'This Is the Season for Guts.epub',
+
+    'weapon-pdf': 'Woman. Weapon. Work .pdf',
+    'weapon-epub': 'Woman. Weapon. Work .epub',
+
+    'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
+    'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
+
+    'blackveinsopenmouths-pdf': 'Black Veins Open Mouths.pdf',
+    'blackveinsopenmouths-epub': 'Black Veins Open Mouths.epub',
+
+    'herhandsheldthefuture-pdf': 'Her Hands Held The Future.pdf',
+    'herhandsheldthefuture-epub': 'Her Hands Held The Future.epub',
+
+    'mothermonstermachine-pdf': 'Mother. Monster. Machine..pdf',
+    'mothermonstermachine-epub': 'Mother. Monster. Machine..epub',
+
+    'nothingstayshidden-pdf': 'Nothing Stays Hidden.pdf',
+    'nothingstayshidden-epub': 'Nothing Stays Hidden.epub',
+
+    'beautifuldisciplineofboredom-pdf': 'The Beautiful Discipline of Boredom.pdf',
+    'beautifuldisciplineofboredom-epub': 'The Beautiful Discipline of Boredom.epub',
+
+    'thisishowsheendedtheworld-pdf': 'This Is How She Ended The World.pdf',
+    'thisishowsheendedtheworld-epub': 'This Is How She Ended The World.epub',
+
+    'thronesbuiltonsand-pdf': 'Thrones Built On Sand.pdf',
+    'thronesbuiltonsand-epub': 'Thrones Built On Sand.epub',
+
+    'tostandinthefire-pdf': 'To Stand In the Fire.pdf',
+    'tostandinthefire-epub': 'To Stand In the Fire.epub',
+  };
+
+  const key = `${book.toLowerCase()}-${format.toLowerCase()}`;
+  const fileName = fileMap[key];
+
+  if (!fileName) {
+    return res.status(404).send("File not found.");
+  }
+
+  const filePath = path.join(__dirname, 'public', fileName);
+
+  return res.download(filePath, fileName, (err) => {
+    if (err) {
+      console.log("Download error:", err.message);
+      return res.status(500).send("Download failed.");
     }
   });
+});
 
-  handler.openIframe();
-}
-</script>
+// ===============================
+// 📊 TRACKING
+// ===============================
+app.get('/api/tracking', (req, res) => {
+  const logPath = path.join(__dirname, 'public', 'downloads-data.js');
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+  if (!fs.existsSync(logPath)) {
+    return res.json([]);
+  }
 
-</body>
-</html>
+  const raw = fs.readFileSync(logPath, 'utf8');
+  const matches = [...raw.matchAll(/downloadData\.push\((.*?)\);/g)];
+  const entries = matches.map(m => JSON.parse(m[1]));
+
+  res.json(entries);
+});
+
+// ===============================
+// 🚀 START SERVER
+// ===============================
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`✅ Server running on port ${port}`);
+});
