@@ -390,251 +390,309 @@ It is a story of finally naming who was already there.`
 }
 
 function buyClaimingHer() {
-  const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-  if (format !== "PDF" && format !== "EPUB") {
-    alert("Please enter PDF or EPUB.");
-    return;
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=claimingher&format=${format}`)
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Claiming Her", format);
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
+  
+  function buyToStandInTheFire() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fire&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 5500, // ₵55.00
+          currency: "GHS",
+          callback: function(response){
+            logDownload("To Stand In the Fire", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
   }
 
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Claiming Her", format);
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=claimingher&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyToStandInTheFire() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 5500,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("To Stand In the Fire", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=fire&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyBlackoutCity() {
-  const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
-  if (format !== "PDF" && format !== "EPUB") {
-    alert("Please enter PDF or EPUB.");
-    return;
+  function buyBlackoutCity() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackout&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Blackout City", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+    function buyGodWasNeverTheProblem() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=god&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("God Was Never The Problem", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+  function buyNothingStaysHidden() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=nothingstayshidden&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 5500, // ₵55.00 (keep same structure as your sample)
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Nothing Stays Hidden", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+  function buyThronesBuiltOnSand() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=thrones&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 5500, // ₵55.00
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Thrones Built On Sand", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
   }
 
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Blackout City", format);
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=blackout&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
+  function buyBlackVeins() {
+  fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=blackveins&format=choose")
+    .then(res => res.json())
+    .then(data => {
+      PaystackPop.setup({
+        key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+        email: 'benjoye21@gmail.com',
+        amount: 6000,
+        currency: "GHS",
+        callback: function(response){
+          logDownload("Black Veins, Open Mouths", "PDF/EPUB");
+          window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+        },
+        onClose: function(){
+          alert('Transaction was not completed.');
+        }
+      }).openIframe();
+    });
 }
 
-function buyGodWasNeverTheProblem() {
-  const format = "PDF";
+  function buyHerHandsHeldTheFuture() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=hands&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Her Hands Held the Future, Her Back Held the Weight", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
+  function buyMotherMonsterMachine() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=machine&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Mother. Monster. Machine.", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-    callback: function () {
-      logDownload("God Was Never The Problem", "PDF");
+  function buyBeautifulDiscipline() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=beautiful&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("The Beautiful Discipline of Boredom", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=god&format=${format}`;
-    },
+  function buySheEndedTheWorld() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=ended&format=PDF")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("This Is How She Ended the World", "PDF");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+  function buyParadox() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=paradox&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 4900,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("The Paradox of Passion", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
+  function buyWhatItTook() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=what&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("What It Took", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-function buyNothingStaysHidden() {
-  const format = "PDF";
+  function buyGuts() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=guts&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("This Is the Season for Guts", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
 
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 5500,
-    currency: "GHS",
+  function buyWWW() {
+    fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=www&format=choose")
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Woman. Weapon. Work.", "PDF/EPUB");
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){
+            alert('Transaction was not completed.');
+          }
+        }).openIframe();
+      });
+  }
+  
+</script>
 
-    callback: function () {
-      logDownload("Nothing Stays Hidden", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=nothingstayshidden&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyThronesBuiltOnSand() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 5500,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Thrones Built On Sand", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=thrones&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyBlackVeins() {
-  const format = "choose";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Black Veins, Open Mouths", "PDF/EPUB");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=blackveins&format=choose`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyHerHandsHeldTheFuture() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Her Hands Held the Future, Her Back Held the Weight", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=hands&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyMotherMonsterMachine() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("Mother. Monster. Machine.", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=machine&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buyBeautifulDiscipline() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("The Beautiful Discipline of Boredom", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=beautifuldisciplineofboredom&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
-
-function buySheEndedTheWorld() {
-  const format = "PDF";
-
-  PaystackPop.setup({
-    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
-    email: 'benjoye21@gmail.com',
-    amount: 6000,
-    currency: "GHS",
-
-    callback: function () {
-      logDownload("This Is How She Ended the World", "PDF");
-
-      window.location.href =
-        `https://sb-bookstore-backend.onrender.com/paystack-success?book=thisishowsheendedtheworld&format=${format}`;
-    },
-
-    onClose: function () {
-      alert('Transaction was not completed.');
-    }
-  }).openIframe();
-}
+</body>
+</html>
