@@ -1,201 +1,640 @@
-<!-- START OF FIXED EBOOK.HTML -->
+<!-- START OF CLEANED EBOOK.HTML (NO STORE NAME IN LOGO AREA) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Ebook – SB</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
-
-<style>
-body {
-  margin: 0;
-  font-family: 'Libre Baskerville', serif;
-  background-color: #f9f7f6;
-  color: #2b2b2b;
-}
-
-header {
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  padding: 1rem 1.5rem;
-  position: sticky;
-  top: 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.menu-icon {
-  font-size: 1.6rem;
-  cursor: pointer;
-  margin-right: 1rem;
-}
-
-.logo {
-  flex: 1;
-  text-align: center;
-}
-
-.logo img {
-  max-width: 240px;
-}
-
-/* menu */
-.overlay-menu {
-  position: fixed;
-  top: 0;
-  left: -100%;
-  width: 80%;
-  max-width: 300px;
-  height: 100%;
-  background: #fff;
-  transition: 0.3s;
-  padding: 2rem;
-}
-
-.overlay-menu.open { left: 0; }
-
-.overlay-menu a {
-  display: block;
-  margin: 1rem 0;
-  text-decoration: none;
-  color: #191970;
-  font-weight: bold;
-}
-
-.section {
-  max-width: 700px;
-  margin: auto;
-  padding: 2rem 1.5rem;
-  text-align: center;
-}
-
-.section img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-}
-
-.button {
-  background: #191970;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  margin-top: 1rem;
-}
-
-.button:hover {
-  background: #2a2a9f;
-}
-</style>
+  <!-- ✅ Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2RTL8HNXF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-2RTL8HNXF8');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ebook – SB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Playfair+Display&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Libre Baskerville', serif;
+      background-color: #f9f7f6;
+      color: #2b2b2b;
+    }
+    header {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #ddd;
+    }
+    .menu-icon {
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #2b2b2b;
+      margin-right: 1rem;
+    }
+    .logo {
+      flex: 1;
+      text-align: center;
+    }
+    .logo img {
+      max-width: 240px;
+      height: auto;
+    }
+    .overlay-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100%;
+      background-color: #fff;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      transition: left 0.3s ease-in-out;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      z-index: 9999;
+    }
+    .overlay-menu.open {
+      left: 0;
+    }
+    .overlay-menu a {
+      text-decoration: none;
+      font-weight: bold;
+      color: #191970;
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+    .close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #191970;
+    }
+    .overlay-header {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+      color: #191970;
+    }
+    .section {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .section img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #2b2b2b;
+      margin-bottom: 0.8rem;
+    }
+    .section p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .button {
+      display: inline-block;
+      background-color: #191970;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 1.2rem;
+    }
+    .button:hover {
+      background-color: #2a2a9f;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <div class="logo">
-    <img src="sb_digital_logo.PNG">
+    <img src="sb_digital_logo.PNG" alt="Sonia Benjoye Logo">
   </div>
 </header>
 
 <div class="overlay-menu" id="navMenu">
-  <a href="index.html">Home</a>
-  <a href="ebook.html">Ebook</a>
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+  <div class="overlay-header">Menu</div>
+  <a href="index.html">📘 Home</a>
+  <a href="ebook.html">📖 Ebook</a>
+  <a href="audiobook.html">🎧 Audiobook</a>
+  <a href="bundles.html">📦 Bundles</a>
+  <a href="about.html">👤 About Me</a>
+  <a href="community.html">💬 Community</a>
+  <a href="https://sbclassic.github.io/sbclassic" target="_blank">💼 SB CLASSIC</a>
+  <a href="mailto:benjoye21@gmail.com">📩 Contact</a>
 </div>
 
+<div class="hero-text" style="text-align: center; padding: 2.5rem 1rem 1rem;">
+  <h1 style="font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: bold; color: #2b2b2b; margin-bottom: 0.4rem;">📖 Ebooks</h1>
+  <p style="font-family: 'Libre Baskerville', serif; font-size: 1rem; color: #444;">All books available in EPUB and PDF format</p>
+</div>
+  
+  <!-- Book Sections -->
 <div class="section">
   <h2>📘 Claiming Her</h2>
-  <img src="Claiming_her_fullcover.PNG">
-  <p>Curiosity, identity, and commitment.</p>
-  <button class="button" onclick="buyClaimingHer()">Buy Ebook – ₵55</button>
+  <h3>The Difference Between Curiosity, Identity, and Commitment</h3>
+  <img src="Claiming_her_fullcover.PNG" alt="Claiming Her Cover" style="max-width: 100%; border-radius: 6px; margin-bottom: 1rem;" />
+  <p>
+    Growing up, I always knew there was something different about me, something I could not fully name.<br/>
+    Raised in a world of rules and expectations, I was told who I should be before I even discovered who I was.<br/>
+    This book is about the space between curiosity, identity, and the moment you finally choose yourself.
+  </p>
+  <button class="button" onclick="showClaimingHerExcerpt()">Read Excerpt</button>
+  <a class="button" onclick="buyClaimingHer()">Buy Ebook – ₵55</a>
+</div>
+  
+<div class="section">
+  <h2>📘 To Stand In the Fire</h2>
+  <img src="To_Stand_In_The_Fire_Cover.PNG" alt="To Stand In the Fire Cover" />
+  <p>
+    When the way out is gone, the only way forward is through.<br/>
+    A survivor’s manual for moments when escape is no longer possible and endurance is the only option.<br/>
+    Eight battle-tested rules to help you face what hunts you, stand your ground, and carry your scars as proof you made it through.
+  </p>
+  <a class="button" onclick="buyToStandInTheFire()">Buy Ebook – ₵55</a>
 </div>
 
+<div class="section">
+  <h2>📘 Blackout City: We Who Lived Below</h2>
+  <img src="Blackout_City_Cover.png" alt="Blackout City Cover" />
+  <p>
+    A haunting survival journal from a teenage girl leading strangers into the underground ruins of Lagos.<br/>
+    Told in fragments, memories, and final letters.
+  </p>
+  <a class="button" onclick="buyBlackoutCity()">Buy Ebook – ₵60</a>
+</div>
+  
 <div class="section">
   <h2>📘 God Was Never The Problem</h2>
-  <img src="God_was_never_the_problem_fullcover.png">
-  <button class="button" onclick="buyGod()">Buy Ebook – ₵60</button>
+  <img src="God_was_never_the_problem_fullcover.png" alt="God Was Never The Problem Cover" />
+  <p>
+    For the ones who were told to fear their questions.<br/>
+    This book is not about losing faith, but surviving it.<br/>
+    Sonia Benjoye writes fire into the silence, rage into the doctrine, and truth into the body.
+  </p>
+  <a class="button" onclick="buyGodWasNeverTheProblem()">Buy Ebook – ₵60</a>
 </div>
 
 <div class="section">
-  <h2>📘 Blackout City</h2>
-  <img src="Blackout_City_Cover.png">
-  <button class="button" onclick="buyBlackout()">Buy Ebook – ₵60</button>
+  <h2>📘 Nothing Stays Hidden</h2>
+  <img src="Nothing_Stays_Hidden_Cover.PNG" alt="Nothing Stays Hidden Cover" />
+  <p>
+    Every secret finds its way to the light.<br/>
+    A locked box. A witness who saw too much. A stranger who should have walked away.<br/>
+    Tense, layered and impossible to look away from. This is a story about the cost of silence, the danger of knowing too much and the thin line between protecting yourself and destroying everything.
+  </p>
+  <a class="button" onclick="buyNothingStaysHidden()">Buy Ebook – ₵55</a>
 </div>
 
-<footer style="text-align:center;padding:2rem;">
-  © 2025 SB
+<div class="section">
+  <h2>📘 Thrones Built On Sand</h2>
+  <img src="Thrones_Built_On_Sand_Cover.png" alt="Thrones Built On Sand Cover" />
+  <p>
+    When power forgets its foundation, collapse is only a matter of time.<br/>
+    From whispered alliances to public betrayals, each year brings a new fracture in an empire that mistook appearances for strength.<br/>
+    A tense, layered story of rise and decay about the cost of silence and the hunger to claim what remains.
+  </p>
+  <a class="button" onclick="buyThronesBuiltOnSand()">Buy Ebook – ₵55</a>
+</div>
+
+<div class="section">
+  <h2>📘 Black Veins, Open Mouths</h2>
+  <img src="Black_veins_open_mouths_fullcover.jpg" alt="Black Veins Cover" />
+  <p>
+    They told her to be quiet. But she opened her mouth and the sky split.<br/>
+    This is a scream turned scripture, raw, unflinching, and unforgettable.
+  </p>
+  <a class="button" onclick="buyBlackVeins()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 Her Hands Held the Future, Her Back Held the Weight</h2>
+  <img src="her_hands_held_the_future_fullcover.png" alt="Her Hands Held the Future Cover" />
+  <p>
+    She didn’t inherit safety.<br/>
+    She inherited blueprints scrawled in blood and brilliance.<br/>
+    These poems rise from burden and brilliance.
+  </p>
+  <a class="button" onclick="buyHerHandsHeldTheFuture()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 Mother. Monster. Machine.</h2>
+  <img src="mother_monster_machine_fullcover.jpg" alt="Mother Monster Machine Cover" />
+  <p>
+    Raw. Political. Poetic.<br/>
+    A book about being woman and weapon in the same breath, about systems, sacrifice, and soft defiance.<br/>
+    Sonia Benjoye unpacks the fire of survival through the language of art.
+  </p>
+  <a class="button" onclick="buyMotherMonsterMachine()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 The Beautiful Discipline of Boredom</h2>
+  <img src="the_beautiful_fullcover.png" alt="The Beautiful Discipline of Boredom Cover" />
+  <p>
+    A quiet book for loud minds.<br/>
+    A call to begin without applause or permission.<br/>
+    The invisible work of becoming.
+  </p>
+  <a class="button" onclick="buyBeautifulDiscipline()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 This Is How She Ended the World</h2>
+  <img src="this_is_how_she_ended_the_world_fullcover.PNG" alt="This Is How She Ended the World Cover" />
+  <p>
+    Not a whisper, a scream wrapped in scripture.<br/>
+    A prophecy carved in pain.<br/>
+    These poems do not comfort. They confront.
+  </p>
+  <a class="button" onclick="buySheEndedTheWorld()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📘 The Paradox of Passion</h2>
+  <img src="bookcover_resized.JPG" alt="Paradox of Passion Cover" />
+  <p>What happens when love is both your sanctuary and your storm?<br/>
+  A poetic reflection on heartbreak, healing, and becoming.</p>
+  <a class="button" onclick="buyParadox()">Buy Ebook – ₵49</a>
+</div>
+
+<div class="section">
+  <h2>📗 What It Took</h2>
+  <img src="what_it_took_cover.png" alt="What It Took Cover" />
+  <p>The becoming behind the becoming.<br/>
+  A journey through identity, ambition, and rebuilding yourself in silence.</p>
+  <a class="button" onclick="buyWhatItTook()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📕 This Is the Season for Guts</h2>
+  <img src="Guts_FullCover_SoniaBenjoye_Web.jpg" alt="This Is the Season for Guts Cover" />
+  <p>Because grace alone won’t cut it.<br/>
+  A raw and honest look at grit, discipline, and rebuilding from silence.</p>
+  <a class="button" onclick="buyGuts()">Buy Ebook – ₵60</a>
+</div>
+
+<div class="section">
+  <h2>📙 Woman. Weapon. Work.</h2>
+  <img src="Woman. Weapon. Power Cover.png" alt="Woman. Weapon. Work Cover" />
+  <p>Built for more than survival.<br/>
+  A bold reclaiming of voice, identity, and power for the woman who is done performing strength quietly.</p>
+  <a class="button" onclick="buyWWW()">Buy Ebook – ₵60</a>
+</div>
+
+<footer>
+  Contact: <a href="mailto:benjoye21@gmail.com">benjoye21@gmail.com</a><br/>
+  &copy; 2025 Sonia Benjoye. All rights reserved.
 </footer>
 
 <script src="https://js.paystack.co/v1/inline.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
 
 <script>
-function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("open");
+  function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("open");
+  }
+
+  // Firebase Config
+  const firebaseConfig = {
+    apiKey: "AIzaSyDoBrw0UEE2Nhk6jLo-6CxLdZjjkdOYhCU",
+    authDomain: "bookdownloadtracker.firebaseapp.com",
+    projectId: "bookdownloadtracker",
+    storageBucket: "bookdownloadtracker.firebasestorage.app",
+    messagingSenderId: "973175233369",
+    appId: "1:973175233369:web:b4a45e37bcc2976617ca48"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  // ✅ Log visitor on page load
+  (async function logVisitor() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const { ip } = await res.json();
+      await db.collection("visitors").add({
+        timestamp: new Date().toISOString(),
+        page: window.location.pathname,
+        userAgent: navigator.userAgent,
+        referrer: document.referrer || "direct",
+        ip
+      });
+    } catch (e) {
+      console.error("Visitor log failed:", e);
+    }
+  })();
+
+  async function getIP() {
+    try {
+      const res = await fetch("https://api.ipify.org?format=json");
+      const data = await res.json();
+      return data.ip;
+    } catch {
+      return "Unavailable";
+    }
+  }
+
+  async function logDownload(book, format) {
+    const ip = await getIP();
+    const entry = {
+      book,
+      format,
+      timestamp: new Date().toISOString(),
+      ip,
+      userAgent: navigator.userAgent
+    };
+
+    db.collection("downloads").add(entry)
+      .then(() => console.log("✅ Logged:", book, format))
+      .catch((error) => console.error("❌ Log failed:", error));
+  }
+  function showClaimingHerExcerpt() {
+    alert(
+`📖 CLAIMING HER — EXCERPT
+For years, I lived in quiet confusion. I did not experiment. I did not fit the mold. I did not hide completely, but I did not speak openly either.
+I spent a long time alone, feeling the weight of expectation and the clarity of my own truth at the same time.
+This is not a story of becoming someone new.
+It is a story of finally naming who was already there.`
+      
+    );
 }
 
-/* =========================
-   🔐 FIXED CORE FUNCTION
-========================= */
-async function getSecureDownloadUrl(book, format){
-  const res = await fetch(
-    `https://sb-bookstore-backend.onrender.com/generate-token?book=${book}&format=${format}`
-  );
+function buyClaimingHer() {
+  const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+  if (format !== "PDF" && format !== "EPUB") {
+    alert("Please enter PDF or EPUB.");
+    return;
+  }
 
-  const data = await res.json();
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
 
-  return `https://sb-bookstore-backend.onrender.com/download?book=${book}&format=${format}&ts=${data.ts}&sig=${data.sig}`;
+    callback: function () {
+      logDownload("Claiming Her", format);
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=claimingher&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
 }
 
-/* =========================
-   💳 PAYSTACK + DOWNLOAD FLOW
-========================= */
+function buyToStandInTheFire() {
+  const format = "PDF";
 
-function buyClaimingHer(){
   PaystackPop.setup({
     key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
     email: 'benjoye21@gmail.com',
     amount: 5500,
     currency: "GHS",
 
-    callback: async function(){
-      const url = await getSecureDownloadUrl("claimingher", "pdf");
-      window.location.href = url;
+    callback: function () {
+      logDownload("To Stand In the Fire", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=fire&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
     }
   }).openIframe();
 }
 
-function buyGod(){
+function buyBlackoutCity() {
+  const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+  if (format !== "PDF" && format !== "EPUB") {
+    alert("Please enter PDF or EPUB.");
+    return;
+  }
+
   PaystackPop.setup({
     key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
     email: 'benjoye21@gmail.com',
     amount: 6000,
     currency: "GHS",
 
-    callback: async function(){
-      const url = await getSecureDownloadUrl("god", "pdf");
-      window.location.href = url;
+    callback: function () {
+      logDownload("Blackout City", format);
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=blackout&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
     }
   }).openIframe();
 }
 
-function buyBlackout(){
+function buyGodWasNeverTheProblem() {
+  const format = "PDF";
+
   PaystackPop.setup({
     key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
     email: 'benjoye21@gmail.com',
     amount: 6000,
     currency: "GHS",
 
-    callback: async function(){
-      const url = await getSecureDownloadUrl("blackout", "pdf");
-      window.location.href = url;
+    callback: function () {
+      logDownload("God Was Never The Problem", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=god&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
     }
   }).openIframe();
 }
-</script>
 
-</body>
-</html>
+function buyNothingStaysHidden() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 5500,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("Nothing Stays Hidden", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=nothingstayshidden&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buyThronesBuiltOnSand() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 5500,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("Thrones Built On Sand", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=thrones&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buyBlackVeins() {
+  const format = "choose";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("Black Veins, Open Mouths", "PDF/EPUB");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=blackveins&format=choose`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buyHerHandsHeldTheFuture() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("Her Hands Held the Future, Her Back Held the Weight", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=hands&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buyMotherMonsterMachine() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("Mother. Monster. Machine.", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=machine&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buyBeautifulDiscipline() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("The Beautiful Discipline of Boredom", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=beautifuldisciplineofboredom&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
+
+function buySheEndedTheWorld() {
+  const format = "PDF";
+
+  PaystackPop.setup({
+    key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+    email: 'benjoye21@gmail.com',
+    amount: 6000,
+    currency: "GHS",
+
+    callback: function () {
+      logDownload("This Is How She Ended the World", "PDF");
+
+      window.location.href =
+        `https://sb-bookstore-backend.onrender.com/paystack-success?book=thisishowsheendedtheworld&format=${format}`;
+    },
+
+    onClose: function () {
+      alert('Transaction was not completed.');
+    }
+  }).openIframe();
+}
