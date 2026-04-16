@@ -10,16 +10,27 @@ const app = express();
 
 const SECRET = "sb-book-secret-key-change-this";
 
-// ✅ CORS
+// ===============================
+// CORS
+// ===============================
 app.use(cors({
   origin: 'https://sbclassic.github.io'
 }));
 
-// ✅ Static files
+// ===============================
+// STATIC FILES
+// ===============================
 app.use(express.static('public'));
 
 // ===============================
-// 🔑 GENERATE SECURE DOWNLOAD LINK
+// 🧪 TEST ROUTE (IMPORTANT)
+// ===============================
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
+// ===============================
+// 🔑 GENERATE SECURE LINK
 // ===============================
 app.get('/generate-token', (req, res) => {
   const { book, format } = req.query;
@@ -39,7 +50,7 @@ app.get('/generate-token', (req, res) => {
 });
 
 // ===============================
-// 📥 DOWNLOAD ROUTE (NO STORAGE)
+// 📥 DOWNLOAD ROUTE
 // ===============================
 app.get('/download', (req, res) => {
   const { book, format, ts, sig } = req.query;
@@ -59,7 +70,7 @@ app.get('/download', (req, res) => {
     return res.status(403).send("Invalid or expired link.");
   }
 
-  // ⏱ 5 min expiry
+  // ⏱ expiry (5 mins)
   if (Date.now() - Number(ts) > 5 * 60 * 1000) {
     return res.status(403).send("Link expired.");
   }
@@ -138,9 +149,10 @@ app.get('/api/tracking', (req, res) => {
 });
 
 // ===============================
-// 🚀 START
+// 🚀 START SERVER
 // ===============================
 const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
   console.log(`✅ Server running on port ${port}`);
 });
