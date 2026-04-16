@@ -1,4 +1,4 @@
-console.log("🔥 SERVER STARTED");
+console.log("🔥 SERVER FILE IS RUNNING");
 
 const express = require('express');
 const cors = require('cors');
