@@ -1,14 +1,27 @@
+const TOKEN_FILE = path.join(__dirname, 'tokens.json');
+
+function loadTokens() {
+  if (!fs.existsSync(TOKEN_FILE)) return {};
+  return JSON.parse(fs.readFileSync(TOKEN_FILE, 'utf8'));
+}
+
+function saveTokens(tokens) {
+  fs.writeFileSync(TOKEN_FILE, JSON.stringify(tokens, null, 2));
+}
+
 app.get('/download', (req, res) => {
   const { token } = req.query;
 
-  const tokenData = VALID_TOKENS.get(token);
+  const tokens = loadTokens();
+  const tokenData = tokens[token];
 
   if (!tokenData) {
     return res.status(403).send('Invalid or expired token.');
   }
 
   if (Date.now() > tokenData.expiresAt) {
-    VALID_TOKENS.delete(token);
+    delete tokens[token];
+    saveTokens(tokens);
     return res.status(403).send('Token expired.');
   }
 
@@ -80,12 +93,10 @@ app.get('/download', (req, res) => {
     'tostandinthefire-epub': 'To Stand In the Fire.epub',
   };
 
-  // 🔥 SAFE KEY BUILD (prevents silent mismatch bugs)
   const format = (tokenData.format || '').toLowerCase();
   const book = (tokenData.book || '').toLowerCase();
 
   const key = `${book}-${format}`;
-
   const fileName = fileMap[key];
 
   if (!fileName) {
