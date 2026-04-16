@@ -55,6 +55,14 @@ app.get('/download', (req, res) => {
   fs.appendFileSync(logPath, '\n' + content);
 
   const fileMap = {
+    // Claiming Her
+    'claimingher-pdf': 'Claiming Her.pdf',
+    'claimingher-epub': 'Claiming Her.epub',
+    
+    // God Was Never The Problem
+    'god-pdf': 'God Was Never the Problem.pdf',
+    'god-epub': 'God Was Never the Problem.pdf',
+    
     // What It Took
     'what-pdf': 'What_It_Took_Print_Ready.pdf',
     'what-epub': 'What It Took.epub',
@@ -76,6 +84,38 @@ app.get('/download', (req, res) => {
     // Blackout City
     'blackout-pdf': 'Blackout City – We Who Lived Below.pdf',
     'blackout-epub': 'BLACKOUT CITY: WE WHO LIVED BELOW.epub',
+
+    // Black Veins Open Mouths
+    'blackveinsopenmouths-pdf': 'Black Veins Open Mouths.pdf',
+    'blackveinsopenmouths-epub': 'Black Veins Open Mouths.epub',
+
+    // Her Hands Held The Future
+    'herhandsheldthefuture-pdf': 'Her Hands Held The Future.pdf',
+    'herhandsheldthefuture-epub': 'Her Hands Held The Future.epub',
+
+    // Mother. Monster. Machine
+    'mothermonstermachine-pdf': 'Mother. Monster. Machine..pdf',
+    'mothermonstermachine-epub': 'Mother. Monster. Machine..epub',
+
+    // Nothing Stays Hidden
+    'nothingstayshidden-pdf': 'Nothing Stays Hidden.pdf',
+    'nothingstayshidden-epub': 'Nothing Stays Hidden.epub',
+
+    // The Beautiful Discipline of Boredom
+    'beautifuldisciplineofboredom-pdf': 'The Beautiful Discipline of Boredom.pdf',
+    'beautifuldisciplineofboredom-epub': 'The Beautiful Discipline of Boredom.epub',
+
+    // This Is How She Ended The World
+    'thisishowsheendedtheworld-pdf': 'This Is How She Ended The World.pdf',
+    'thisishowsheendedtheworld-epub': 'This Is How She Ended The World.epub',
+
+    // Thrones Built On Sand
+    'thronesbuiltonsand-pdf': 'Thrones Built On Sand.pdf',
+    'thronesbuiltonsand-epub': 'Thrones Built On Sand.epub',
+
+    // To Stand In The Fire
+    'tostandinthefire-pdf': 'To Stand In the Fire.pdf',
+    'tostandinthefire-epub': 'To Stand In the Fire.epub',
   };
 
   const fileName = fileMap[`${tokenData.book}-${tokenData.format}`];
