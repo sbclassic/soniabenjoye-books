@@ -10,6 +10,9 @@ const app = express();
 
 const SECRET = "sb-book-secret-key-change-this";
 
+// 🔒 ONE-TIME DOWNLOAD TRACKER (Option A)
+const usedTokens = new Set();
+
 // ===============================
 // CORS
 // ===============================
@@ -23,7 +26,7 @@ app.use(cors({
 app.use(express.static('public'));
 
 // ===============================
-// 🧪 TEST ROUTE (IMPORTANT)
+// 🧪 TEST ROUTE
 // ===============================
 app.get('/ping', (req, res) => {
   res.send('pong');
@@ -34,6 +37,10 @@ app.get('/ping', (req, res) => {
 // ===============================
 app.get('/generate-token', (req, res) => {
   const { book, format } = req.query;
+
+  if (!book || !format) {
+    return res.status(400).send("Missing book or format");
+  }
 
   const ts = Date.now();
   const payload = `${book}|${format}|${ts}`;
@@ -50,7 +57,7 @@ app.get('/generate-token', (req, res) => {
 });
 
 // ===============================
-// 📥 DOWNLOAD ROUTE
+// 📥 DOWNLOAD ROUTE (OPTION A PROTECTED)
 // ===============================
 app.get('/download', (req, res) => {
   const { book, format, ts, sig } = req.query;
@@ -70,10 +77,19 @@ app.get('/download', (req, res) => {
     return res.status(403).send("Invalid or expired link.");
   }
 
-  // ⏱ expiry (5 mins)
+  // ⏱ expiry (5 minutes)
   if (Date.now() - Number(ts) > 5 * 60 * 1000) {
     return res.status(403).send("Link expired.");
   }
+
+  // 🔥 ONE-TIME USE CHECK
+  const tokenId = `${book}-${format}-${ts}`;
+
+  if (usedTokens.has(tokenId)) {
+    return res.status(403).send("This download link has already been used.");
+  }
+
+  usedTokens.add(tokenId);
 
   const fileMap = {
     'claimingher-pdf': 'Claiming Her.pdf',
@@ -131,7 +147,12 @@ app.get('/download', (req, res) => {
 
   const filePath = path.join(__dirname, 'public', fileName);
 
-  return res.download(filePath, fileName);
+  return res.download(filePath, fileName, (err) => {
+    if (err) {
+      console.log("Download error:", err.message);
+      return res.status(500).send("Download failed.");
+    }
+  });
 });
 
 // ===============================
@@ -139,7 +160,10 @@ app.get('/download', (req, res) => {
 // ===============================
 app.get('/api/tracking', (req, res) => {
   const logPath = path.join(__dirname, 'public', 'downloads-data.js');
-  if (!fs.existsSync(logPath)) return res.json([]);
+
+  if (!fs.existsSync(logPath)) {
+    return res.json([]);
+  }
 
   const raw = fs.readFileSync(logPath, 'utf8');
   const matches = [...raw.matchAll(/downloadData\.push\((.*?)\);/g)];
