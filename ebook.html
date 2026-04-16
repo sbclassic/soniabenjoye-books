@@ -378,6 +378,39 @@
       .then(() => console.log("✅ Logged:", book, format))
       .catch((error) => console.error("❌ Log failed:", error));
   }
+  function showClaimingHerExcerpt() {
+    alert(
+`📖 CLAIMING HER — EXCERPT
+For years, I lived in quiet confusion. I did not experiment. I did not fit the mold. I did not hide completely, but I did not speak openly either.
+I spent a long time alone, feeling the weight of expectation and the clarity of my own truth at the same time.
+This is not a story of becoming someone new.
+It is a story of finally naming who was already there.`
+      
+    );
+}
+
+function buyClaimingHer() {
+    const format = prompt("Choose a format: PDF or EPUB").toUpperCase();
+    if (format !== "PDF" && format !== "EPUB") {
+      alert("Please enter PDF or EPUB.");
+      return;
+    }
+    fetch(`https://sb-bookstore-backend.onrender.com/generate-token?book=claimingher&format=${format}`)
+      .then(res => res.json())
+      .then(data => {
+        PaystackPop.setup({
+          key: 'pk_live_a09356e2ab5cf6afa40e5ea77de1d06ac4f86f99',
+          email: 'benjoye21@gmail.com',
+          amount: 6000,
+          currency: "GHS",
+          callback: function(response){
+            logDownload("Claiming Her", format);
+            window.location.href = "https://sb-bookstore-backend.onrender.com/download?token=" + data.token;
+          },
+          onClose: function(){ alert('Transaction was not completed.'); }
+        }).openIframe();
+      });
+  }
   
   function buyToStandInTheFire() {
     fetch("https://sb-bookstore-backend.onrender.com/generate-token?book=fire&format=PDF")
